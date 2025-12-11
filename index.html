@@ -5,431 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIESEC in Benin - MCP 26.27 Application</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chargement de toutes les variantes nécessaires de Lato -->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
-    <!-- Icônes Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Définitions minimalistes */
-        :root {
-            --aiesec-blue: #037EF3;
-            --lead-color: #00c16e;    /* Vert pour Lead */
-            --manage-color: #F48924;   /* Orange pour Manage */
-            --represent-color: #7552CC; /* Violet pour Represent */
-            --eligibility-color: #0CB9C1; /* Bleu clair pour Eligibility */
-        }
-        *
-        {
-            font-family: 'Lato', sans-serif;
-        }
-
-        /* Styles typographiques */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 900; /* Lato Black pour les titres */
-        }
-
-        body, p, li, span, div, a:not(.no-normal) {
-            font-weight: 400; /* Lato Normal pour le texte */
-        }
-
-        /* Classes spécifiques pour les variations */
-        .font-light { font-weight: 300; }
-        .font-normal { font-weight: 400; }
-        .font-bold { font-weight: 700; }
-        .font-black { font-weight: 900; }
-
-        .text-accent { color: var(--aiesec-blue); }
-        .border-accent { border-color: var(--aiesec-blue); }
-        .text-lead { color: var(--lead-color); }
-        .text-manage { color: var(--manage-color); }
-        .text-represent { color: var(--represent-color); }
-        .text-eligibility { color: var(--eligibility-color); }
-        /* Liens discrets (effet hover) */
-        .link-discrete {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 2px;
-        }
-        .link-discrete::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background-color: currentColor;
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.4s ease-out;
-        }
-        .link-discrete:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-        /* Foreword image styling */
-        .foreword-image {
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #f3f4f6;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-        /* Hero background avec overlay */
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
-                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600') center/cover no-repeat;
-        }
-        /* Card styling pour contact */
-        .contact-card {
-            transition: all 0.3s ease;
-            border-top: 4px solid transparent;
-        }
-        .contact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(3, 126, 243, 0.1);
-            border-top-color: var(--aiesec-blue);
-        }
-        /* Application Package Cards - Design SIMPLIFIÉ */
-        .package-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            height: 100%;
-            position: relative;
-            overflow: hidden;
-            background: white;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        /* Cards bleues alternées */
-        .package-card.blue-card {
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border: 1px solid #e2e8f0;
-        }
-
-        .package-card.white-card {
-            background: white;
-            border: 1px solid #e5e7eb;
-        }
-
-        .package-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(3, 126, 243, 0.15);
-            border-color: rgba(3, 126, 243, 0.3);
-        }
-
-        .package-number {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 900;
-            color: #037EF3;
-            margin-bottom: 1.5rem;
-            display: block;
-            font-size: 1.5rem;
-        }
-        /* Design amélioré pour les cartes */
-        .enhanced-card {
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-            border: 1px solid rgba(3, 126, 243, 0.1);
-            border-radius: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .enhanced-card:hover {
-            background: linear-gradient(145deg, #f8fafc, #ffffff);
-            box-shadow: 0 20px 40px rgba(3, 126, 243, 0.15);
-        }
-        /* Animation subtile pour les titres des cartes */
-        .card-title {
-            position: relative;
-            display: inline-block;
-        }
-
-        .card-title::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--aiesec-blue), #4c8cf5);
-            transition: width 0.3s ease;
-        }
-
-        .package-card:hover .card-title::after {
-            width: 100%;
-        }
-        /* Role Cards avec icônes */
-        .role-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .role-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
-        }
-
-        .role-card.eligibility::before { background: linear-gradient(90deg, var(--eligibility-color), #64b5f6); }
-        .role-card.lead::before { background: linear-gradient(90deg, var(--lead-color), #81c784); }
-        .role-card.manage::before { background: linear-gradient(90deg, var(--manage-color), #ffb74d); }
-        .role-card.represent::before { background: linear-gradient(90deg, var(--represent-color), #ba68c8); }
-
-        .role-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .role-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .icon-container {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .role-card:hover .icon-container {
-            transform: scale(1.1);
-            filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.15));
-        }
-        /* TIMELINE HORIZONTALE - NOUVEAU STYLE */
-        .timeline-horizontal {
-            position: relative;
-            padding: 60px 0;
-            overflow-x: auto;
-            overflow-y: hidden;
-        }
-
-        .timeline-horizontal-container {
-            display: flex;
-            min-width: 1200px;
-            padding: 0 40px;
-            position: relative;
-        }
-
-        /* Ligne de la timeline */
-        .timeline-line {
-            position: absolute;
-            top: 120px;
-            left: 40px;
-            right: 40px;
-            height: 6px;
-            background: linear-gradient(90deg, #037EF3 0%, #4c8cf5 50%, #9eccfd 100%);
-            border-radius: 3px;
-            z-index: 1;
-        }
-
-        /* Points sur la ligne */
-        .timeline-line::before,
-        .timeline-line::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: white;
-            border: 3px solid #037EF3;
-            top: -7px;
-        }
-
-        .timeline-line::before {
-            left: 0;
-        }
-
-        .timeline-line::after {
-            right: 0;
-        }
-
-        /* Éléments de timeline */
-        .timeline-item-horizontal {
-            flex: 1;
-            position: relative;
-            padding: 0 20px;
-            text-align: center;
-            z-index: 2;
-        }
-
-        /* Cercle sur la ligne */
-        .timeline-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid #037EF3;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            position: relative;
-            z-index: 3;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(3, 126, 243, 0.2);
-        }
-
-        .timeline-item-horizontal:hover .timeline-circle {
-            transform: scale(1.2);
-            background: #037EF3;
-            border-color: white;
-        }
-
-        .timeline-item-horizontal:hover .timeline-circle i {
-            color: white;
-        }
-
-        /* Contenu de la timeline */
-        .timeline-content {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            border: 1px solid #e5e7eb;
-            min-height: 220px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .timeline-item-horizontal:hover .timeline-content {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(3, 126, 243, 0.15);
-            border-color: rgba(3, 126, 243, 0.3);
-        }
-
-        /* Date */
-        .timeline-date {
-            color: #037EF3;
-            font-weight: 900;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        /* Ligne de connexion entre le cercle et le contenu */
-        .timeline-connector {
-            height: 40px;
-            width: 2px;
-            background: #e5e7eb;
-            margin: 0 auto 15px;
-            transition: all 0.3s ease;
-        }
-
-        .timeline-item-horizontal:hover .timeline-connector {
-            background: #037EF3;
-            height: 50px;
-        }
-
-        /* Indicateur d'étape active */
-        .current-step .timeline-circle {
-            background: #037EF3;
-            border-color: white;
-            box-shadow: 0 0 0 8px rgba(3, 126, 243, 0.2);
-        }
-
-        .current-step .timeline-circle i {
-            color: white;
-        }
-
-        /* Barre de défilement personnalisée */
-        .timeline-horizontal::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .timeline-horizontal::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .timeline-horizontal::-webkit-scrollbar-thumb {
-            background: linear-gradient(90deg, #037EF3, #4c8cf5);
-            border-radius: 10px;
-        }
-
-        /* Icônes améliorées */
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            border: 2px solid #e2e8f0;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: translateY(-5px) scale(1.05);
-            background: linear-gradient(135deg, #037EF3 0%, #4c8cf5 100%);
-            border-color: #037EF3;
-        }
-
-        .feature-card:hover .feature-icon i {
-            color: white;
-        }
-
-        /* Améliorations visuelles générales */
-        .visual-accent {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .visual-accent::before {
-            content: '';
-            position: absolute;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(3, 126, 243, 0.1) 0%, rgba(3, 126, 243, 0) 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        /* Flèches de navigation pour la timeline sur mobile */
-        .timeline-nav {
-            display: none;
-        }
-
-        @media (max-width: 768px) {
-            .timeline-nav {
-                display: flex;
-                justify-content: center;
-                margin-top: 30px;
-                gap: 20px;
-            }
-
-            .timeline-nav-btn {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                background: white;
-                border: 2px solid #037EF3;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                color: #037EF3;
-                font-size: 1.2rem;
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-
-            .timeline-nav-btn:hover {
-                background: #037EF3;
-                color: white;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -447,11 +26,12 @@
     </script>
 </head>
 <body class="bg-white antialiased text-gray-800">
-    <nav class="bg-white fixed w-full z-50 py-6 border-b border-gray-100">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between"> 
-                <div class="text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
-                <div class="hidden md:flex space-x-12 text-gray-700 text-lg">
+    <!-- Navigation -->
+    <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between">
+                <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+                <div class="hidden md:flex space-x-8 lg:space-x-12 text-gray-700 text-base lg:text-lg">
                     <a href="#home" class="link-discrete hover:text-accent">Home</a>
                     <a href="#about" class="link-discrete hover:text-accent">Role</a>
                     <a href="#foreword" class="link-discrete hover:text-accent">Foreword</a>
@@ -459,594 +39,549 @@
                     <a href="#timeline" class="link-discrete hover:text-accent">Timeline</a>
                     <a href="#contact" class="link-discrete hover:text-accent">Contact</a>
                 </div>
+                <button id="menu-toggle" class="md:hidden text-accent text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 py-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
+                <a href="#home" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Home</a>
+                <a href="#about" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Role</a>
+                <a href="#foreword" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Foreword</a>
+                <a href="#application" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Application</a>
+                <a href="#timeline" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Timeline</a>
+                <a href="#contact" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Contact</a>
             </div>
         </div>
     </nav>
+
     <!-- Hero Section -->
     <section id="home" class="relative h-screen overflow-hidden hero-bg">
-        <div class="relative h-full flex items-center justify-center text-white px-6">
-            <div class="text-center max-w-5xl">
-                <p class="text-2xl md:text-3xl mb-4 tracking-widest uppercase">Member Committee President Application</p>
-                <h1 class="text-7xl md:text-8xl mb-8 tracking-tighter">MCP 26.27</h1>
-
-                <a href="#foreword" class="inline-block px-4 py-3 text-2xl text-white border-b border-white link-discrete hover:text-white no-normal">
+        <div class="relative h-full flex items-center justify-center text-white px-4 sm:px-6">
+            <div class="text-center max-w-3xl sm:max-w-5xl">
+                <p class="text-xl sm:text-2xl md:text-3xl mb-4 tracking-widest uppercase">Member Committee President Application</p>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 tracking-tighter">MCP 26.27</h1>
+                <a href="#foreword" class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal">
                     Begin Your Journey &rarr;
                 </a>
             </div>
         </div>
     </section>
-    <!-- Nouvelle Section Foreword -->
-    <section id="foreword" class="py-32 bg-white">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-5xl text-center mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
+
+    <!-- Foreword Section -->
+    <section id="foreword" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
                 Foreword: <span class="text-accent">To the One Who Dares to Lead</span>
             </h2>
-
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <!-- Texte du Foreword -->
-                <div class="space-y-8">
-                    <div class="bg-gray-50 p-10 rounded-lg border-l-4 border-accent">
-                        <p class="text-xl italic leading-relaxed text-gray-700 mb-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+                <div class="space-y-6">
+                    <div class="bg-gray-50 p-6 sm:p-8 lg:p-10 rounded-lg border-l-4 border-accent">
+                        <p class="text-lg sm:text-xl italic leading-relaxed text-gray-700 mb-4 sm:mb-6">
                             "As you open this application, I hope you take a moment to breathe in the weight and beauty of the role you're stepping toward... AIESEC in Benin is still growing, still evolving, still finding its voice—and you will be part of shaping that story."
                         </p>
                         <div class="text-right">
-                            <p class="text-lg text-accent font-bold">Armel AHOUADI</p>
+                            <p class="text-base sm:text-lg text-accent font-bold">Armel AHOUADI</p>
                             <p class="text-gray-600">Member Committee President, AIESEC in Benin</p>
                         </div>
                     </div>
                 </div>
-
-                <!-- Image de Teresa -->
                 <div class="flex flex-col items-center justify-center">
-                    <div class="relative mb-8">
-                        <img
-                            src="mcp.jpeg"
-                            alt="Armel - Current MCP AIESEC in Benin"
-                            class="foreword-image"
-                        >
+                    <div class="relative mb-6">
+                        <img src="mcp.jpeg" alt="Armel - Current MCP AIESEC in Benin" class="foreword-image w-48 h-48 sm:w-64 sm:h-64">
                     </div>
                     <div class="text-center">
-                        <h4 class="text-2xl text-gray-800 mb-2">Armel AHOUADI</h4>
-                        <p class="text-accent text-lg mb-3">MCP 25.26 | AIESEC in Benin</p>
-                        <p class="text-gray-600 max-w-md">
+                        <h4 class="text-xl sm:text-2xl text-gray-800 mb-2">Armel AHOUADI</h4>
+                        <p class="text-accent text-base sm:text-lg mb-2">MCP 25.26 | AIESEC in Benin</p>
+                        <p class="text-gray-600 text-sm sm:text-base max-w-md">
                             Leading AIESEC in Benin through transformative growth and expanding our national impact across youth leadership development.
                         </p>
                     </div>
                 </div>
             </div>
-
-            <div class="mt-20 pt-10 border-t border-gray-200 text-center">
-                <a href="#application" class="inline-flex items-center px-6 py-4 text-lg text-accent border border-accent rounded-full hover:bg-accent hover:text-white transition-all duration-300">
+            <div class="mt-12 sm:mt-20 pt-6 sm:pt-10 border-t border-gray-200 text-center">
+                <a href="#application" class="inline-flex items-center px-5 sm:px-6 py-3 sm:py-4 text-base sm:text-lg text-accent border border-accent rounded-full hover:bg-accent hover:text-white transition-all duration-300">
                     <span>Continue to Application Details</span>
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
                 </a>
             </div>
         </div>
     </section>
-    <!-- Section MCP Role & Eligibility avec icônes -->
-    <section id="about" class="py-32 bg-gradient-to-b from-gray-50 to-white visual-accent">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="text-5xl text-center mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
+
+    <!-- MCP Role & Eligibility -->
+    <section id="about" class="py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
                 <span class="text-accent">MCP</span> Role & Eligibility
             </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Carte Eligibility -->
-                <div class="role-card eligibility enhanced-card p-8 text-center">
-                    <div class="icon-container w-20 h-20 rounded-2xl bg-gradient-to-br from-eligibility/10 to-eligibility/5 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-user-check text-eligibility text-3xl"></i>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="role-card eligibility enhanced-card p-6 sm:p-8 text-center">
+                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-eligibility/10 to-eligibility/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-user-check text-eligibility text-2xl sm:text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl text-eligibility mb-4 font-bold">Eligibility</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="text-xl sm:text-2xl text-eligibility mb-3 sm:mb-4 font-bold">Eligibility</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Must be between <span class="font-bold text-gray-800">18 and 30 years old</span>. This ensures alignment with AIESEC's youth leadership mandate.
                     </p>
-                    <div class="mt-6 pt-4 border-t border-gray-100">
-                        <span class="text-sm text-eligibility font-medium"><i class="fas fa-birthday-cake mr-1"></i> Age Requirement</span>
+                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
+                        <span class="text-xs sm:text-sm text-eligibility font-medium"><i class="fas fa-birthday-cake mr-1"></i> Age Requirement</span>
                     </div>
                 </div>
-                <!-- Carte Lead -->
-                <div class="role-card lead enhanced-card p-8 text-center">
-                    <div class="icon-container w-20 h-20 rounded-2xl bg-gradient-to-br from-lead/10 to-lead/5 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-flag text-lead text-3xl"></i>
+                <div class="role-card lead enhanced-card p-6 sm:p-8 text-center">
+                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-lead/10 to-lead/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-flag text-lead text-2xl sm:text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl text-lead mb-4 font-bold">Lead</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="text-xl sm:text-2xl text-lead mb-3 sm:mb-4 font-bold">Lead</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Ensure external relevance and maintain strategic coherence. Uniting and establishing a shared direction for all members.
                     </p>
-                    <div class="mt-6 pt-4 border-t border-gray-100">
-                        <span class="text-sm text-lead font-medium"><i class="fas fa-bullseye mr-1"></i> Strategic Leadership</span>
+                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
+                        <span class="text-xs sm:text-sm text-lead font-medium"><i class="fas fa-bullseye mr-1"></i> Strategic Leadership</span>
                     </div>
                 </div>
-                <!-- Carte Manage -->
-                <div class="role-card manage enhanced-card p-8 text-center">
-                    <div class="icon-container w-20 h-20 rounded-2xl bg-gradient-to-br from-manage/10 to-manage/5 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-tasks text-manage text-3xl"></i>
+                <div class="role-card manage enhanced-card p-6 sm:p-8 text-center">
+                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-manage/10 to-manage/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-tasks text-manage text-2xl sm:text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl text-manage mb-4 font-bold">Manage</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="text-xl sm:text-2xl text-manage mb-3 sm:mb-4 font-bold">Manage</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Develop strategic direction, act as the guardian of legal processes, and uphold accountability within the team.
                     </p>
-                    <div class="mt-6 pt-4 border-t border-gray-100">
-                        <span class="text-sm text-manage font-medium"><i class="fas fa-chart-line mr-1"></i> Operational Excellence</span>
+                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
+                        <span class="text-xs sm:text-sm text-manage font-medium"><i class="fas fa-chart-line mr-1"></i> Operational Excellence</span>
                     </div>
                 </div>
-                <!-- Carte Represent -->
-                <div class="role-card represent enhanced-card p-8 text-center">
-                    <div class="icon-container w-20 h-20 rounded-2xl bg-gradient-to-br from-represent/10 to-represent/5 flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-globe-africa text-represent text-3xl"></i>
+                <div class="role-card represent enhanced-card p-6 sm:p-8 text-center">
+                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-represent/10 to-represent/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                        <i class="fas fa-globe-africa text-represent text-2xl sm:text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl text-represent mb-4 font-bold">Represent</h3>
-                    <p class="text-gray-600 leading-relaxed">
+                    <h3 class="text-xl sm:text-2xl text-represent mb-3 sm:mb-4 font-bold">Represent</h3>
+                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
                         Responsible for AIESEC in Benin's positioning in the Global Plenary and representing the entity to all external stakeholders.
                     </p>
-                    <div class="mt-6 pt-4 border-t border-gray-100">
-                        <span class="text-sm text-represent font-medium"><i class="fas fa-handshake mr-1"></i> Global Ambassadorship</span>
+                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
+                        <span class="text-xs sm:text-sm text-represent font-medium"><i class="fas fa-handshake mr-1"></i> Global Ambassadorship</span>
                     </div>
                 </div>
             </div>
-            <!-- Note complémentaire avec icône -->
-            <div class="mt-16 pt-8 border-t border-gray-200 text-center">
-                <div class="inline-flex items-center bg-gradient-to-r from-accent/5 to-accent/10 p-6 rounded-2xl">
-                    <i class="fas fa-lightbulb text-accent text-2xl mr-3"></i>
-                    <p class="text-gray-700 font-medium">
+            <div class="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-gray-200 text-center">
+                <div class="inline-flex items-center bg-gradient-to-r from-accent/5 to-accent/10 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
+                    <i class="fas fa-lightbulb text-accent text-xl sm:text-2xl mr-2 sm:mr-3"></i>
+                    <p class="text-gray-700 text-sm sm:text-base font-medium">
                         The MCP role integrates these four key dimensions to drive AIESEC in Benin's success and impact across national and global platforms.
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Application Section Simplifiée -->
-<section id="application" class="py-18 bg-white">
-    <div class="container mx-auto px-6 max-w-6xl">
-        <h2 class="my-0 text-5xl text-center mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
-            Application <span class="text-blue-600">Details</span>
-        </h2>
 
-        <div class="max-w-6xl mx-auto">
-            <!-- Application Package - Design simplifié -->
-            <div class="mb-24 ">
-                <h3 class="text-4xl mb-16 text-gray-800 text-center font-bold">Application Package</h3>
-
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Carte 01 - Questionnaire -->
-                    <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-file-alt text-blue-600 text-2xl"></i>
+    <!-- Application Section -->
+    <section id="application" class="py-12 sm:py-18 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
+                Application <span class="text-blue-600">Details</span>
+            </h2>
+            <div class="max-w-4xl lg:max-w-6xl mx-auto">
+                <div class="mb-16 sm:mb-24">
+                    <h3 class="text-2xl sm:text-3xl lg:text-4xl mb-10 sm:mb-16 text-gray-800 text-center font-bold">Application Package</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                <i class="fas fa-file-alt text-blue-600 text-xl sm:text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Questionnaire</h4>
+                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Answer all questions listed in the breakdown below.</p>
+                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
+                                <span class="text-xs sm:text-sm text-blue-600 font-medium">Required Document</span>
+                            </div>
                         </div>
-                        <h4 class="text-xl text-gray-800 mb-4 font-bold">Questionnaire</h4>
-                        <p class="text-gray-600 mb-4">Answer all questions listed in the breakdown below.</p>
-                        <div class="mt-6 pt-4 border-t border-blue-100">
-                            <span class="text-sm text-blue-600 font-medium">Required Document</span>
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                <i class="fas fa-file-contract text-blue-600 text-xl sm:text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Executive Summary</h4>
+                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Provide a one-pager overview of your application vision and approach.</p>
+                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
+                                <span class="text-xs sm:text-sm text-blue-600 font-medium">1 Page Maximum</span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Carte 02 - Executive Summary -->
-                    <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-file-contract text-blue-600 text-2xl"></i>
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                <i class="fas fa-video text-blue-600 text-xl sm:text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Video Introduction</h4>
+                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Record a 3–5 minute video presenting yourself and your vision.</p>
+                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
+                                <span class="text-xs sm:text-sm text-blue-600 font-medium">3-5 Minutes</span>
+                            </div>
                         </div>
-                        <h4 class="text-xl text-gray-800 mb-4 font-bold">Executive Summary</h4>
-                        <p class="text-gray-600 mb-4">Provide a one-pager overview of your application vision and approach.</p>
-                        <div class="mt-6 pt-4 border-t border-blue-100">
-                            <span class="text-sm text-blue-600 font-medium">1 Page Maximum</span>
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                <i class="fas fa-id-card text-blue-600 text-xl sm:text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">CV & Picture</h4>
+                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Curriculum Vitae and a professional headshot.</p>
+                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
+                                <span class="text-xs sm:text-sm text-blue-600 font-medium">Professional Format</span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Carte 03 - Video Introduction -->
-                    <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-video text-blue-600 text-2xl"></i>
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                <i class="fas fa-brain text-blue-600 text-xl sm:text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Enneagram Test Results</h4>
+                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Complete the test at <a href="https://www.truity.com/test/enneagram-personality-test" target="_blank" class="text-blue-600 hover:underline font-medium">truity.com</a> and include your personality type results.</p>
+                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
+                                <span class="text-xs sm:text-sm text-blue-600 font-medium">Online Assessment</span>
+                            </div>
                         </div>
-                        <h4 class="text-xl text-gray-800 mb-4 font-bold">Video Introduction</h4>
-                        <p class="text-gray-600 mb-4">Record a 3–5 minute video presenting yourself and your vision.</p>
-                        <div class="mt-6 pt-4 border-t border-blue-100">
-                            <span class="text-sm text-blue-600 font-medium">3-5 Minutes</span>
-                        </div>
-                    </div>
-                    <!-- Carte 04 - CV & Picture -->
-                    <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-id-card text-blue-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl text-gray-800 mb-4 font-bold">CV & Picture</h4>
-                        <p class="text-gray-600 mb-4">Curriculum Vitae and a professional headshot.</p>
-                        <div class="mt-6 pt-4 border-t border-blue-100">
-                            <span class="text-sm text-blue-600 font-medium">Professional Format</span>
-                        </div>
-                    </div>
-                    <!-- Carte 05 - Enneagram Test Results -->
-                    <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-brain text-blue-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl text-gray-800 mb-4 font-bold">Enneagram Test Results</h4>
-                        <p class="text-gray-600 mb-4">Complete the test at <a href="https://www.truity.com/test/enneagram-personality-test" target="_blank" class="text-blue-600 hover:underline font-medium">truity.com</a> and include your personality type results.</p>
-                        <div class="mt-6 pt-4 border-t border-blue-100">
-                            <span class="text-sm text-blue-600 font-medium">Online Assessment</span>
-                        </div>
-                    </div>
-                    <!-- Carte 06 - Endorsement Letters -->
-                    <div class="bg-white border-2 border-blue-200 rounded-xl p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                        <div class="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <i class="fas fa-envelope-open-text text-blue-600 text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl text-gray-800 mb-4 font-bold">Endorsement Letters (5)</h4>
-                        <p class="text-gray-600 mb-4">From someone in AIESEC, someone you led, someone who led you, a co-worker, and an external person.</p>
-                        <div class="mt-6 pt-4 border-t border-blue-100">
-                            <span class="text-sm text-blue-600 font-medium">5 Letters Required</span>
+                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                                <i class="fas fa-envelope-open-text text-blue-600 text-xl sm:text-2xl"></i>
+                            </div>
+                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Endorsement Letters (5)</h4>
+                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">From someone in AIESEC, someone you led, someone who led you, a co-worker, and an external person.</p>
+                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
+                                <span class="text-xs sm:text-sm text-blue-600 font-medium">5 Letters Required</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Questionnaire Breakdown - Reste inchangé -->
-            <div class="bg-[#52565E] text-white p-12 rounded-2xl shadow-2xl">
-                <div class="text-center mb-12">
-                    <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white text-blue-600 mb-6">
-                        <i class="fas fa-clipboard-list text-2xl"></i>
-                    </div>
-                    <h3 class="text-4xl text-white uppercase tracking-wide font-black">Questionnaire Breakdown</h3>
-                    <p class="text-blue-100 mt-4 max-w-2xl mx-auto">Detailed questions covering all aspects of leadership, management, and representation for AIESEC in Benin.</p>
-                </div>
-
-                <div class="space-y-16">
-                    <!-- Section I -->
-                    <div class="border-l-4 border-white pl-8 bg-white/10 rounded-r-xl p-6">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-white text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4 shadow-lg">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <h4 class="text-2xl text-white font-bold">Personal</h4>
+                <div class="bg-[#52565E] text-white p-8 sm:p-12 rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl">
+                    <div class="text-center mb-8 sm:mb-12">
+                        <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white text-blue-600 mb-4 sm:mb-6">
+                            <i class="fas fa-clipboard-list text-xl sm:text-2xl"></i>
                         </div>
-                        <ul class="space-y-4 text-blue-100 ml-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span>Explain why you want to serve as MCP.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span>What value will you bring from your first day to your last?</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span>Why do you believe you are the right person to lead the entity?</span>
-                            </li>
-                        </ul>
+                        <h3 class="text-2xl sm:text-3xl lg:text-4xl text-white uppercase tracking-wide font-black">Questionnaire Breakdown</h3>
+                        <p class="text-blue-100 mt-3 sm:mt-4 max-w-lg sm:max-w-2xl mx-auto text-sm sm:text-base">Detailed questions covering all aspects of leadership, management, and representation for AIESEC in Benin.</p>
                     </div>
-                    <!-- Section II -->
-                    <div class="border-l-4 border-white pl-8 bg-white/10 rounded-r-xl p-6">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-white text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4 shadow-lg">
-                                <i class="fas fa-flag"></i>
+                    <div class="space-y-8 sm:space-y-12">
+                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
+                                    <i class="fas fa-user text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="text-xl sm:text-2xl text-white font-bold">Personal</h4>
                             </div>
-                            <h4 class="text-2xl text-white font-bold">Lead</h4>
+                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span>Explain why you want to serve as MCP.</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span>What value will you bring from your first day to your last?</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span>Why do you believe you are the right person to lead the entity?</span></li>
+                            </ul>
                         </div>
-                        <ul class="space-y-4 text-blue-100 ml-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Leadership Style:</strong> Identify three traits and explain how your style meets Benin's needs.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Relevance & Impact:</strong> Why does Benin need AIESEC? How can AIESEC in Benin create meaningful nationwide impact?</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Section III -->
-                    <div class="border-l-4 border-white pl-8 bg-white/10 rounded-r-xl p-6">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-white text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4 shadow-lg">
-                                <i class="fas fa-tasks"></i>
+                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
+                                    <i class="fas fa-flag text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="text-xl sm:text-2xl text-white font-bold">Lead</h4>
                             </div>
-                            <h4 class="text-2xl text-white font-bold">Manage</h4>
+                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Leadership Style:</strong> Identify three traits and explain how your style meets Benin's needs.</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Relevance & Impact:</strong> Why does Benin need AIESEC? How can AIESEC in Benin create meaningful nationwide impact?</span></li>
+                            </ul>
                         </div>
-                        <ul class="space-y-4 text-blue-100 ml-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Strategies:</strong> Propose three main strategies for: Membership, Exchange, Finance, and Brand (base on SWOT/PESTEL).</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Culture:</strong> Describe current culture, desired changes, and your plan for growth and results.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Financial Sustainability:</strong> Assess current situation and strategies to strengthen long-term stability.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Vision Toward A2030:</strong> Contribution to A2025 and your vision for A2030 contribution.</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- Section IV -->
-                    <div class="border-l-4 border-white pl-8 bg-white/10 rounded-r-xl p-6">
-                        <div class="flex items-center mb-6">
-                            <div class="bg-white text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4 shadow-lg">
-                                <i class="fas fa-globe-africa"></i>
+                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
+                                    <i class="fas fa-tasks text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="text-xl sm:text-2xl text-white font-bold">Manage</h4>
                             </div>
-                            <h4 class="text-2xl text-white font-bold">Represent</h4>
+                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Strategies:</strong> Propose three main strategies for: Membership, Exchange, Finance, and Brand (base on SWOT/PESTEL).</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Culture:</strong> Describe current culture, desired changes, and your plan for growth and results.</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Financial Sustainability:</strong> Assess current situation and strategies to strengthen long-term stability.</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Vision Toward A2030:</strong> Contribution to A2025 and your vision for A2030 contribution.</span></li>
+                            </ul>
                         </div>
-                        <ul class="space-y-4 text-blue-100 ml-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">External Relations:</strong> Assess current relations and how you will position AIESEC as a relevant, trusted organization.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Key Trends Shaping Benin:</strong> Identify three trends and how AIESEC should stand in relation to them.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Global Representation:</strong> Evaluate current global presence and plan for strengthening international touchpoints.</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-circle text-white mr-3 mt-1 text-xs"></i>
-                                <span><strong class="text-white">Board Management:</strong> Assess current board management, and improvements for an effective board for 26.27.</span>
-                            </li>
-                        </ul>
+                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
+                            <div class="flex items-center mb-4 sm:mb-6">
+                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
+                                    <i class="fas fa-globe-africa text-sm sm:text-base"></i>
+                                </div>
+                                <h4 class="text-xl sm:text-2xl text-white font-bold">Represent</h4>
+                            </div>
+                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">External Relations:</strong> Assess current relations and how you will position AIESEC as a relevant, trusted organization.</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Key Trends Shaping Benin:</strong> Identify three trends and how AIESEC should stand in relation to them.</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Global Representation:</strong> Evaluate current global presence and plan for strengthening international touchpoints.</span></li>
+                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Board Management:</strong> Assess current board management, and improvements for an effective board for 26.27.</span></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-
-    <!-- Timeline Section-->
-<section id="timeline" class="py-32 bg-white">
-    <div class="container mx-auto px-6 max-w-7xl">
-        <h2 class="text-5xl text-center mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto font-bold">
-            Selection <span class="text-blue-600">Timeline</span>
-        </h2>
-
-        <!-- Timeline horizontale simplifiée -->
-        <div class="relative mb-20">
-            <!-- Ligne de timeline -->
-            <div class="hidden lg:block absolute left-0 right-0 top-8 h-1 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-100"></div>
-
-            <!-- Conteneur des étapes -->
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 lg:gap-4">
-
-                <!-- Étape 1 -->
-                <div class="relative flex-1 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                            <i class="fas fa-file-signature text-white text-xl"></i>
-                        </div>
-                        <div class="bg-white border border-blue-200 rounded-lg p-6 shadow-sm">
-                            <div class="text-blue-600 font-bold text-lg mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i>
-                                Dec 16, 2025
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-7xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto font-bold">
+                Selection <span class="text-blue-600">Timeline</span>
+            </h2>
+            <div class="relative mb-12 sm:mb-20">
+                <!-- Ligne horizontale (visible uniquement sur desktop) -->
+                <div class="hidden lg:block absolute left-0 right-0 top-8 h-1 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-100"></div>
+    
+                <!-- Conteneur des étapes -->
+                <div class="flex flex-col lg:flex-row justify-between items-center gap-6 sm:gap-8 lg:gap-4 w-full">
+                    <!-- Étape 1 -->
+                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
+                                <i class="fas fa-file-signature text-white text-lg sm:text-xl"></i>
                             </div>
-                            <h4 class="text-gray-800 font-bold mb-2">Letter of Intent</h4>
-                            <p class="text-gray-600 text-sm">Deadline for submission of your formal letter of intent.</p>
+                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
+                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    Dec 16, 2025
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Letter of Intent</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Deadline for submission of your formal letter of intent.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Étape 2 -->
-                <div class="relative flex-1 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                            <i class="fas fa-paper-plane text-white text-xl"></i>
-                        </div>
-                        <div class="bg-white border border-blue-200 rounded-lg p-6 shadow-sm">
-                            <div class="text-blue-600 font-bold text-lg mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i>
-                                Dec 31, 2025
+    
+                    <!-- Étape 2 -->
+                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
+                                <i class="fas fa-paper-plane text-white text-lg sm:text-xl"></i>
                             </div>
-                            <h4 class="text-gray-800 font-bold mb-2">Application Package</h4>
-                            <p class="text-gray-600 text-sm">Final deadline for complete application package.</p>
+                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
+                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    Dec 31, 2025
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Application Package</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Final deadline for complete application package.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Étape 3 -->
-                <div class="relative flex-1 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                            <i class="fas fa-comments text-white text-xl"></i>
-                        </div>
-                        <div class="bg-white border border-blue-200 rounded-lg p-6 shadow-sm">
-                            <div class="text-blue-600 font-bold text-lg mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i>
-                                Jan 5-10, 2026
+    
+                    <!-- Étape 3 -->
+                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
+                                <i class="fas fa-comments text-white text-lg sm:text-xl"></i>
                             </div>
-                            <h4 class="text-gray-800 font-bold mb-2">EC Interviews</h4>
-                            <p class="text-gray-600 text-sm">Interviews with the Elections Committee.</p>
+                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
+                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    Jan 5-10, 2026
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">EC Interviews</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Interviews with the Elections Committee.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Étape 4 -->
-                <div class="relative flex-1 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                            <i class="fa-solid fa-file-powerpoint text-white text-xl"></i>
-                        </div>
-                        <div class="bg-white border border-blue-200 rounded-lg p-6 shadow-sm">
-                            <div class="text-blue-600 font-bold text-lg mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i>
-                                Jan 15, 2026
+    
+                    <!-- Étape 4 -->
+                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
+                                <i class="fa-solid fa-file-powerpoint text-white text-lg sm:text-xl"></i>
                             </div>
-                            <h4 class="text-gray-800 font-bold mb-2">Public Presentation</h4>
-                            <p class="text-gray-600 text-sm">Public presentation and Q/A session for finalists.</p>
+                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
+                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    Jan 15, 2026
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Public Presentation</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Public presentation and Q/A session for finalists.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Étape 5 -->
-                <div class="relative flex-1 text-center">
-                    <div class="flex flex-col items-center">
-                        <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
-                            <i class="fas fa-trophy text-white text-xl"></i>
-                        </div>
-                        <div class="bg-white border border-blue-200 rounded-lg p-6 shadow-sm">
-                            <div class="text-blue-600 font-bold text-lg mb-2">
-                                <i class="far fa-calendar-alt mr-2"></i>
-                                Jan 17, 2026
+    
+                    <!-- Étape 5 -->
+                    <div class="relative flex-1 text-center w-full max-w-xs mx-auto">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
+                                <i class="fas fa-trophy text-white text-lg sm:text-xl"></i>
                             </div>
-                            <h4 class="text-gray-800 font-bold mb-2">Official Announcement</h4>
-                            <p class="text-gray-600 text-sm">Official announcement of the elected MCP 26.27.</p>
+                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
+                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
+                                    <i class="far fa-calendar-alt mr-2"></i>
+                                    Jan 17, 2026
+                                </div>
+                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Official Announcement</h4>
+                                <p class="text-gray-600 text-sm sm:text-base">Official announcement of the elected MCP 26.27.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-            </div>
-        </div>
-        <!-- Instructions de soumission -->
-        <div class="bg-white border-2 border-blue-200 rounded-xl p-12 text-center shadow-sm">
-            <div class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <i class="fas fa-paperclip text-white text-2xl"></i>
-            </div>
-            <h3 class="text-2xl text-gray-800 font-bold mb-4">Submission Instructions</h3>
-            <p class="text-gray-600 mb-6 max-w-2xl mx-auto">
-                Send all materials in <span class="font-bold text-blue-600">one ZIP file</span> to the email address below:
-            </p>
-
-            <div class="flex flex-col items-center justify-center space-y-4 mb-6">
-                <div class="flex items-center">
-                    <i class="fas fa-envelope text-blue-600 mr-3 text-xl"></i>
-                    <p class="text-2xl md:text-3xl text-blue-600 font-medium">teresa.mbewe@aiesec.net</p>
-                </div>
-                <div class="flex items-center text-gray-600">
-                    <i class="far fa-copy mr-2"></i>
-                    <p>Copy (CC): office.benin@aiesec.net</p>
                 </div>
             </div>
-
-            <div class="mt-8 pt-6 border-t border-blue-100">
-                <p class="text-sm text-gray-500 italic max-w-2xl mx-auto">
-                    <i class="fas fa-exclamation-circle mr-2"></i>
-                    Late or incomplete submissions will not be considered. You'll receive a confirmation email within 24 hours of submission.
+    
+            <!-- Instructions de soumission -->
+            <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 lg:p-12 text-center shadow-sm mx-auto max-w-2xl">
+                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <i class="fas fa-paperclip text-white text-xl sm:text-2xl"></i>
+                </div>
+                <h3 class="text-xl sm:text-2xl text-gray-800 font-bold mb-3 sm:mb-4">Submission Instructions</h3>
+                <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base max-w-lg mx-auto">
+                    Send all materials in <span class="font-bold text-blue-600">one ZIP file</span> to the email address below:
                 </p>
+                <div class="flex flex-col items-center justify-center space-y-3 sm:space-y-4 mb-4 sm:mb-6">
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope text-blue-600 mr-2 sm:mr-3 text-lg sm:text-xl"></i>
+                        <p class="text-lg sm:text-2xl text-blue-600 font-medium">teresa.mbewe@aiesec.net</p>
+                    </div>
+                    <div class="flex items-center text-gray-600 text-sm sm:text-base">
+                        <i class="far fa-copy mr-2"></i>
+                        <p>Copy (CC): office.benin@aiesec.net</p>
+                    </div>
+                </div>
+                <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-blue-100">
+                    <p class="text-xs sm:text-sm text-gray-500 italic max-w-lg mx-auto">
+                        <i class="fas fa-exclamation-circle mr-2"></i>
+                        Late or incomplete submissions will not be considered. You'll receive a confirmation email within 24 hours of submission.
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-    <!-- Contact Section Redessinée -->
-    <section id="contact" class="py-18 bg-white">
-        <div class="container mx-auto px-6 max-w-6xl">
-            <h2 class="mt-0 text-5xl text-center mb-28 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto font-black">
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 sm:py-18 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto font-black">
                 <span class="text-accent">Contact</span> Information
             </h2>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Current MCP Card -->
-                <div class="contact-card enhanced-card p-10 text-center">
-                    <div class="mb-8">
-                        <div class="w-24 h-24 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                            <i class="fas fa-user-tie text-white text-3xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="contact-card enhanced-card p-6 sm:p-8 lg:p-10 text-center">
+                    <div class="mb-6 sm:mb-8">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                            <i class="fas fa-user-tie text-white text-2xl sm:text-3xl"></i>
                         </div>
-                        <h3 class="text-2xl text-gray-800 uppercase font-bold">Current MCP</h3>
+                        <h3 class="text-xl sm:text-2xl text-gray-800 uppercase font-bold">Current MCP</h3>
                     </div>
-                    <div class="space-y-4">
-                        <p class="text-gray-700 text-xl font-bold">Teresa Mbewe</p>
+                    <div class="space-y-3 sm:space-y-4">
+                        <p class="text-gray-700 text-lg sm:text-xl font-bold">Teresa Mbewe</p>
                         <div class="flex items-center justify-center">
                             <i class="fas fa-phone text-accent mr-2"></i>
-                            <p class="text-accent link-discrete inline-block text-lg font-medium">+229 XX XX XX XX</p>
+                            <p class="text-accent link-discrete inline-block text-base sm:text-lg font-medium">+229 XX XX XX XX</p>
                         </div>
                         <div class="flex items-center justify-center">
                             <i class="fas fa-envelope text-gray-500 mr-2"></i>
-                            <p class="text-gray-600 text-base">teresa.mbewe@aiesec.net</p>
+                            <p class="text-gray-600 text-sm sm:text-base">teresa.mbewe@aiesec.net</p>
                         </div>
                     </div>
-
                 </div>
-                <!-- Elections Manager Card -->
-                <div class="contact-card enhanced-card p-10 text-center">
-                    <div class="mb-8">
-                        <div class="w-24 h-24 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                            <i class="fas fa-vote-yea text-white text-3xl"></i>
+                <div class="contact-card enhanced-card p-6 sm:p-8 lg:p-10 text-center">
+                    <div class="mb-6 sm:mb-8">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                            <i class="fas fa-vote-yea text-white text-2xl sm:text-3xl"></i>
                         </div>
-                        <h3 class="text-2xl text-gray-800 uppercase font-bold">Elections Manager</h3>
+                        <h3 class="text-xl sm:text-2xl text-gray-800 uppercase font-bold">Elections Manager</h3>
                     </div>
-                    <div class="space-y-4">
-                        <p class="text-gray-700 text-xl font-bold">Evgenia Poletaeva</p>
+                    <div class="space-y-3 sm:space-y-4">
+                        <p class="text-gray-700 text-lg sm:text-xl font-bold">Evgenia Poletaeva</p>
                         <div class="flex items-center justify-center">
                             <i class="fas fa-phone text-accent mr-2"></i>
-                            <p class="text-accent link-discrete inline-block text-lg font-medium">+7919 384 81 64</p>
+                            <p class="text-accent link-discrete inline-block text-base sm:text-lg font-medium">+7919 384 81 64</p>
                         </div>
                         <div class="flex items-center justify-center">
                             <i class="fas fa-envelope text-gray-500 mr-2"></i>
-                            <p class="text-gray-600 text-base">poletaeva.evgenia@aiesec.net</p>
+                            <p class="text-gray-600 text-sm sm:text-base">poletaeva.evgenia@aiesec.net</p>
                         </div>
                     </div>
-
                 </div>
-                <!-- National Office Card -->
-                <div class="contact-card enhanced-card p-10 text-center">
-                    <div class="mb-8">
-                        <div class="w-24 h-24 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                            <i class="fas fa-building text-white text-3xl"></i>
+                <div class="contact-card enhanced-card p-6 sm:p-8 lg:p-10 text-center">
+                    <div class="mb-6 sm:mb-8">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
+                            <i class="fas fa-building text-white text-2xl sm:text-3xl"></i>
                         </div>
-                        <h3 class="text-2xl text-gray-800 uppercase font-bold">AIESEC in Benin</h3>
+                        <h3 class="text-xl sm:text-2xl text-gray-800 uppercase font-bold">AIESEC in Benin</h3>
                     </div>
-                    <div class="space-y-4">
-                        <p class="text-gray-700 text-xl font-bold">National Office</p>
+                    <div class="space-y-3 sm:space-y-4">
+                        <p class="text-gray-700 text-lg sm:text-xl font-bold">National Office</p>
                         <div class="flex items-center justify-center">
                             <i class="fas fa-envelope text-accent mr-2"></i>
-                            <p class="text-accent link-discrete inline-block text-lg hover:text-gray-800 transition-colors font-medium">office.benin@aiesec.net</p>
+                            <p class="text-accent link-discrete inline-block text-base sm:text-lg hover:text-gray-800 transition-colors font-medium">office.benin@aiesec.net</p>
                         </div>
-                        <p class="text-gray-600 text-base">General inquiries and official correspondence</p>
+                        <p class="text-gray-600 text-sm sm:text-base">General inquiries and official correspondence</p>
                     </div>
-
                 </div>
             </div>
-            <!-- Social Media Section -->
-            <div class="mt-20 pt-12 border-t border-gray-200 mb-20">
-                <h3 class="text-3xl text-center mb-10 text-gray-800 font-black">Connect With Us</h3>
-                <div class="flex justify-center space-x-8">
-                    <a href="#" class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
-                        <i class="fab fa-facebook-f text-2xl"></i>
+            <div class="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-gray-200 mb-12 sm:mb-20">
+                <h3 class="text-2xl sm:text-3xl text-center mb-6 sm:mb-10 text-gray-800 font-black">Connect With Us</h3>
+                <div class="flex justify-center space-x-6 sm:space-x-8">
+                    <a href="#" class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-facebook-f text-lg sm:text-2xl"></i>
                     </a>
-                    <a href="#" class="w-16 h-16 bg-pink-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
-                        <i class="fab fa-instagram text-2xl"></i>
+                    <a href="#" class="w-12 h-12 sm:w-16 sm:h-16 bg-pink-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-instagram text-lg sm:text-2xl"></i>
                     </a>
-                    <a href="#" class="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
-                        <i class="fab fa-linkedin-in text-2xl"></i>
+                    <a href="#" class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
+                        <i class="fab fa-linkedin-in text-lg sm:text-2xl"></i>
                     </a>
                 </div>
             </div>
         </div>
     </section>
-    <footer class="bg-gray-800 text-white py-12 border-t border-accent/50">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center text-base">
-                <p class="mb-4 md:mb-0 opacity-80"><i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.</p>
-                <div class="flex h-26 w-26 aiesec-logo">
-                   <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-10">
-                </div>
+
+    <!-- Footer -->
+<!-- Footer -->
+<footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent/50">
+    <div class="container mx-auto px-4 sm:px-6">
+        <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
+            <p class="mb-3 sm:mb-0 opacity-80"><i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.</p>
+            <div class="flex h-10 w-auto">
+                <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
             </div>
         </div>
-    </footer>
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
-                const offset = document.querySelector('nav').offsetHeight;
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - offset,
-                        behavior: 'smooth'
-                    });
-                }
+    </div>
+</footer>
+
+<script>
+    // Smooth scrolling for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
         });
-        // Navigation de la timeline (optionnel pour mobile)
-        document.getElementById('timeline-next')?.addEventListener('click', function() {
-            const timeline = document.querySelector('.timeline-horizontal');
-            timeline.scrollLeft += 300;
+    });
+
+    // Mobile menu toggle
+// Mobile menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    // Fonction pour fermer le menu
+    function closeMobileMenu() {
+        mobileMenu.classList.add('hidden');
+    }
+
+    // Ouvrir/fermer le menu au clic sur le bouton
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    // Fermer le menu si on clique sur un lien
+    document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', function() {
+            closeMobileMenu();
         });
-        document.getElementById('timeline-prev')?.addEventListener('click', function() {
-            const timeline = document.querySelector('.timeline-horizontal');
-            timeline.scrollLeft -= 300;
-        });
-    </script>
+    });
+
+    // Fermer le menu si on clique ailleurs sur l'écran
+    document.addEventListener('click', function(event) {
+        if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+            closeMobileMenu();
+        }
+    });
+});
+
+
+   
+
+
+</script>
 </body>
 </html>
