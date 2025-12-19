@@ -5,15 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact - AIESEC in Benin</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Police Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent': '#037EF3',
+                        'lead': '#00c16e',
+                        'manage': '#F48924',
+                        'represent': '#7552CC',
+                        'eligibility': '#0CB9C1',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-weight: 900;
+            font-weight: 800;
+            letter-spacing: -0.025em;
         }
         
         body, p, li, span, div, a:not(.no-normal) {
@@ -23,6 +43,22 @@
         .text-accent { color: #037EF3; }
         .bg-accent { background-color: #037EF3; }
         .border-accent { border-color: #037EF3; }
+        
+        .text-lead { color: #00c16e; }
+        .bg-lead { background-color: rgba(0, 193, 110, 0.1); }
+        .border-lead { border-color: #00c16e; }
+        
+        .text-manage { color: #F48924; }
+        .bg-manage { background-color: rgba(244, 137, 36, 0.1); }
+        .border-manage { border-color: #F48924; }
+        
+        .text-represent { color: #7552CC; }
+        .bg-represent { background-color: rgba(117, 82, 204, 0.1); }
+        .border-represent { border-color: #7552CC; }
+        
+        .text-eligibility { color: #0CB9C1; }
+        .bg-eligibility { background-color: rgba(12, 185, 193, 0.1); }
+        .border-eligibility { border-color: #0CB9C1; }
         
         .link-discrete {
             position: relative;
@@ -48,6 +84,23 @@
             transform-origin: bottom left;
         }
         
+        /* Hero animation simplifiée */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-animate {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        
         .simple-card {
             background: white;
             border: 1px solid #e5e7eb;
@@ -56,22 +109,29 @@
         }
         
         .simple-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(3, 126, 243, 0.1);
-            border-color: #037EF3;
+            box-shadow: 0 10px 25px rgba(3, 126, 243, 0.1);
         }
         
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .section-title {
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
             background: #037EF3;
-            color: white;
-            font-size: 1.5rem;
-            margin: 0 auto 1.5rem;
+            border-radius: 2px;
+        }
+        
+        .border-blue-left {
+            border-left: 4px solid #037EF3;
         }
         
         .mobile-menu {
@@ -94,50 +154,50 @@
             visibility: visible;
         }
         
-        .blue-hero {
-            background-color: #037EF3;
-            color: white;
-        }
-        
-        .contact-detail {
-            text-align: center;
-            margin-bottom: 1rem;
-        }
-        
-        .contact-detail i {
-            color: #037EF3;
-            margin-right: 8px;
-            font-size: 1.1rem;
-        }
-        
-        .social-icon {
-            width: 45px;
-            height: 45px;
+        .contact-icon {
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             background: #037EF3;
             color: white;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .simple-card:hover .contact-icon {
+            transform: scale(1.1);
+            background: #0268d6;
+        }
+        
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            color: #037EF3;
+            border: 2px solid #037EF3;
             transition: all 0.3s ease;
         }
         
         .social-icon:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            background: #037EF3;
+            color: white;
             box-shadow: 0 10px 20px rgba(3, 126, 243, 0.2);
         }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'accent': '#037EF3',
-                    },
-                }
-            }
+        
+        /* Hero gradient */
+        .hero-gradient {
+            background: linear-gradient(135deg, #037EF3 0%, #0268d6 100%);
         }
-    </script>
+    </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
     <!-- Menu mobile overlay -->
@@ -178,7 +238,7 @@
                     <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
                     <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
                     <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
-                    <a href="contact.html" class="link-discrete text-accent font-bold">Contact</a>
+                    <a href="contact.html" class="link-discrete hover:text-accent font-bold text-accent">Contact</a>
                 </div>
                 
                 <!-- Mobile Menu Button -->
@@ -189,14 +249,14 @@
         </div>
     </nav>
 
-    <!-- Hero Section - Bannière bleue simple -->
-    <section class="blue-hero py-20 sm:py-28 pt-24">
+    <!-- Hero Section -->
+    <section class="relative py-20 sm:py-28 pt-24 hero-gradient">
         <div class="container mx-auto px-4 sm:px-6">
-            <div class="text-center">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+            <div class="text-center text-white">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-6 tracking-tighter font-black hero-animate" style="animation-delay: 0.2s">
                     CONTACT
                 </h1>
-                <p class="text-xl sm:text-2xl text-blue-100 font-light">
+                <p class="text-xl sm:text-2xl text-blue-100 font-light hero-animate" style="animation-delay: 0.4s">
                     Get in touch with AIESEC in Benin
                 </p>
             </div>
@@ -204,11 +264,13 @@
     </section>
 
     <!-- Contact Cards Section -->
-    <section class="py-12 sm:py-20 bg-white">
+    <section class="py-16 sm:py-24 bg-white">
         <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+        
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Current MCP -->
-                <div class="simple-card p-8 text-center">
+                <div class="simple-card p-8 text-center lead-card">
                     <div class="contact-icon">
                         <i class="fas fa-user-tie"></i>
                     </div>
@@ -216,17 +278,17 @@
                     <p class="text-accent text-xl font-bold mb-6">Armel AHOUADI</p>
                     
                     <div class="space-y-4">
-                        <div class="contact-detail">
-                            <i class="fas fa-envelope"></i>
+                        <div class="flex items-center justify-center space-x-3">
+                            <div class="bg-lead w-10 h-10 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-message"></i>
+                            </div>
                             <span class="text-gray-700 font-medium">armel.ahouadi@aiesec.net</span>
                         </div>
-                      
-                        
                     </div>
                 </div>
                 
                 <!-- National Office -->
-                <div class="simple-card p-8 text-center">
+                <div class="simple-card p-8 text-center manage-card">
                     <div class="contact-icon">
                         <i class="fas fa-building"></i>
                     </div>
@@ -234,39 +296,15 @@
                     <p class="text-accent text-xl font-bold mb-6">AIESEC in Benin</p>
                     
                     <div class="space-y-4">
-                        <div class="contact-detail">
-                            <i class="fas fa-envelope"></i>
+                        <div class="flex items-center justify-center space-x-3">
+                            <div class="bg-manage w-10 h-10 rounded-full flex items-center justify-center">
+                                <i class="fa-solid fa-message"></i>
+                            </div>
                             <span class="text-gray-700 font-medium">benin@aiesec.net</span>
                         </div>
-                       
-                    
                     </div>
                 </div>
             </div>
-        </div>
-    </section>   
-
-    <!-- Social Media Section -->
-    <section class="py-12 sm:py-16 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
-            <h2 class="text-3xl font-bold text-gray-800 mb-12 text-center">Connect With Us</h2>
-            
-            <div class="flex justify-center space-x-6">
-                <a href="#" class="social-icon hover:bg-blue-600">
-                    <i class="fab fa-facebook-f text-lg"></i>
-                </a>
-                <a href="#" class="social-icon hover:bg-pink-600">
-                    <i class="fab fa-instagram text-lg"></i>
-                </a>
-                <a href="#" class="social-icon hover:bg-blue-400">
-                    <i class="fab fa-linkedin-in text-lg"></i>
-                </a>
-               
-            </div>
-            
-            <p class="text-gray-600 text-center mt-8 max-w-2xl mx-auto">
-                Follow our social media channels 
-            </p>
         </div>
     </section>
 
@@ -297,6 +335,23 @@
         document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
         document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
         document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                const offset = document.querySelector('nav').offsetHeight;
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                    closeMobileMenu();
+                }
+            });
+        });
     </script>
 </body>
 </html>

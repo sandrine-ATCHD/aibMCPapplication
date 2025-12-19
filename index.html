@@ -5,15 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AIESEC in Benin - MCP 26.27 Application</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <!-- Police Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent': '#037EF3',
+                        'lead': '#00c16e',
+                        'manage': '#F48924',
+                        'represent': '#7552CC',
+                        'eligibility': '#0CB9C1',
+                    },
+                    fontFamily: {
+                        'poppins': ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         * {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
         
         h1, h2, h3, h4, h5, h6 {
-            font-weight: 900;
+            font-weight: 800;
+            letter-spacing: -0.025em;
         }
         
         body, p, li, span, div, a:not(.no-normal) {
@@ -23,6 +43,22 @@
         .text-accent { color: #037EF3; }
         .bg-accent { background-color: #037EF3; }
         .border-accent { border-color: #037EF3; }
+        
+        .text-lead { color: #00c16e; }
+        .bg-lead { background-color: rgba(0, 193, 110, 0.1); }
+        .border-lead { border-color: #00c16e; }
+        
+        .text-manage { color: #F48924; }
+        .bg-manage { background-color: rgba(244, 137, 36, 0.1); }
+        .border-manage { border-color: #F48924; }
+        
+        .text-represent { color: #7552CC; }
+        .bg-represent { background-color: rgba(117, 82, 204, 0.1); }
+        .border-represent { border-color: #7552CC; }
+        
+        .text-eligibility { color: #0CB9C1; }
+        .bg-eligibility { background-color: rgba(12, 185, 193, 0.1); }
+        .border-eligibility { border-color: #0CB9C1; }
         
         .link-discrete {
             position: relative;
@@ -48,9 +84,54 @@
             transform-origin: bottom left;
         }
         
-        .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+        /* Hero animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .hero-animate-text {
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .hero-animate-text:nth-child(1) { animation-delay: 0.3s; }
+        .hero-animate-text:nth-child(2) { animation-delay: 0.6s; }
+        .hero-animate-text:nth-child(3) { animation-delay: 0.9s; }
+        
+        .hero-bg-animated {
+            background: linear-gradient(rgba(18, 67, 173, 0.7), rgba(18, 67, 173, 0.7)),
                         url('hero.jpeg') center/cover no-repeat;
+            animation: slideInLeft 1.5s ease-out forwards;
+            opacity: 0;
         }
         
         .foreword-image {
@@ -60,6 +141,9 @@
             object-fit: cover;
             border: 4px solid white;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: slideInRight 1s ease-out 0.5s forwards;
         }
         
         .simple-card {
@@ -113,12 +197,8 @@
                 height: 200px;
             }
             
-            .hero-bg h1 {
+            .hero-bg-animated h1 {
                 font-size: 2.5rem;
-            }
-            
-            .hero-bg p {
-                font-size: 1rem;
             }
         }
         
@@ -173,18 +253,24 @@
             padding-left: 1rem;
             margin-bottom: 1.5rem;
         }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'accent': '#037EF3',
-                    },
-                }
-            }
+        
+        /* Couleurs simples pour les sections Lead, Manage, Represent */
+        .lead-card {
+            border-top: 4px solid #00c16e;
         }
-    </script>
+        
+        .manage-card {
+            border-top: 4px solid #F48924;
+        }
+        
+        .represent-card {
+            border-top: 4px solid #7552CC;
+        }
+        
+        .eligibility-card {
+            border-top: 4px solid #0CB9C1;
+        }
+    </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
     <!-- Menu mobile overlay -->
@@ -200,7 +286,7 @@
                 </button>
             </div>
             <nav class="flex flex-col space-y-6">
-                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">General</a>
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold text-accent" onclick="closeMobileMenu()">General</a>
                 <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
                 <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Application Form</a>
                 <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">About AIESEC in Benin</a>
@@ -221,7 +307,7 @@
                 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 lg:space-x-12 text-gray-700 text-base lg:text-lg">
-                    <a href="index.html" class="link-discrete hover:text-accent">General</a>
+                    <a href="index.html" class="link-discrete hover:text-accent text-accent font-bold">General</a>
                     <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
                     <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
                     <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
@@ -237,12 +323,17 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-screen overflow-hidden hero-bg pt-16">
+    <section id="home" class="relative h-screen overflow-hidden pt-16">
+        <div class="absolute inset-0 hero-bg-animated"></div>
         <div class="relative h-full flex items-center justify-center text-white px-4 sm:px-6">
             <div class="text-center max-w-3xl sm:max-w-5xl">
-                <p class="text-xl sm:text-2xl md:text-3xl mb-4 tracking-widest uppercase font-light">Member Committee President Application</p>
-                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 tracking-tighter font-black">MCP 26.27</h1>
-                <a href="#foreword" class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal font-medium">
+                <p class="text-xl sm:text-2xl md:text-3xl mb-4 tracking-widest uppercase font-light hero-animate-text">
+                    Member Committee President Application
+                </p>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 tracking-tighter font-black hero-animate-text">
+                    MCP 26.27
+                </h1>
+                <a href="#foreword" class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal font-medium hero-animate-text">
                     Start Your Journey &rarr;
                 </a>
             </div>
@@ -305,86 +396,103 @@
                 <div class="simple-card p-6 sm:p-8">
                     <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 border-accent">Overall</h3>
                     <p class="text-gray-700 leading-relaxed">
-                        The MCP leads and represents AIESEC in Benin, ensuring strategic direction, organizational growth, and alignment across the entity. The role includes overseeing planning, performance tracking, financial decisions, team management, and partnerships, while safeguarding AIESEC’s purpose, values, and overall organizational welfare.                   </p>
+                        The MCP leads and represents AIESEC in Benin, ensuring strategic direction, organizational growth, and alignment across the entity. The role includes overseeing planning, performance tracking, financial decisions, team management, and partnerships, while safeguarding AIESEC's purpose, values, and overall organizational welfare.
+                    </p>
                 </div>
                 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                     <!-- Lead -->
-                    <div class="simple-card p-6 sm:p-8 border-blue-left">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-accent">Lead</h3>
+                    <div class="simple-card p-6 sm:p-8 lead-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-lead/20 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-flag text-lead"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 text-lead">Lead</h3>
+                        </div>
                         <ul class="space-y-3 text-gray-700">
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span>Guardian of the AIESEC Way (Vision and Values)</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span>Clarity of your purpose (Selfish & Selfless)</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span>Define your non-negotiable must-wins and dreams</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span>Be conscious of your leadership style</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span>Team selection based on purpose, actions, and orientation</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span>Strength-based leadership</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span>Develop the best leadership pipeline</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-lead mr-2 mt-1">•</span>
                                 <span><strong>Success:</strong> 100% entity performance growth</span>
                             </li>
                         </ul>
                     </div>
                     
                     <!-- Manage -->
-                    <div class="simple-card p-6 sm:p-8 border-blue-left">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-accent">Manage</h3>
+                    <div class="simple-card p-6 sm:p-8 manage-card">
+                        
+                        <div class="flex items-center mb-4">
+                            <div class="bg-manage/20 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-cogs text-manage"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 text-manage">Manage</h3>
+                        </div>
                         <ul class="space-y-3 text-gray-700">
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-manage mr-2 mt-1">•</span>
                                 <span>Guardian of the legal representation</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-manage mr-2 mt-1">•</span>
                                 <span>Co-responsible for financial long-term sustainability</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-manage mr-2 mt-1">•</span>
                                 <span>Ensure accountability within team and plenary</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-manage mr-2 mt-1">•</span>
                                 <span>Responsible as President of the plenary and as Leader of the region</span>
                             </li>
                         </ul>
                     </div>
                     
                     <!-- Represent -->
-                    <div class="simple-card p-6 sm:p-8 border-blue-left">
-                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-accent">Represent</h3>
+                    <div class="simple-card p-6 sm:p-8 represent-card">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-represent/20 rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                                <i class="fas fa-handshake text-represent"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 text-represent">Represent</h3>
+                        </div>
                         <ul class="space-y-3 text-gray-700">
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-represent mr-2 mt-1">•</span>
                                 <span>Manage external stakeholders: SG/BOD, Partners, Government</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-represent mr-2 mt-1">•</span>
                                 <span>Ensure fulfillment of Global Membership Criteria</span>
                             </li>
                             <li class="flex items-start">
-                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span class="text-represent mr-2 mt-1">•</span>
                                 <span>Represent AIESEC in Benin at all official touchpoints</span>
                             </li>
                         </ul>
@@ -403,18 +511,16 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
                 <!-- Eligibility -->
-                <div class="simple-card p-6 sm:p-8">
+                <div class="simple-card p-6 sm:p-8 eligibility-card">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 border-accent">Eligibility Criteria</h3>
                     <ul class="list-check space-y-3 text-gray-700">
                         <li>Strong knowledge about AIESEC</li>
                         <li>Had MC, EB, or LCP experience</li>
                         <li>Active member of the organization for at least two years</li>
                         <li>Agree to commit to completing your mandate</li>
-                        <li>Have at least participated in international conferences of AIESEC, such as TLC, IC, MEAXLDS, or any other conference outside Benin 
-</li>
+                        <li>Have at least participated in international conferences of AIESEC, such as TLC, IC, MEAXLDS, or any other conference outside Benin</li>
                         <li>Commitment to end term once elected</li>
-                        <li>Pay Application Fees (10.000 FCFA), related to the Recruitment Firms and Electoral committee; to AIESEC in BENIN Account before Interview only if your application meet all criteria and have been accept. 
-                        </li>
+                        <li>Pay Application Fees (10.000 FCFA), related to the Recruitment Firms and Electoral committee; to AIESEC in BENIN Account before Interview only if your application meet all criteria and have been accept.</li>
                     </ul>
                 </div>
                 
