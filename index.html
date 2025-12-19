@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="script.js">    
     <script>
         tailwind.config = {
             theme: {
@@ -32,25 +32,18 @@
             <div class="flex items-center justify-between">
                 <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
                 <div class="hidden md:flex space-x-8 lg:space-x-12 text-gray-700 text-base lg:text-lg">
-                    <a href="#home" class="link-discrete hover:text-accent">Home</a>
-                    <a href="#about" class="link-discrete hover:text-accent">Role</a>
-                    <a href="#foreword" class="link-discrete hover:text-accent">Foreword</a>
-                    <a href="#application" class="link-discrete hover:text-accent">Application</a>
-                    <a href="#timeline" class="link-discrete hover:text-accent">Timeline</a>
-                    <a href="#contact" class="link-discrete hover:text-accent">Contact</a>
+                    <a href="index.html" class="link-discrete hover:text-accent">General</a>
+                    <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
+                    <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
+                    <a href="About.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
+                    <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
                 </div>
                 <button id="menu-toggle" class="md:hidden text-accent text-2xl focus:outline-none">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
             <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 py-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
-                <a href="#home" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Home</a>
-                <a href="#about" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Role</a>
-                <a href="#foreword" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Foreword</a>
-                <a href="#application" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Application</a>
-                <a href="#timeline" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Timeline</a>
-                <a href="#contact" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Contact</a>
-            </div>
+                           </div>
         </div>
     </nav>
 
@@ -61,7 +54,7 @@
                 <p class="text-xl sm:text-2xl md:text-3xl mb-4 tracking-widest uppercase">Member Committee President Application</p>
                 <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 tracking-tighter">MCP 26.27</h1>
                 <a href="#foreword" class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal">
-                    Begin Your Journey &rarr;
+                    Start Your Journey &rarr;
                 </a>
             </div>
         </div>
@@ -92,9 +85,7 @@
                     <div class="text-center">
                         <h4 class="text-xl sm:text-2xl text-gray-800 mb-2">Armel AHOUADI</h4>
                         <p class="text-accent text-base sm:text-lg mb-2">MCP 25.26 | AIESEC in Benin</p>
-                        <p class="text-gray-600 text-sm sm:text-base max-w-md">
-                            Leading AIESEC in Benin through transformative growth and expanding our national impact across youth leadership development.
-                        </p>
+                       
                     </div>
                 </div>
             </div>
@@ -109,422 +100,164 @@
         </div>
     </section>
 
-    <!-- MCP Role & Eligibility -->
-    <section id="about" class="py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
-                <span class="text-accent">MCP</span> Role & Eligibility
-            </h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                <div class="role-card eligibility enhanced-card p-6 sm:p-8 text-center">
-                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-eligibility/10 to-eligibility/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                        <i class="fas fa-user-check text-eligibility text-2xl sm:text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl text-eligibility mb-3 sm:mb-4 font-bold">Eligibility</h3>
-                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                        Must be between <span class="font-bold text-gray-800">18 and 30 years old</span>. This ensures alignment with AIESEC's youth leadership mandate.
-                    </p>
-                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
-                        <span class="text-xs sm:text-sm text-eligibility font-medium"><i class="fas fa-birthday-cake mr-1"></i> Age Requirement</span>
-                    </div>
-                </div>
-                <div class="role-card lead enhanced-card p-6 sm:p-8 text-center">
-                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-lead/10 to-lead/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                        <i class="fas fa-flag text-lead text-2xl sm:text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl text-lead mb-3 sm:mb-4 font-bold">Lead</h3>
-                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                        Ensure external relevance and maintain strategic coherence. Uniting and establishing a shared direction for all members.
-                    </p>
-                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
-                        <span class="text-xs sm:text-sm text-lead font-medium"><i class="fas fa-bullseye mr-1"></i> Strategic Leadership</span>
-                    </div>
-                </div>
-                <div class="role-card manage enhanced-card p-6 sm:p-8 text-center">
-                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-manage/10 to-manage/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                        <i class="fas fa-tasks text-manage text-2xl sm:text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl text-manage mb-3 sm:mb-4 font-bold">Manage</h3>
-                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                        Develop strategic direction, act as the guardian of legal processes, and uphold accountability within the team.
-                    </p>
-                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
-                        <span class="text-xs sm:text-sm text-manage font-medium"><i class="fas fa-chart-line mr-1"></i> Operational Excellence</span>
-                    </div>
-                </div>
-                <div class="role-card represent enhanced-card p-6 sm:p-8 text-center">
-                    <div class="icon-container w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-represent/10 to-represent/5 flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                        <i class="fas fa-globe-africa text-represent text-2xl sm:text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl text-represent mb-3 sm:mb-4 font-bold">Represent</h3>
-                    <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-                        Responsible for AIESEC in Benin's positioning in the Global Plenary and representing the entity to all external stakeholders.
-                    </p>
-                    <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-gray-100">
-                        <span class="text-xs sm:text-sm text-represent font-medium"><i class="fas fa-handshake mr-1"></i> Global Ambassadorship</span>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-gray-200 text-center">
-                <div class="inline-flex items-center bg-gradient-to-r from-accent/5 to-accent/10 p-4 sm:p-6 rounded-xl sm:rounded-2xl">
-                    <i class="fas fa-lightbulb text-accent text-xl sm:text-2xl mr-2 sm:mr-3"></i>
-                    <p class="text-gray-700 text-sm sm:text-base font-medium">
-                        The MCP role integrates these four key dimensions to drive AIESEC in Benin's success and impact across national and global platforms.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Job Description Section -->
+<section id="job-description" class="py-16 sm:py-24 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
+            Job Description: <span class="text-accent">Overall MCP Responsibilities</span>
+        </h2>
 
-    <!-- Application Section -->
-    <section id="application" class="py-12 sm:py-18 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
-                Application <span class="text-blue-600">Details</span>
-            </h2>
-            <div class="max-w-4xl lg:max-w-6xl mx-auto">
-                <div class="mb-16 sm:mb-24">
-                    <h3 class="text-2xl sm:text-3xl lg:text-4xl mb-10 sm:mb-16 text-gray-800 text-center font-bold">Application Package</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                                <i class="fas fa-file-alt text-blue-600 text-xl sm:text-2xl"></i>
-                            </div>
-                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Questionnaire</h4>
-                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Answer all questions listed in the breakdown below.</p>
-                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
-                                <span class="text-xs sm:text-sm text-blue-600 font-medium">Required Document</span>
-                            </div>
-                        </div>
-                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                                <i class="fas fa-file-contract text-blue-600 text-xl sm:text-2xl"></i>
-                            </div>
-                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Executive Summary</h4>
-                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Provide a one-pager overview of your application vision and approach.</p>
-                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
-                                <span class="text-xs sm:text-sm text-blue-600 font-medium">1 Page Maximum</span>
-                            </div>
-                        </div>
-                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                                <i class="fas fa-video text-blue-600 text-xl sm:text-2xl"></i>
-                            </div>
-                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Video Introduction</h4>
-                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Record a 3–5 minute video presenting yourself and your vision.</p>
-                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
-                                <span class="text-xs sm:text-sm text-blue-600 font-medium">3-5 Minutes</span>
-                            </div>
-                        </div>
-                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                                <i class="fas fa-id-card text-blue-600 text-xl sm:text-2xl"></i>
-                            </div>
-                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">CV & Picture</h4>
-                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Curriculum Vitae and a professional headshot.</p>
-                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
-                                <span class="text-xs sm:text-sm text-blue-600 font-medium">Professional Format</span>
-                            </div>
-                        </div>
-                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                                <i class="fas fa-brain text-blue-600 text-xl sm:text-2xl"></i>
-                            </div>
-                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Enneagram Test Results</h4>
-                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">Complete the test at <a href="https://www.truity.com/test/enneagram-personality-test" target="_blank" class="text-blue-600 hover:underline font-medium">truity.com</a> and include your personality type results.</p>
-                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
-                                <span class="text-xs sm:text-sm text-blue-600 font-medium">Online Assessment</span>
-                            </div>
-                        </div>
-                        <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 text-center shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-300 hover:transform hover:-translate-y-1">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                                <i class="fas fa-envelope-open-text text-blue-600 text-xl sm:text-2xl"></i>
-                            </div>
-                            <h4 class="text-lg sm:text-xl text-gray-800 mb-3 sm:mb-4 font-bold">Endorsement Letters (5)</h4>
-                            <p class="text-gray-600 text-sm sm:text-base mb-3 sm:mb-4">From someone in AIESEC, someone you led, someone who led you, a co-worker, and an external person.</p>
-                            <div class="mt-4 sm:mt-6 pt-3 sm:pt-4 border-t border-blue-100">
-                                <span class="text-xs sm:text-sm text-blue-600 font-medium">5 Letters Required</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-[#52565E] text-white p-8 sm:p-12 rounded-xl sm:rounded-2xl shadow-xl sm:shadow-2xl">
-                    <div class="text-center mb-8 sm:mb-12">
-                        <div class="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-white text-blue-600 mb-4 sm:mb-6">
-                            <i class="fas fa-clipboard-list text-xl sm:text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl sm:text-3xl lg:text-4xl text-white uppercase tracking-wide font-black">Questionnaire Breakdown</h3>
-                        <p class="text-blue-100 mt-3 sm:mt-4 max-w-lg sm:max-w-2xl mx-auto text-sm sm:text-base">Detailed questions covering all aspects of leadership, management, and representation for AIESEC in Benin.</p>
-                    </div>
-                    <div class="space-y-8 sm:space-y-12">
-                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
-                            <div class="flex items-center mb-4 sm:mb-6">
-                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
-                                    <i class="fas fa-user text-sm sm:text-base"></i>
-                                </div>
-                                <h4 class="text-xl sm:text-2xl text-white font-bold">Personal</h4>
-                            </div>
-                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span>Explain why you want to serve as MCP.</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span>What value will you bring from your first day to your last?</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span>Why do you believe you are the right person to lead the entity?</span></li>
-                            </ul>
-                        </div>
-                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
-                            <div class="flex items-center mb-4 sm:mb-6">
-                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
-                                    <i class="fas fa-flag text-sm sm:text-base"></i>
-                                </div>
-                                <h4 class="text-xl sm:text-2xl text-white font-bold">Lead</h4>
-                            </div>
-                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Leadership Style:</strong> Identify three traits and explain how your style meets Benin's needs.</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Relevance & Impact:</strong> Why does Benin need AIESEC? How can AIESEC in Benin create meaningful nationwide impact?</span></li>
-                            </ul>
-                        </div>
-                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
-                            <div class="flex items-center mb-4 sm:mb-6">
-                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
-                                    <i class="fas fa-tasks text-sm sm:text-base"></i>
-                                </div>
-                                <h4 class="text-xl sm:text-2xl text-white font-bold">Manage</h4>
-                            </div>
-                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Strategies:</strong> Propose three main strategies for: Membership, Exchange, Finance, and Brand (base on SWOT/PESTEL).</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Culture:</strong> Describe current culture, desired changes, and your plan for growth and results.</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Financial Sustainability:</strong> Assess current situation and strategies to strengthen long-term stability.</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Vision Toward A2030:</strong> Contribution to A2025 and your vision for A2030 contribution.</span></li>
-                            </ul>
-                        </div>
-                        <div class="border-l-4 border-white pl-6 sm:pl-8 bg-white/10 rounded-r-xl p-4 sm:p-6">
-                            <div class="flex items-center mb-4 sm:mb-6">
-                                <div class="bg-white text-blue-600 w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mr-3 sm:mr-4 shadow-lg">
-                                    <i class="fas fa-globe-africa text-sm sm:text-base"></i>
-                                </div>
-                                <h4 class="text-xl sm:text-2xl text-white font-bold">Represent</h4>
-                            </div>
-                            <ul class="space-y-3 sm:space-y-4 text-blue-100 ml-3 sm:ml-4 text-sm sm:text-base">
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">External Relations:</strong> Assess current relations and how you will position AIESEC as a relevant, trusted organization.</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Key Trends Shaping Benin:</strong> Identify three trends and how AIESEC should stand in relation to them.</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Global Representation:</strong> Evaluate current global presence and plan for strengthening international touchpoints.</span></li>
-                                <li class="flex items-start"><i class="fas fa-circle text-white mr-2 sm:mr-3 mt-1 text-xs"></i><span><strong class="text-white">Board Management:</strong> Assess current board management, and improvements for an effective board for 26.27.</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section id="timeline" class="py-16 sm:py-24 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-7xl">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto font-bold">
-                Selection <span class="text-blue-600">Timeline</span>
-            </h2>
-            <div class="relative mb-12 sm:mb-20">
-                <!-- Ligne horizontale (visible uniquement sur desktop) -->
-                <div class="hidden lg:block absolute left-0 right-0 top-8 h-1 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-100"></div>
-    
-                <!-- Conteneur des étapes -->
-                <div class="flex flex-col lg:flex-row justify-between items-center gap-6 sm:gap-8 lg:gap-4 w-full">
-                    <!-- Étape 1 -->
-                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
-                        <div class="flex flex-col items-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
-                                <i class="fas fa-file-signature text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
-                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
-                                    <i class="far fa-calendar-alt mr-2"></i>
-                                    Dec 16, 2025
-                                </div>
-                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Letter of Intent</h4>
-                                <p class="text-gray-600 text-sm sm:text-base">Deadline for submission of your formal letter of intent.</p>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Étape 2 -->
-                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
-                        <div class="flex flex-col items-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
-                                <i class="fas fa-paper-plane text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
-                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
-                                    <i class="far fa-calendar-alt mr-2"></i>
-                                    Dec 31, 2025
-                                </div>
-                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Application Package</h4>
-                                <p class="text-gray-600 text-sm sm:text-base">Final deadline for complete application package.</p>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Étape 3 -->
-                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
-                        <div class="flex flex-col items-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
-                                <i class="fas fa-comments text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
-                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
-                                    <i class="far fa-calendar-alt mr-2"></i>
-                                    Jan 5-10, 2026
-                                </div>
-                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">EC Interviews</h4>
-                                <p class="text-gray-600 text-sm sm:text-base">Interviews with the Elections Committee.</p>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Étape 4 -->
-                    <div class="relative flex-1 text-center mb-8 lg:mb-0 w-full max-w-xs mx-auto">
-                        <div class="flex flex-col items-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
-                                <i class="fa-solid fa-file-powerpoint text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
-                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
-                                    <i class="far fa-calendar-alt mr-2"></i>
-                                    Jan 15, 2026
-                                </div>
-                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Public Presentation</h4>
-                                <p class="text-gray-600 text-sm sm:text-base">Public presentation and Q/A session for finalists.</p>
-                            </div>
-                        </div>
-                    </div>
-    
-                    <!-- Étape 5 -->
-                    <div class="relative flex-1 text-center w-full max-w-xs mx-auto">
-                        <div class="flex flex-col items-center">
-                            <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mb-3 sm:mb-4 shadow-lg">
-                                <i class="fas fa-trophy text-white text-lg sm:text-xl"></i>
-                            </div>
-                            <div class="bg-white border border-blue-200 rounded-lg p-4 sm:p-6 shadow-sm w-full">
-                                <div class="text-blue-600 font-bold text-base sm:text-lg mb-2">
-                                    <i class="far fa-calendar-alt mr-2"></i>
-                                    Jan 17, 2026
-                                </div>
-                                <h4 class="text-gray-800 font-bold text-base sm:text-lg mb-2">Official Announcement</h4>
-                                <p class="text-gray-600 text-sm sm:text-base">Official announcement of the elected MCP 26.27.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Instructions de soumission -->
-            <div class="bg-white border-2 border-blue-200 rounded-xl p-6 sm:p-8 lg:p-12 text-center shadow-sm mx-auto max-w-2xl">
-                <div class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
-                    <i class="fas fa-paperclip text-white text-xl sm:text-2xl"></i>
-                </div>
-                <h3 class="text-xl sm:text-2xl text-gray-800 font-bold mb-3 sm:mb-4">Submission Instructions</h3>
-                <p class="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base max-w-lg mx-auto">
-                    Send all materials in <span class="font-bold text-blue-600">one ZIP file</span> to the email address below:
+        <div class="space-y-8 text-gray-700">
+            <!-- Overview -->
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Overview</h3>
+                <p class="leading-relaxed">
+                    The MCP is responsible for leading and managing AIESEC in Benin, providing strategic direction for the organization to grow sustainably. 
+                    This includes representing AIESEC in Benin to both internal and external stakeholders, organizing planning processes, implementing tracking and decision-making systems, coaching MCVPs on the strategic plan, supporting budgeting and financial decisions, and ensuring proper HR and MC processes are followed.
                 </p>
-                <div class="flex flex-col items-center justify-center space-y-3 sm:space-y-4 mb-4 sm:mb-6">
-                    <div class="flex items-center">
-                        <i class="fas fa-envelope text-blue-600 mr-2 sm:mr-3 text-lg sm:text-xl"></i>
-                        <p class="text-lg sm:text-2xl text-blue-600 font-medium">teresa.mbewe@aiesec.net</p>
-                    </div>
-                    <div class="flex items-center text-gray-600 text-sm sm:text-base">
-                        <i class="far fa-copy mr-2"></i>
-                        <p>Copy (CC): office.benin@aiesec.net</p>
-                    </div>
-                </div>
-                <div class="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-blue-100">
-                    <p class="text-xs sm:text-sm text-gray-500 italic max-w-lg mx-auto">
-                        <i class="fas fa-exclamation-circle mr-2"></i>
-                        Late or incomplete submissions will not be considered. You'll receive a confirmation email within 24 hours of submission.
-                    </p>
-                </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-12 sm:py-18 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto font-black">
-                <span class="text-accent">Contact</span> Information
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div class="contact-card enhanced-card p-6 sm:p-8 lg:p-10 text-center">
-                    <div class="mb-6 sm:mb-8">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
-                            <i class="fas fa-user-tie text-white text-2xl sm:text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl text-gray-800 uppercase font-bold">Current MCP</h3>
-                    </div>
-                    <div class="space-y-3 sm:space-y-4">
-                        <p class="text-gray-700 text-lg sm:text-xl font-bold">Armel AHOUADI</p>
-                        <div class="flex items-center justify-center">
-                            <i class="fas fa-phone text-accent mr-2"></i>
-                            <p class="text-accent link-discrete inline-block text-base sm:text-lg font-medium">+229 69 01 63 83</p>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <i class="fas fa-envelope text-gray-500 mr-2"></i>
-                            <p class="text-gray-600 text-sm sm:text-base">ahouadi.armel@aiesec.net</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-card enhanced-card p-6 sm:p-8 lg:p-10 text-center">
-                    <div class="mb-6 sm:mb-8">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
-                            <i class="fas fa-vote-yea text-white text-2xl sm:text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl text-gray-800 uppercase font-bold">Elections Manager</h3>
-                    </div>
-                    <div class="space-y-3 sm:space-y-4">
-                        <p class="text-gray-700 text-lg sm:text-xl font-bold">nom et prenom</p>
-                        <div class="flex items-center justify-center">
-                            <i class="fas fa-phone text-accent mr-2"></i>
-                            <p class="text-accent link-discrete inline-block text-base sm:text-lg font-medium">llll</p>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <i class="fas fa-envelope text-gray-500 mr-2"></i>
-                            <p class="text-gray-600 text-sm sm:text-base">nomail</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-card enhanced-card p-6 sm:p-8 lg:p-10 text-center">
-                    <div class="mb-6 sm:mb-8">
-                        <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-accent to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 shadow-lg">
-                            <i class="fas fa-building text-white text-2xl sm:text-3xl"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl text-gray-800 uppercase font-bold">AIESEC in Benin</h3>
-                    </div>
-                    <div class="space-y-3 sm:space-y-4">
-                        <p class="text-gray-700 text-lg sm:text-xl font-bold">National Office</p>
-                        <div class="flex items-center justify-center">
-                            <i class="fas fa-envelope text-accent mr-2"></i>
-                            <p class="text-accent link-discrete inline-block text-base sm:text-lg hover:text-gray-800 transition-colors font-medium">office.benin@aiesec.net</p>
-                        </div>
-                        <p class="text-gray-600 text-sm sm:text-base">General inquiries and official correspondence</p>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-12 sm:mt-20 pt-8 sm:pt-12 border-t border-gray-200 mb-12 sm:mb-20">
-                <h3 class="text-2xl sm:text-3xl text-center mb-6 sm:mb-10 text-gray-800 font-black">Connect With Us</h3>
-                <div class="flex justify-center space-x-6 sm:space-x-8">
-                    <a href="#" class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
-                        <i class="fab fa-facebook-f text-lg sm:text-2xl"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 sm:w-16 sm:h-16 bg-pink-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
-                        <i class="fab fa-instagram text-lg sm:text-2xl"></i>
-                    </a>
-                    <a href="#" class="w-12 h-12 sm:w-16 sm:h-16 bg-blue-600 rounded-full flex items-center justify-center text-white transition-all duration-300 shadow-md hover:shadow-lg">
-                        <i class="fab fa-linkedin-in text-lg sm:text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-<!-- Footer -->
+            <!-- Lead -->
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-lead hover:shadow-lg transition">
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Lead</h3>
+                <ul class="list-disc list-inside space-y-2 leading-relaxed text-gray-700">
+                    <li>Guardian of the AIESEC Way (Vision and Values).</li>
+                    <li>Clarity of your purpose (Selfish & Selfless).</li>
+                    <li>Define your non-negotiable must-wins and dreams.</li>
+                    <li>Be conscious of your leadership style.</li>
+                    <li>Team selection based on purpose, actions, and orientation.</li>
+                    <li>Strength-based leadership, enabling team members to complement one another.</li>
+                    <li>Develop the best leadership pipeline to ensure legacy.</li>
+                    <li><strong>Measure of Success:</strong> 100% entity performance growth & 100% MC members performing.</li>
+                </ul>
+            </div>
+
+            <!-- Manage -->
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-manage hover:shadow-lg transition">
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Manage</h3>
+                <ul class="list-disc list-inside space-y-2 leading-relaxed text-gray-700">
+                    <li>Guardian of the legal representation.</li>
+                    <li>Co-responsible for financial long-term sustainability while ensuring growth-assured investments.</li>
+                    <li>Ensure accountability within team and plenary.</li>
+                    <li>Responsible as President of the plenary and as Leader of the region.</li>
+                </ul>
+            </div>
+
+            <!-- Represent -->
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-represent hover:shadow-lg transition">
+                <h3 class="text-xl font-semibold text-gray-900 mb-3">Represent</h3>
+                <ul class="list-disc list-inside space-y-2 leading-relaxed text-gray-700">
+                    <li>Manage external stakeholders: SG/BOD, Partners, Government, Enablers, Media, Events, & R&Rs.</li>
+                    <li>Ensure fulfillment of Global Membership Criteria.</li>
+                    <li>Represent AIESEC in Benin at all official touchpoints (International, National, Local Conferences, Summits, ILMS).</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Profile Section -->
+<section id="profile" class="py-16 sm:py-24 bg-gray-50">
+    <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
+            Profile: <span class="text-accent">Applicant Criteria</span>
+        </h2>
+
+        <!-- Criteria Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Eligibility Criteria</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-700 leading-relaxed">
+                    <li>Strong knowledge about AIESEC</li>
+                    <li>Had MC, EB, or LCP experience</li>
+                    <li>Active member of the organization for at least two years</li>
+                    <li>Agree to commit to completing your mandate</li>
+                    <li>Participation in international AIESEC conferences (TLC, IC, MEAXLDS, etc.)</li>
+                    <li>Commitment to end term once elected</li>
+                    <li>Pay application fees (10.000 FCFA) if application meets all criteria related to the Recruitment Firms and Electoral committee; to AIESEC in BENIN Account before Interview only if your application meet all criteria and have been accept. 
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-lead hover:shadow-lg transition">
+                <h3 class="text-xl font-semibold text-gray-900 mb-4">Important Deadlines</h3>
+                <ul class="space-y-2 text-gray-700 leading-relaxed">
+                    <li><strong>Letter of Intent DDL:</strong> Dec 27, 2025 at 11:59 p.m</li>
+                    <li><strong>Application Submission DDL:</strong> Jan 04, 2026 at 11:59 p.m</li>
+                    <li><strong>Test & Interview Timeline:</strong> Jan 10 – Jan 16, 2026</li>
+                    <li><strong>Election:</strong> Jan 25, 2026</li>
+                    <li><strong>Announcement:</strong> Jan 27, 2026</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Countdown Section -->
+<section id="countdown" class="py-16 sm:py-24 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
+            Important Deadlines Countdown
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-center">
+            <!-- Letter of Intent -->
+            <div class="bg-accent p-6 sm:p-8 rounded-lg shadow-lg text-white">
+                <h3 class="text-xl font-semibold mb-4">Letter of Intent</h3>
+                <p class="mb-4">Deadline: Dec 27, 2025, 11:59 PM</p>
+                <div id="countdown-loi" class="text-2xl sm:text-3xl font-bold"></div>
+            </div>
+
+            <!-- Application Submission -->
+            <div class="bg-lead p-6 sm:p-8 rounded-lg shadow-lg text-white">
+                <h3 class="text-xl font-semibold mb-4">Application Submission</h3>
+                <p class="mb-4">Deadline: Jan 04, 2026, 11:59 PM</p>
+                <div id="countdown-app" class="text-2xl sm:text-3xl font-bold"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Countdown Script -->
+<script>
+    function initializeCountdown(elementId, targetDate) {
+        const countdownElement = document.getElementById(elementId);
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                countdownElement.innerHTML = "Deadline Passed";
+                clearInterval(interval);
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        updateCountdown(); // Initial call
+        const interval = setInterval(updateCountdown, 1000);
+    }
+
+    // Initialize countdowns
+    const loiDeadline = new Date("December 27, 2025 23:59:00 GMT+0100");
+    const appDeadline = new Date("January 04, 2026 23:59:00 GMT+0100");
+
+    initializeCountdown("countdown-loi", loiDeadline);
+    initializeCountdown("countdown-app", appDeadline);
+</script>
+
+
+   
+    
+    
 <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent/50">
     <div class="container mx-auto px-4 sm:px-6">
         <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
@@ -536,52 +269,5 @@
     </div>
 </footer>
 
-<script>
-    // Smooth scrolling for internal links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Mobile menu toggle
-// Mobile menu toggle
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    // Fonction pour fermer le menu
-    function closeMobileMenu() {
-        mobileMenu.classList.add('hidden');
-    }
-
-    // Ouvrir/fermer le menu au clic sur le bouton
-    menuToggle.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Fermer le menu si on clique sur un lien
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-            closeMobileMenu();
-        });
-    });
-
-    // Fermer le menu si on clique ailleurs sur l'écran
-    document.addEventListener('click', function(event) {
-        if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-            closeMobileMenu();
-        }
-    });
-});
-
-
-   
-
-
-</script>
 </body>
 </html>

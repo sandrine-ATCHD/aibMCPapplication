@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application Form - AIESEC in Benin MCP 26.27</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="script.js">    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent': '#037EF3',
+                        'lead': '#00c16e',
+                        'manage': '#F48924',
+                        'represent': '#7552CC',
+                        'eligibility': '#0CB9C1',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+        }
+        .form-container {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Remplit tout l'écran */
+        }
+    </style>
+</head>
+<body class="bg-white antialiased text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex items-center justify-between">
+                <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+                <div class="hidden md:flex space-x-8 lg:space-x-12 text-gray-700 text-base lg:text-lg">
+                    <a href="index.html" class="link-discrete hover:text-accent">General</a>
+                    <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
+                    <a href="applicationform.html" class="link-discrete hover:text-accent text-accent font-bold">Application Form</a>
+                    <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
+                    <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
+                </div>
+                <button id="menu-toggle" class="md:hidden text-accent text-2xl focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 py-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
+                <a href="index.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Home</a>
+                <a href="intentlette.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Intent Letter</a>
+                <a href="applicationform.html" class="block px-4 py-2 text-accent font-bold hover:bg-accent/10 rounded-lg">Application Form</a>
+                <a href="about.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">About AIESEC in Benin</a>
+                <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Form Section -->
+    <section class="form-container">
+        <div data-fillout-id="uz9PPMEuxvus" 
+             data-fillout-embed-type="fullscreen" 
+             style="width:100%;height:100%;" 
+             data-fillout-inherit-parameters>
+        </div>
+        <script src="https://server.fillout.com/embed/v1/"></script>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent/50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
+                <p class="mb-3 sm:mb-0 opacity-80">
+                    <i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.
+                </p>
+                <div class="flex h-10 w-auto">
+                    <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
