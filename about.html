@@ -10,37 +10,32 @@
     <style>
         :root {
             --aiesec-blue: #037EF3;
-            --lead-color: #4CAF50;
-            --manage-color: #FF9800;
-            --represent-color: #9C27B0;
-            --eligibility-color: #2196F3;
         }
-        
+
         * {
             font-family: 'Lato', sans-serif;
         }
-        
+
         h1, h2, h3, h4, h5, h6 {
             font-weight: 900;
         }
-        
+
         body, p, li, span, div, a:not(.no-normal) {
             font-weight: 400;
         }
-        
-        /* Couleurs définies proprement */
+
         .text-accent { color: #037EF3; }
         .bg-accent { background-color: #037EF3; }
         .border-accent { border-color: #037EF3; }
         .bg-accent-dark { background-color: #0268d6; }
         .bg-gray-blue { background-color: #f8fafc; }
-        
+
         .link-discrete {
             position: relative;
             display: inline-block;
             padding-bottom: 2px;
         }
-        
+
         .link-discrete::after {
             content: '';
             position: absolute;
@@ -53,131 +48,144 @@
             transform-origin: bottom right;
             transition: transform 0.4s ease-out;
         }
-        
+
         .link-discrete:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
-        
+
         .hero-bg {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)),
-                        url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1600') center/cover no-repeat;
+                        url('hero.jpeg') center/cover no-repeat;
         }
-        
+
         .enhanced-card {
             background: linear-gradient(145deg, #ffffff, #f8fafc);
             border: 1px solid rgba(3, 126, 243, 0.1);
             border-radius: 16px;
             transition: all 0.3s ease;
         }
-        
+
         .enhanced-card:hover {
             background: linear-gradient(145deg, #f8fafc, #ffffff);
             box-shadow: 0 20px 40px rgba(3, 126, 243, 0.15);
         }
-        
+
         .section-title {
             position: relative;
             display: inline-block;
             margin-bottom: 2rem;
         }
-        
+
         .center-title {
             text-align: center;
             display: inline-block;
         }
-        
-        .timeline-item {
-            border-left: 3px solid #037EF3;
-            padding-left: 1.5rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-        
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 0;
-            width: 14px;
-            height: 14px;
-            background: #037EF3;
-            border-radius: 50%;
-        }
-        
-        /* Mobile menu styles */
-        @media (max-width: 768px) {
-            .hero-bg h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero-bg p {
-                font-size: 1rem;
-            }
-        }
-        
-        /* Benin info section specific styles */
-        .benin-stat-card {
-            transition: all 0.3s ease;
-            border-top: 4px solid transparent;
-        }
-        
-        .benin-stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .benin-fact-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 15px;
-            background: linear-gradient(135deg, #008751 0%, #fcd116 50%, #e8112d 100%);
-            color: white;
-        }
-        
+
         .responsive-image {
             width: 100%;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
+        .benin-stat-card {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .benin-stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .culture-highlight {
+            border-left: 4px solid #037EF3;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .menu-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
         @media (max-width: 640px) {
             .responsive-image {
                 margin-bottom: 2rem;
+            }
+
+            .hero-bg h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-bg p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
+    <!-- Menu mobile overlay -->
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" id="menuOverlay"></div>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 md:hidden shadow-2xl" id="mobileMenu">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-12">
+                <div class="text-xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+                <button class="text-gray-600 text-2xl" id="closeMenuBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-6">
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">General</a>
+                <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
+                <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Application Form</a>
+                <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold text-accent" onclick="closeMobileMenu()">About AIESEC in Benin</a>
+                <a href="contact.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <div class="mt-16 pt-8 border-t border-gray-200">
+                <p class="text-gray-500 text-sm">Member Committee President Application</p>
+                <p class="text-accent font-bold text-lg mt-2">MCP 26.27</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
                 <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 lg:space-x-12 text-gray-700 text-base lg:text-lg">
-                    <a href="index.html" class="link-discrete hover:text-accent">Home</a>
-                    <a href="about.html" class="link-discrete text-accent font-bold">About</a>
-                    <a href="index.html#foreword" class="link-discrete hover:text-accent">Foreword</a>
-                    <a href="index.html#application" class="link-discrete hover:text-accent">Application</a>
-                    <a href="index.html#timeline" class="link-discrete hover:text-accent">Timeline</a>
-                    <a href="index.html#contact" class="link-discrete hover:text-accent">Contact</a>
+                    <a href="index.html" class="link-discrete hover:text-accent">General</a>
+                    <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
+                    <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
+                    <a href="about.html" class="link-discrete hover:text-accent font-bold text-accent">About AIESEC in Benin</a>
+                    <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
                 </div>
-                <button id="menu-toggle" class="md:hidden text-accent text-2xl focus:outline-none">
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 py-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
-                <a href="index.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Home</a>
-                <a href="about.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg font-bold text-accent">About</a>
-                <a href="index.html#foreword" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Foreword</a>
-                <a href="index.html#application" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Application</a>
-                <a href="index.html#timeline" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Timeline</a>
-                <a href="index.html#contact" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-[#037EF3] rounded-lg">Contact</a>
             </div>
         </div>
     </nav>
@@ -193,106 +201,91 @@
     </section>
 
     <!-- Information About Benin Section -->
-    <section id="about-benin" class="py-16 sm:py-20 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title center-title">
-                About <span class="text-accent">Benin</span>
-            </h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center mb-16 sm:mb-20">
-                <!-- Image Section -->
-                <div class="order-2 lg:order-1">
-                    <img 
-                        src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                        alt="Porto-Novo, Benin - The Capital City" 
-                        class="responsive-image"
+<section id="about-benin" class="py-16 sm:py-32 bg-white">
+    <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title center-title">
+            About <span class="text-accent">Benin</span>
+        </h2>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-stretch mb-16 sm:mb-20">
+            <!-- Image Section -->
+            <div class="order-2 lg:order-1 h-full">
+                <div class="h-full bg-gray-blue rounded-2xl overflow-hidden flex flex-col">
+                    <img
+                        src="Amazon (Woman King) Statue.jpeg"
+                        alt="Porto-Novo, Benin - The Capital City"
+                        class="responsive-image object-cover w-full h-full min-h-[300px] sm:min-h-[400px] lg:min-h-[500px]"
                     >
-                    <p class="text-gray-500 text-sm mt-3 text-center italic">Porto-Novo, the capital city of Benin</p>
-                </div>
-                
-                <!-- Text Content Section -->
-                <div class="order-1 lg:order-2">
-                    <div class="bg-gray-blue p-6 sm:p-8 rounded-2xl border-l-4 border-accent">
-                        <h3 class="text-2xl sm:text-3xl text-gray-800 mb-6 font-bold">The Republic of Benin</h3>
-                        
-                        <div class="space-y-4">
+                                  </div>
+            </div>
+
+            <!-- Text Content Section -->
+            <div class="order-1 lg:order-2 h-full">
+                <div class="bg-gray-blue p-6 sm:p-8 rounded-2xl h-full flex flex-col">
+                    <h3 class="text-2xl sm:text-3xl text-gray-800 mb-6 font-bold">The Heart of West Africa</h3>
+
+                    <div class="space-y-6 flex-grow">
+                        <p class="text-gray-600 leading-relaxed">
+                            Benin is a culturally rich and historically significant country in West Africa, often referred to as the cradle of the Vodun culture, which influences traditions far beyond its borders.
+                        </p>
+
+                        <div class="culture-highlight">
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">Vodun Days Celebration</h4>
                             <p class="text-gray-600">
-                                Benin, officially the Republic of Benin, is a country in West Africa. It is bordered by Togo to the west, Nigeria to the east, Burkina Faso to the north-west, and Niger to the north-east. The majority of its population lives on the southern coastline of the Bight of Benin, part of the Gulf of Guinea in the northernmost tropical portion of the Atlantic Ocean.
+                                Every year, Vodun Days (January 10th) bring together thousands of people from around the world in Ouidah to celebrate spirituality, heritage, and identity. This openness to culture and dialogue makes Benin a unique place for intercultural exchange.
                             </p>
-                            
-                            <div class="grid grid-cols-2 gap-4 mt-6">
-                                <div class="benin-stat-card bg-white p-4 rounded-lg text-center">
-                                    <div class="benin-fact-icon">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                    </div>
-                                    <h4 class="font-bold text-gray-800 mb-1">Capital</h4>
-                                    <p class="text-gray-600 text-sm">Porto-Novo</p>
-                                </div>
-                                
-                                <div class="benin-stat-card bg-white p-4 rounded-lg text-center">
-                                    <div class="benin-fact-icon">
-                                        <i class="fas fa-users"></i>
-                                    </div>
-                                    <h4 class="font-bold text-gray-800 mb-1">Population</h4>
-                                    <p class="text-gray-600 text-sm">~13 million</p>
-                                </div>
-                                
-                                <div class="benin-stat-card bg-white p-4 rounded-lg text-center">
-                                    <div class="benin-fact-icon">
-                                        <i class="fas fa-language"></i>
-                                    </div>
-                                    <h4 class="font-bold text-gray-800 mb-1">Official Language</h4>
-                                    <p class="text-gray-600 text-sm">French</p>
-                                </div>
-                                
-                                <div class="benin-stat-card bg-white p-4 rounded-lg text-center">
-                                    <div class="benin-fact-icon">
-                                        <i class="fas fa-flag"></i>
-                                    </div>
-                                    <h4 class="font-bold text-gray-800 mb-1">Independence</h4>
-                                    <p class="text-gray-600 text-sm">August 1, 1960</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-6 pt-4 border-t border-gray-200">
-                                <h4 class="text-lg font-bold text-gray-800 mb-2">Youth Context</h4>
-                                <p class="text-gray-600">
-                                    Benin has a predominantly young population, with over 65% under the age of 25. This creates both challenges and opportunities for youth development, leadership, and employment - making AIESEC's mission particularly relevant and impactful in the Beninese context.
-                                </p>
-                            </div>
+                        </div>
+
+                        <p class="text-gray-600 leading-relaxed">
+                            Benin is also a land of youth creativity and innovation. Events like We Love Eya highlight the energy of young Beninese through music, arts, fashion, and entrepreneurship, reinforcing the country's growing creative economy.
+                        </p>
+
+                        <div class="culture-highlight">
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">Heritage & Modernity</h4>
+                            <p class="text-gray-600">
+                                With iconic sites such as the Royal Palaces of Abomey (UNESCO World Heritage), the historic Door of No Return, and the modern transformation of cities like Cotonou, Benin stands at the crossroads of tradition and modernity.
+                            </p>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-gray-200">
+                            <h4 class="text-lg font-bold text-gray-800 mb-3">Opportunities for Youth Leadership</h4>
+                            <p class="text-gray-600">
+                                This environment offers young leaders a powerful space to develop leadership, engage communities, and create sustainable impact, making Benin a fertile ground for organizations like AIESEC to thrive.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Introduction -->
+    </div>
+</section>
+    <!-- Introduction to AIESEC in Benin -->
     <section class="py-16 sm:py-20 bg-gray-blue">
         <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-6 font-bold section-title center-title">Our <span class="text-accent">History</span></h2>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 mb-6 font-bold section-title center-title">AIESEC in <span class="text-accent">Benin</span></h2>
                 <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
-                    From our official creation in 2005 to becoming one of Benin's leading youth organizations, 
+                    From our official creation in 2005 to becoming one of Benin's leading youth organizations,
                     our journey reflects dedication, growth, and unwavering commitment to youth leadership.
                 </p>
             </div>
-            
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 items-center mb-16 sm:mb-20">
-                <div>
-                    <div class="relative rounded-2xl overflow-hidden shadow-xl">
-                        <div class="bg-gradient-to-br from-[#037EF3]/20 to-[#037EF3]/10 h-64 sm:h-80 md:h-96 flex items-center justify-center">
-                            <div class="text-center">
-                                <i class="fas fa-calendar-alt text-[#037EF3] text-6xl mb-4"></i>
-                                <p class="text-gray-700 font-medium">AIESEC in Benin - 2005</p>
-                                <p class="text-gray-600 text-sm mt-2">Official creation year</p>
-                            </div>
-                        </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-xl">
+                    <div class="relative h-64 sm:h-80 md:h-96 flex items-center justify-center">
+                        <!-- Image de fond -->
+                        <img src="hero.jpeg" 
+                             alt="Benin Background" 
+                             class="absolute inset-0 w-full h-full object-cover">
+                        <!-- Superposition sombre pour lisibilité -->
+                        <div class="absolute inset-0 bg-black/30"></div>
+                
                     </div>
                 </div>
+                
                 <div class="space-y-6">
                     <div class="bg-white p-6 sm:p-8 rounded-2xl border-l-4 border-[#037EF3]">
-                        <h3 class="text-2xl sm:text-3xl text-gray-800 mb-6 font-bold">The Beginning</h3>
+                        <h3 class="text-2xl sm:text-3xl text-gray-800 mb-6 font-bold">Our Foundation</h3>
                         <div class="space-y-4">
                             <div class="flex items-start">
                                 <div class="bg-[#037EF3] text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 mr-4">
@@ -328,136 +321,119 @@
         </div>
     </section>
 
-<!-- Local Committees -->
-<section class="py-16 sm:py-20 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title center-title">Our <span class="text-accent">Growth</span></h2>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
-            <!-- Original Structure -->
-            <div class="bg-white enhanced-card p-6 sm:p-8 rounded-2xl">
-                <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-[#037EF3]/10 rounded-2xl flex items-center justify-center mr-4">
-                        <i class="fas fa-university text-[#037EF3] text-xl sm:text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl text-gray-800 font-bold">Original Structure</h3>
-                </div>
-                <p class="text-gray-600 mb-6">Started with 4 local committees and 2 expansions:</p>
-                
-                <div class="space-y-4">
-                    <!-- Local Committees -->
-                    <div>
-                        <h4 class="text-lg font-bold text-gray-800 mb-3">Local Committees</h4>
-                        <ul class="space-y-3 ml-4">
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-[#037EF3] text-xs mt-1 mr-2"></i>
-                                <div>
-                                    <span class="text-gray-700 font-bold">AIESEC ENEAM</span>
-                                    <p class="text-gray-600 text-sm">First local committee of AIESEC in Benin</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-[#037EF3] text-xs mt-1 mr-2"></i>
-                                <div>
-                                    <span class="text-gray-700 font-bold">AIESEC UAC</span>
-                                    <p class="text-gray-600 text-sm">Second local committee</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-[#037EF3] text-xs mt-1 mr-2"></i>
-                                <div>
-                                    <span class="text-gray-700 font-bold">AIESEC ENS Porto-Novo</span>
-                                    <p class="text-gray-600 text-sm">Third local committee</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-star text-[#037EF3] text-xs mt-1 mr-2"></i>
-                                <div>
-                                    <span class="text-gray-700 font-bold">AIESEC UATM GASA Formation</span>
-                                    <p class="text-gray-600 text-sm">Most recent addition</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Expansions -->
-                    <div>
-                        <h4 class="text-lg font-bold text-gray-800 mb-3">Expansions</h4>
-                        <ul class="space-y-3 ml-4">
-                            <li class="flex items-start">
-                                <div class="bg-[#037EF3]/10 text-[#037EF3] text-xs font-bold px-2 py-1 rounded mr-3 mt-1">2017</div>
-                                <div>
-                                    <span class="text-gray-700 font-bold">AIESEC in ISFOP</span>
-                                    <p class="text-gray-600 text-sm">Now called AIESEC in ESAE</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start">
-                                <div class="bg-[#037EF3]/10 text-[#037EF3] text-xs font-bold px-2 py-1 rounded mr-3 mt-1">2018</div>
-                                <div>
-                                    <span class="text-gray-700 font-bold">AIESEC in PARAKOU</span>
-                                    <p class="text-gray-600 text-sm">Expansion started</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- By-Town Structure -->
-            <div class="bg-white enhanced-card p-6 sm:p-8 rounded-2xl">
-                <div class="flex items-center mb-6">
-                    <div class="w-12 h-12 sm:w-16 sm:h-16 bg-[#037EF3]/10 rounded-2xl flex items-center justify-center mr-4">
-                        <i class="fas fa-city text-[#037EF3] text-xl sm:text-2xl"></i>
-                    </div>
-                    <h3 class="text-xl sm:text-2xl text-gray-800 font-bold">By-Town Structure</h3>
-                </div>
-                
-                <div class="space-y-6">
-                    <!-- Timeline -->
-                    <div>
-                        <div class="flex items-center mb-4">
-                            <div class="bg-[#037EF3] text-white text-xs font-bold px-3 py-1 rounded-full mr-3">2019</div>
-                            <h4 class="text-lg font-bold text-gray-800">Decision for Reorganization</h4>
+    <!-- Local Committees -->
+    <section class="py-16 sm:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title center-title">Our <span class="text-accent">Growth</span></h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 mb-12 sm:mb-16">
+                <!-- Original Structure -->
+                <div class="bg-white enhanced-card p-6 sm:p-8 rounded-2xl">
+                    <h3 class="text-2xl text-gray-800 mb-6 font-bold">Original Structure</h3>
+                    <p class="text-gray-600 mb-6">Started with 4 local committees and 2 expansions:</p>
+
+                    <div class="space-y-6">
+                        <!-- Local Committees -->
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-3">Local Committees</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-[#037EF3] mr-2">•</span>
+                                    <div>
+                                        <span class="text-gray-700 font-bold">AIESEC ENEAM</span>
+                                        <p class="text-gray-600 text-sm">First local committee of AIESEC in Benin</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-[#037EF3] mr-2">•</span>
+                                    <div>
+                                        <span class="text-gray-700 font-bold">AIESEC UAC</span>
+                                        <p class="text-gray-600 text-sm">Second local committee</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-[#037EF3] mr-2">•</span>
+                                    <div>
+                                        <span class="text-gray-700 font-bold">AIESEC ENS Porto-Novo</span>
+                                        <p class="text-gray-600 text-sm">Third local committee</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-[#037EF3] mr-2">•</span>
+                                    <div>
+                                        <span class="text-gray-700 font-bold">AIESEC UATM GASA Formation</span>
+                                        <p class="text-gray-600 text-sm">Most recent addition</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <p class="text-gray-600 ml-12">Decision to reorganize AIESEC by towns for better geographical impact.</p>
-                    </div>
-                    
-                    <div>
-                        <div class="flex items-center mb-4">
-                            <div class="bg-[#037EF3] text-white text-xs font-bold px-3 py-1 rounded-full mr-3">2021</div>
-                            <h4 class="text-lg font-bold text-gray-800">Implementation & Mergers</h4>
+
+                        <!-- Expansions -->
+                        <div>
+                            <h4 class="text-lg font-bold text-gray-800 mb-3">Expansions</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <span class="bg-[#037EF3] text-white text-xs font-bold px-2 py-1 rounded mr-3">2017</span>
+                                    <div>
+                                        <span class="text-gray-700 font-bold">AIESEC in ISFOP</span>
+                                        <p class="text-gray-600 text-sm">Now called AIESEC in ESAE</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="bg-[#037EF3] text-white text-xs font-bold px-2 py-1 rounded mr-3">2018</span>
+                                    <div>
+                                        <span class="text-gray-700 font-bold">AIESEC in PARAKOU</span>
+                                        <p class="text-gray-600 text-sm">Expansion started</p>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        
-                        <div class="space-y-4 ml-12">
-                            <!-- AIESEC in Cotonou -->
-                            <div class="bg-[#f8fafc] p-4 rounded-lg border-l-4 border-[#037EF3]">
-                                <h5 class="font-bold text-gray-800 mb-1">AIESEC in Cotonou</h5>
-                                <p class="text-gray-600 text-sm">Merged from:</p>
-                                <div class="flex flex-wrap gap-2 mt-2">
-                                    <span class="px-2 py-1 bg-[#037EF3]/10 text-[#037EF3] text-xs rounded">ENEAM</span>
-                                    <span class="px-2 py-1 bg-[#037EF3]/10 text-[#037EF3] text-xs rounded">GASA</span>
-                                    <span class="px-2 py-1 bg-[#037EF3]/10 text-[#037EF3] text-xs rounded">ESAE</span>
+                    </div>
+                </div>
+
+                <!-- By-Town Structure -->
+                <div class="bg-white enhanced-card p-6 sm:p-8 rounded-2xl">
+                    <h3 class="text-2xl text-gray-800 mb-6 font-bold">By-Town Structure</h3>
+
+                    <div class="space-y-6">
+                        <!-- Timeline -->
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <span class="bg-[#037EF3] text-white text-xs font-bold px-3 py-1 rounded-full mr-3">2019</span>
+                                <h4 class="text-lg font-bold text-gray-800">Decision for Reorganization</h4>
+                            </div>
+                            <p class="text-gray-600 ml-12">Decision to reorganize AIESEC by towns for better geographical impact.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center mb-4">
+                                <span class="bg-[#037EF3] text-white text-xs font-bold px-3 py-1 rounded-full mr-3">2021</span>
+                                <h4 class="text-lg font-bold text-gray-800">Implementation & Mergers</h4>
+                            </div>
+
+                            <div class="space-y-4 ml-12">
+                                <!-- AIESEC in Cotonou -->
+                                <div class="bg-[#f8fafc] p-4 rounded-lg border-l-2 border-[#037EF3]">
+                                    <h5 class="font-bold text-gray-800 mb-1">AIESEC in Cotonou</h5>
+                                    <p class="text-gray-600 text-sm">Merged from: ENEAM, GASA, ESAE</p>
                                 </div>
-                            </div>
-                            
-                            <!-- AIESEC in Abomey-Calavi -->
-                            <div class="bg-[#f8fafc] p-4 rounded-lg border-l-4 border-[#037EF3]">
-                                <h5 class="font-bold text-gray-800 mb-1">AIESEC in Abomey-Calavi</h5>
-                                <p class="text-gray-600 text-sm">Formerly: <span class="font-medium">AIESEC UAC</span></p>
-                            </div>
-                            
-                            <!-- AIESEC in Porto-Novo -->
-                            <div class="bg-[#f8fafc] p-4 rounded-lg border-l-4 border-[#037EF3]">
-                                <h5 class="font-bold text-gray-800 mb-1">AIESEC in Porto-Novo</h5>
-                                <p class="text-gray-600 text-sm">Formerly: <span class="font-medium">AIESEC ENS Porto-Novo</span></p>
-                            </div>
-                            
-                            <!-- AIESEC in Parakou -->
-                            <div class="bg-[#f8fafc] p-4 rounded-lg border-l-4 border-[#037EF3]">
-                                <h5 class="font-bold text-gray-800 mb-1">AIESEC in Parakou</h5>
-                                <p class="text-gray-600 text-sm">Expansion from 2018 became a local committee</p>
-                                <div class="mt-2">
-                                    <span class="px-2 py-1 bg-[#037EF3]/10 text-[#037EF3] text-xs rounded">Local Committee Status</span>
+
+                                <!-- AIESEC in Abomey-Calavi -->
+                                <div class="bg-[#f8fafc] p-4 rounded-lg border-l-2 border-[#037EF3]">
+                                    <h5 class="font-bold text-gray-800 mb-1">AIESEC in Abomey-Calavi</h5>
+                                    <p class="text-gray-600 text-sm">Formerly: AIESEC UAC</p>
+                                </div>
+
+                                <!-- AIESEC in Porto-Novo -->
+                                <div class="bg-[#f8fafc] p-4 rounded-lg border-l-2 border-[#037EF3]">
+                                    <h5 class="font-bold text-gray-800 mb-1">AIESEC in Porto-Novo</h5>
+                                    <p class="text-gray-600 text-sm">Formerly: AIESEC ENS Porto-Novo</p>
+                                </div>
+
+                                <!-- AIESEC in Parakou -->
+                                <div class="bg-[#f8fafc] p-4 rounded-lg border-l-2 border-[#037EF3]">
+                                    <h5 class="font-bold text-gray-800 mb-1">AIESEC in Parakou</h5>
+                                    <p class="text-gray-600 text-sm">Expansion from 2018 became a local committee</p>
                                 </div>
                             </div>
                         </div>
@@ -465,29 +441,21 @@
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Milestones -->
     <section class="py-16 sm:py-20 bg-gray-blue">
         <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title center-title">Key <span class="text-accent">Milestones</span></h2>
-            
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 mb-12 sm:mb-16">
                 <div>
                     <div class="bg-white p-6 sm:p-8 rounded-2xl mb-8">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-[#037EF3] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-award text-white text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl sm:text-3xl text-gray-800 font-bold">National Recognition</h3>
-                            </div>
-                        </div>
-                        
+                        <h3 class="text-2xl sm:text-3xl text-gray-800 mb-6 font-bold">National Recognition</h3>
+
                         <div class="space-y-6">
                             <div class="border-l-4 border-[#037EF3] pl-4 py-2">
-                                <h4 class="text-xl text-gray-800 font-bold mb-1">Second Best Youth Organization</h4>
+                                <h4 class="text-xl text-gray-800 font-bold mb-2">Second Best Youth Organization</h4>
                                 <p class="text-gray-600">
                                     In 2015, recognized by the Ministry of Youth as the <span class="font-bold text-gray-800">second best youth organization in Benin</span>.
                                 </p>
@@ -495,35 +463,28 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
                     <div class="bg-white p-6 sm:p-8 rounded-2xl mb-8">
-                        <div class="flex items-center mb-6">
-                            <div class="w-16 h-16 bg-[#037EF3] rounded-full flex items-center justify-center mr-4 flex-shrink-0">
-                                <i class="fas fa-conference text-white text-2xl"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl sm:text-3xl text-gray-800 font-bold">International Conferences</h3>
-                            </div>
-                        </div>
-                        
+                        <h3 class="text-2xl sm:text-3xl text-gray-800 mb-6 font-bold">International Conferences</h3>
+
                         <div class="space-y-6">
-                            <div class="timeline-item">
-                                <h4 class="text-xl text-gray-800 font-bold mb-1">2011: West Africa Conference</h4>
-                                <p class="text-gray-600 mb-4">
+                            <div class="border-l-4 border-[#037EF3] pl-4 py-2">
+                                <h4 class="text-xl text-gray-800 font-bold mb-2">2011: West Africa Conference</h4>
+                                <p class="text-gray-600">
                                     Organized the largest conference for West Africa.
                                 </p>
                             </div>
-                            
-                            <div class="timeline-item">
-                                <h4 class="text-xl text-gray-800 font-bold mb-1">2014: Africa Conference</h4>
-                                <p class="text-gray-600 mb-4">
+
+                            <div class="border-l-4 border-[#037EF3] pl-4 py-2">
+                                <h4 class="text-xl text-gray-800 font-bold mb-2">2014: Africa Conference</h4>
+                                <p class="text-gray-600">
                                     Hosted the biggest conference for the African continent.
                                 </p>
                             </div>
-                            
-                            <div class="timeline-item">
-                                <h4 class="text-xl text-gray-800 font-bold mb-1">2019: WACS</h4>
+
+                            <div class="border-l-4 border-[#037EF3] pl-4 py-2">
+                                <h4 class="text-xl text-gray-800 font-bold mb-2">2019: WACS</h4>
                                 <p class="text-gray-600">
                                     West Africa Connection Seminar in Benin.
                                 </p>
@@ -532,7 +493,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Stats -->
             <div class="bg-gradient-to-r from-[#037EF3] to-[#0268d6] text-white rounded-2xl p-8 sm:p-12 shadow-xl">
                 <div class="text-center mb-8">
@@ -541,20 +502,20 @@
                         Continuing to empower youth and develop leaders across Benin.
                     </p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
                     <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center">
                         <div class="text-3xl sm:text-4xl font-bold mb-2">18+</div>
                         <p class="text-blue-100">Years of Service</p>
                         <p class="text-blue-200 text-sm mt-2">Since 2005</p>
                     </div>
-                    
+
                     <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center">
-                        <div class="text-3xl sm:text-4xl font-bold mb-2">3</div>
+                        <div class="text-3xl sm:text-4xl font-bold mb-2">4</div>
                         <p class="text-blue-100">Major Cities</p>
                         <p class="text-blue-200 text-sm mt-2">National Presence</p>
                     </div>
-                    
+
                     <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl text-center">
                         <div class="text-3xl sm:text-4xl font-bold mb-2">1000+</div>
                         <p class="text-blue-100">Youth Impacted</p>
@@ -572,12 +533,12 @@
             <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-10">
                 Our story continues with each new leader. Be part of the next chapter of AIESEC in Benin.
             </p>
-            
+
             <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                <a href="index.html#application" class="px-8 py-4 bg-[#037EF3] text-white text-lg font-bold rounded-full hover:bg-[#0268d6] transition-all duration-300 shadow-lg hover:shadow-xl">
+                <a href="applicationform.html" class="px-8 py-4 bg-[#037EF3] text-white text-lg font-bold rounded-full hover:bg-[#0268d6] transition-all duration-300 shadow-lg hover:shadow-xl">
                     Apply for MCP 26.27
                 </a>
-                <a href="index.html#contact" class="px-8 py-4 bg-white text-[#037EF3] border-2 border-[#037EF3] text-lg font-bold rounded-full hover:bg-[#037EF3] hover:text-white transition-all duration-300">
+                <a href="contact.html" class="px-8 py-4 bg-white text-[#037EF3] border-2 border-[#037EF3] text-lg font-bold rounded-full hover:bg-[#037EF3] hover:text-white transition-all duration-300">
                     Connect With Us
                 </a>
             </div>
@@ -597,37 +558,33 @@
     </footer>
 
     <script>
+        // Mobile menu functionality
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.getElementById('menuOverlay').classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
+        }
+
+        document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
+        document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
+        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
+
         // Smooth scrolling for internal links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-
-            function closeMobileMenu() {
-                mobileMenu.classList.add('hidden');
-            }
-
-            menuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
-
-            document.querySelectorAll('#mobile-menu a').forEach(link => {
-                link.addEventListener('click', function() {
-                    closeMobileMenu();
-                });
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                const offset = document.querySelector('nav').offsetHeight;
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
                     closeMobileMenu();
                 }
             });

@@ -7,8 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="script.js">    
     <script>
         tailwind.config = {
             theme: {
@@ -25,19 +23,102 @@
         }
     </script>
     <style>
-        body {
+        * {
             font-family: 'Lato', sans-serif;
         }
-        
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 900;
+        }
+
+        body, p, li, span, div, a:not(.no-normal) {
+            font-weight: 400;
+        }
+
+        .text-accent { color: #037EF3; }
+        .bg-accent { background-color: #037EF3; }
+        .border-accent { border-color: #037EF3; }
+
+        .link-discrete {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .link-discrete::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s ease-out;
+        }
+
+        .link-discrete:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
         .hero-intent {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');
+                        url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80');
             background-size: cover;
             background-position: center;
+        }
+
+        /* Menu mobile */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .menu-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
+    <!-- Menu mobile overlay -->
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" id="menuOverlay"></div>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 md:hidden shadow-2xl" id="mobileMenu">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-12">
+                <div class="text-xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+                <button class="text-gray-600 text-2xl" id="closeMenuBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-6">
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">General</a>
+                <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold" onclick="closeMobileMenu()">Intent Letter Submission</a>
+                <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Application Form</a>
+                <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">About AIESEC in Benin</a>
+                <a href="contact.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <div class="mt-16 pt-8 border-t border-gray-200">
+                <p class="text-gray-500 text-sm">Member Committee President Application</p>
+                <p class="text-accent font-bold text-lg mt-2">MCP 26.27</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
@@ -50,77 +131,56 @@
                     <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
                     <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
                 </div>
-                <button id="menu-toggle" class="md:hidden text-accent text-2xl focus:outline-none">
+                <button class="md:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 py-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
-                <a href="index.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Home</a>
-                <a href="intentlette.html" class="block px-4 py-2 text-accent font-bold hover:bg-accent/10 rounded-lg">Intent Letter</a>
-                <a href="applicationform.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Application Form</a>
-                <a href="about.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">About AIESEC in Benin</a>
-                <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Contact</a>
             </div>
         </div>
     </nav>
 
-   
-<!-- Hero Section -->
-<section id="home" class="relative py-20 bg-accent">
-    <!-- Overlay avec dégradé léger -->
-    <div class="absolute inset-0 bg-gradient-to-b from-accent/80 to-accent/90"></div>
-
-    <div class="relative container mx-auto px-4 sm:px-6 flex items-center justify-center min-h-[200px]">
-        <div class="text-center max-w-4xl">
-            <p class="text-lg sm:text-xl text-white leading-relaxed">
-                Begin your application journey by submitting your official intent letter
-                for the Member Committee President role of AIESEC in Benin.
-            </p>
+    <!-- Hero Section -->
+    <section id="home" class="relative py-20 bg-accent">
+        <div class="absolute inset-0 bg-gradient-to-b from-accent/80 to-accent/90"></div>
+        <div class="relative container mx-auto px-4 sm:px-6 flex items-center justify-center min-h-[200px]">
+            <div class="text-center max-w-4xl">
+                <p class="text-lg sm:text-xl text-white leading-relaxed">
+                    Begin your application journey by submitting your official intent letter
+                    for the Member Committee President role of AIESEC in Benin.
+                </p>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-
-
-
-
-  <!-- Template Section -->
-<section id="template" class="py-16 sm:py-24 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 max-w-3xl text-center">
-
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-            Intent Letter Template
-        </h2>
-
-        <p class="text-gray-600 text-lg mb-10 leading-relaxed">
-            This document allows you to formally express your motivation and vision
-            for the MCP 2026–2027 term of AIESEC in Benin.
-        </p>
-
-        <!-- Main CTA -->
-        <a href="https://docs.google.com/document/d/1ESfVncvcUS2Nt74-6cn-OAe67DrWMBtl/edit?usp=sharing&ouid=102393942319713759687&rtpof=true&sd=true"
-           target="_blank"
-           class="inline-flex items-center px-8 py-4 text-lg text-white bg-accent rounded-full hover:bg-blue-600 transition-all duration-300 shadow-lg">
-            <i class="fas fa-download mr-3"></i>
-            Download Intent Letter Template
-        </a>
-
-        <!-- Secondary action -->
-        <div class="mt-10 pt-6 border-t border-gray-200">
-            <p class="text-gray-600 mb-3">
-                After completing the letter, submit it via the application form.
+    <!-- Template Section -->
+    <section id="template" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-3xl text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+                Intent Letter Template
+            </h2>
+            <p class="text-gray-600 text-lg mb-10 leading-relaxed">
+                This document allows you to formally express your motivation and vision
+                for the MCP 2026–2027 term of AIESEC in Benin.
             </p>
-
-            <a href="applicationform.html"
-               class="text-accent underline hover:text-blue-600 transition">
-                Go to Application Form →
+            <!-- Main CTA -->
+            <a href="https://docs.google.com/document/d/1ESfVncvcUS2Nt74-6cn-OAe67DrWMBtl/edit?usp=sharing&ouid=102393942319713759687&rtpof=true&sd=true"
+               target="_blank"
+               class="inline-flex items-center px-8 py-4 text-lg text-white bg-accent rounded-full hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                <i class="fas fa-download mr-3"></i>
+                Download Intent Letter Template
             </a>
+            <!-- Secondary action -->
+            <div class="mt-10 pt-6 border-t border-gray-200">
+                <p class="text-gray-600 mb-3">
+                    After completing the letter, submit it via the application form.
+                </p>
+                <a href="applicationform.html"
+                   class="text-accent underline hover:text-blue-600 transition">
+                    Go to Application Form →
+                </a>
+            </div>
         </div>
+    </section>
 
-    </div>
-</section>
-
-    
     <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent/50">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
@@ -132,6 +192,21 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Mobile menu functionality
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.getElementById('menuOverlay').classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
+        }
+
+        document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
+        document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
+        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
+    </script>
 </body>
 </html>

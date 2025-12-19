@@ -7,18 +7,179 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="script.js">    
+    <style>
+        * {
+            font-family: 'Lato', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 900;
+        }
+        
+        body, p, li, span, div, a:not(.no-normal) {
+            font-weight: 400;
+        }
+        
+        .text-accent { color: #037EF3; }
+        .bg-accent { background-color: #037EF3; }
+        .border-accent { border-color: #037EF3; }
+        
+        .link-discrete {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+        
+        .link-discrete::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s ease-out;
+        }
+        
+        .link-discrete:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+                        url('hero.jpeg') center/cover no-repeat;
+        }
+        
+        .foreword-image {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .simple-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .simple-card:hover {
+            box-shadow: 0 10px 25px rgba(3, 126, 243, 0.1);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: #037EF3;
+            border-radius: 2px;
+        }
+        
+        .countdown-card {
+            background: white;
+            border: 2px solid #037EF3;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .countdown-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(3, 126, 243, 0.15);
+        }
+        
+        .border-blue-left {
+            border-left: 4px solid #037EF3;
+        }
+        
+        @media (max-width: 768px) {
+            .foreword-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .hero-bg h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-bg p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .foreword-image {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .menu-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .list-check {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .list-check li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.5rem;
+        }
+        
+        .list-check li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #037EF3;
+            font-weight: bold;
+        }
+        
+        .deadline-item {
+            border-left: 3px solid #037EF3;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+    </style>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         'accent': '#037EF3',
-                        'lead': '#00c16e',
-                        'manage': '#F48924',
-                        'represent': '#7552CC',
-                        'eligibility': '#0CB9C1',
                     },
                 }
             }
@@ -26,34 +187,62 @@
     </script>
 </head>
 <body class="bg-white antialiased text-gray-800">
+    <!-- Menu mobile overlay -->
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" id="menuOverlay"></div>
+    
+    <!-- Menu mobile -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 md:hidden shadow-2xl" id="mobileMenu">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-12">
+                <div class="text-xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+                <button class="text-gray-600 text-2xl" id="closeMenuBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-6">
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">General</a>
+                <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
+                <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Application Form</a>
+                <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">About AIESEC in Benin</a>
+                <a href="contact.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <div class="mt-16 pt-8 border-t border-gray-200">
+                <p class="text-gray-500 text-sm">Member Committee President Application</p>
+                <p class="text-accent font-bold text-lg mt-2">MCP 26.27</p>
+            </div>
+        </div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
                 <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+                
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-8 lg:space-x-12 text-gray-700 text-base lg:text-lg">
                     <a href="index.html" class="link-discrete hover:text-accent">General</a>
                     <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
                     <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
-                    <a href="About.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
+                    <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
                     <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
                 </div>
-                <button id="menu-toggle" class="md:hidden text-accent text-2xl focus:outline-none">
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 py-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
-                           </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-screen overflow-hidden hero-bg">
+    <section id="home" class="relative h-screen overflow-hidden hero-bg pt-16">
         <div class="relative h-full flex items-center justify-center text-white px-4 sm:px-6">
             <div class="text-center max-w-3xl sm:max-w-5xl">
-                <p class="text-xl sm:text-2xl md:text-3xl mb-4 tracking-widest uppercase">Member Committee President Application</p>
-                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 tracking-tighter">MCP 26.27</h1>
-                <a href="#foreword" class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal">
+                <p class="text-xl sm:text-2xl md:text-3xl mb-4 tracking-widest uppercase font-light">Member Committee President Application</p>
+                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 tracking-tighter font-black">MCP 26.27</h1>
+                <a href="#foreword" class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal font-medium">
                     Start Your Journey &rarr;
                 </a>
             </div>
@@ -63,35 +252,39 @@
     <!-- Foreword Section -->
     <section id="foreword" class="py-16 sm:py-24 bg-white">
         <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-20 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
                 Foreword: <span class="text-accent">To the One Who Dares to Lead</span>
             </h2>
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
-                <div class="space-y-6">
-                    <div class="bg-gray-50 p-6 sm:p-8 lg:p-10 rounded-lg border-l-4 border-accent">
+                <!-- Image -->
+                <div class="flex flex-col items-center justify-center order-2 lg:order-1">
+                    <div class="relative mb-6">
+                        <img src="mcp.jpeg" alt="Armel - Current MCP AIESEC in Benin" class="foreword-image">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-xl sm:text-2xl text-gray-800 mb-2 font-bold">Armel AHOUADI</h4>
+                        <p class="text-accent text-base sm:text-lg mb-2 font-medium">MCP 25.26 | AIESEC in Benin</p>
+                    </div>
+                </div>
+                
+                <!-- Quote -->
+                <div class="space-y-6 order-1 lg:order-2">
+                    <div class="simple-card p-6 sm:p-8 lg:p-10 border-blue-left">
                         <p class="text-lg sm:text-xl italic leading-relaxed text-gray-700 mb-4 sm:mb-6">
                             "As you open this application, I hope you take a moment to breathe in the weight and beauty of the role you're stepping toward... AIESEC in Benin is still growing, still evolving, still finding its voice—and you will be part of shaping that story."
                         </p>
                         <div class="text-right">
                             <p class="text-base sm:text-lg text-accent font-bold">Armel AHOUADI</p>
-                            <p class="text-gray-600">Member Committee President, AIESEC in Benin</p>
+                            <p class="text-gray-600 text-sm sm:text-base">Member Committee President, AIESEC in Benin</p>
                         </div>
                     </div>
                 </div>
-                <div class="flex flex-col items-center justify-center">
-                    <div class="relative mb-6">
-                        <img src="mcp.jpeg" alt="Armel - Current MCP AIESEC in Benin" class="foreword-image w-48 h-48 sm:w-64 sm:h-64">
-                    </div>
-                    <div class="text-center">
-                        <h4 class="text-xl sm:text-2xl text-gray-800 mb-2">Armel AHOUADI</h4>
-                        <p class="text-accent text-base sm:text-lg mb-2">MCP 25.26 | AIESEC in Benin</p>
-                       
-                    </div>
-                </div>
             </div>
+            
             <div class="mt-12 sm:mt-20 pt-6 sm:pt-10 border-t border-gray-200 text-center">
-                <a href="#application" class="inline-flex items-center px-5 sm:px-6 py-3 sm:py-4 text-base sm:text-lg text-accent border border-accent rounded-full hover:bg-accent hover:text-white transition-all duration-300">
-                    <span>Continue to Application Details</span>
+                <a href="#job-description" class="inline-flex items-center px-5 sm:px-6 py-3 sm:py-4 text-base sm:text-lg text-accent border border-accent rounded-full hover:bg-accent hover:text-white transition-all duration-300 font-medium">
+                    <span>Continue to Job Description</span>
                     <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                     </svg>
@@ -101,173 +294,274 @@
     </section>
 
     <!-- Job Description Section -->
-<section id="job-description" class="py-16 sm:py-24 bg-gray-50">
-    <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
-            Job Description: <span class="text-accent">Overall MCP Responsibilities</span>
-        </h2>
-
-        <div class="space-y-8 text-gray-700">
-            <!-- Overview -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Overview</h3>
-                <p class="leading-relaxed">
-                    The MCP is responsible for leading and managing AIESEC in Benin, providing strategic direction for the organization to grow sustainably. 
-                    This includes representing AIESEC in Benin to both internal and external stakeholders, organizing planning processes, implementing tracking and decision-making systems, coaching MCVPs on the strategic plan, supporting budgeting and financial decisions, and ensuring proper HR and MC processes are followed.
-                </p>
-            </div>
-
-            <!-- Lead -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-lead hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Lead</h3>
-                <ul class="list-disc list-inside space-y-2 leading-relaxed text-gray-700">
-                    <li>Guardian of the AIESEC Way (Vision and Values).</li>
-                    <li>Clarity of your purpose (Selfish & Selfless).</li>
-                    <li>Define your non-negotiable must-wins and dreams.</li>
-                    <li>Be conscious of your leadership style.</li>
-                    <li>Team selection based on purpose, actions, and orientation.</li>
-                    <li>Strength-based leadership, enabling team members to complement one another.</li>
-                    <li>Develop the best leadership pipeline to ensure legacy.</li>
-                    <li><strong>Measure of Success:</strong> 100% entity performance growth & 100% MC members performing.</li>
-                </ul>
-            </div>
-
-            <!-- Manage -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-manage hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Manage</h3>
-                <ul class="list-disc list-inside space-y-2 leading-relaxed text-gray-700">
-                    <li>Guardian of the legal representation.</li>
-                    <li>Co-responsible for financial long-term sustainability while ensuring growth-assured investments.</li>
-                    <li>Ensure accountability within team and plenary.</li>
-                    <li>Responsible as President of the plenary and as Leader of the region.</li>
-                </ul>
-            </div>
-
-            <!-- Represent -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-represent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Represent</h3>
-                <ul class="list-disc list-inside space-y-2 leading-relaxed text-gray-700">
-                    <li>Manage external stakeholders: SG/BOD, Partners, Government, Enablers, Media, Events, & R&Rs.</li>
-                    <li>Ensure fulfillment of Global Membership Criteria.</li>
-                    <li>Represent AIESEC in Benin at all official touchpoints (International, National, Local Conferences, Summits, ILMS).</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Profile Section -->
-<section id="profile" class="py-16 sm:py-24 bg-gray-50">
-    <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
-            Profile: <span class="text-accent">Applicant Criteria</span>
-        </h2>
-
-        <!-- Criteria Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Eligibility Criteria</h3>
-                <ul class="list-disc list-inside space-y-2 text-gray-700 leading-relaxed">
-                    <li>Strong knowledge about AIESEC</li>
-                    <li>Had MC, EB, or LCP experience</li>
-                    <li>Active member of the organization for at least two years</li>
-                    <li>Agree to commit to completing your mandate</li>
-                    <li>Participation in international AIESEC conferences (TLC, IC, MEAXLDS, etc.)</li>
-                    <li>Commitment to end term once elected</li>
-                    <li>Pay application fees (10.000 FCFA) if application meets all criteria related to the Recruitment Firms and Electoral committee; to AIESEC in BENIN Account before Interview only if your application meet all criteria and have been accept. 
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-lead hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-4">Important Deadlines</h3>
-                <ul class="space-y-2 text-gray-700 leading-relaxed">
-                    <li><strong>Letter of Intent DDL:</strong> Dec 27, 2025 at 11:59 p.m</li>
-                    <li><strong>Application Submission DDL:</strong> Jan 04, 2026 at 11:59 p.m</li>
-                    <li><strong>Test & Interview Timeline:</strong> Jan 10 – Jan 16, 2026</li>
-                    <li><strong>Election:</strong> Jan 25, 2026</li>
-                    <li><strong>Announcement:</strong> Jan 27, 2026</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<!-- Countdown Section -->
-<section id="countdown" class="py-16 sm:py-24 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 border-b border-gray-300 pb-3 inline-block mx-auto">
-            Important Deadlines Countdown
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 text-center">
-            <!-- Letter of Intent -->
-            <div class="bg-accent p-6 sm:p-8 rounded-lg shadow-lg text-white">
-                <h3 class="text-xl font-semibold mb-4">Letter of Intent</h3>
-                <p class="mb-4">Deadline: Dec 27, 2025, 11:59 PM</p>
-                <div id="countdown-loi" class="text-2xl sm:text-3xl font-bold"></div>
-            </div>
-
-            <!-- Application Submission -->
-            <div class="bg-lead p-6 sm:p-8 rounded-lg shadow-lg text-white">
-                <h3 class="text-xl font-semibold mb-4">Application Submission</h3>
-                <p class="mb-4">Deadline: Jan 04, 2026, 11:59 PM</p>
-                <div id="countdown-app" class="text-2xl sm:text-3xl font-bold"></div>
+    <section id="job-description" class="py-16 sm:py-24 ">
+        <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
+                Job Description: <span class="text-accent">Overall MCP Responsibilities</span>
+            </h2>
+            
+            <div class="space-y-8">
+                <!-- Overview -->
+                <div class="simple-card p-6 sm:p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2 border-accent">Overall</h3>
+                    <p class="text-gray-700 leading-relaxed">
+                        The MCP leads and represents AIESEC in Benin, ensuring strategic direction, organizational growth, and alignment across the entity. The role includes overseeing planning, performance tracking, financial decisions, team management, and partnerships, while safeguarding AIESEC’s purpose, values, and overall organizational welfare.                   </p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+                    <!-- Lead -->
+                    <div class="simple-card p-6 sm:p-8 border-blue-left">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-accent">Lead</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Guardian of the AIESEC Way (Vision and Values)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Clarity of your purpose (Selfish & Selfless)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Define your non-negotiable must-wins and dreams</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Be conscious of your leadership style</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Team selection based on purpose, actions, and orientation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Strength-based leadership</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Develop the best leadership pipeline</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span><strong>Success:</strong> 100% entity performance growth</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Manage -->
+                    <div class="simple-card p-6 sm:p-8 border-blue-left">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-accent">Manage</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Guardian of the legal representation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Co-responsible for financial long-term sustainability</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Ensure accountability within team and plenary</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Responsible as President of the plenary and as Leader of the region</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Represent -->
+                    <div class="simple-card p-6 sm:p-8 border-blue-left">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4 text-accent">Represent</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Manage external stakeholders: SG/BOD, Partners, Government</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Ensure fulfillment of Global Membership Criteria</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-accent mr-2 mt-1">•</span>
+                                <span>Represent AIESEC in Benin at all official touchpoints</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Countdown Script -->
-<script>
-    function initializeCountdown(elementId, targetDate) {
-        const countdownElement = document.getElementById(elementId);
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
+    <!-- Profile Section -->
+    <section id="profile" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
+                Profile: <span class="text-accent">Applicant Criteria</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+                <!-- Eligibility -->
+                <div class="simple-card p-6 sm:p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 border-accent">Eligibility Criteria</h3>
+                    <ul class="list-check space-y-3 text-gray-700">
+                        <li>Strong knowledge about AIESEC</li>
+                        <li>Had MC, EB, or LCP experience</li>
+                        <li>Active member of the organization for at least two years</li>
+                        <li>Agree to commit to completing your mandate</li>
+                        <li>Have at least participated in international conferences of AIESEC, such as TLC, IC, MEAXLDS, or any other conference outside Benin 
+</li>
+                        <li>Commitment to end term once elected</li>
+                        <li>Pay Application Fees (10.000 FCFA), related to the Recruitment Firms and Electoral committee; to AIESEC in BENIN Account before Interview only if your application meet all criteria and have been accept. 
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Deadlines -->
+                <div class="simple-card p-6 sm:p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 border-accent">Important Deadlines</h3>
+                    <div class="space-y-6">
+                        <div class="deadline-item">
+                            <h4 class="font-bold text-gray-800 mb-1">Letter of Intent</h4>
+                            <p class="text-gray-600">Dec 27, 2025 at 11:59 p.m</p>
+                        </div>
+                        <div class="deadline-item">
+                            <h4 class="font-bold text-gray-800 mb-1">Application Submission</h4>
+                            <p class="text-gray-600">Jan 04, 2026 at 11:59 p.m</p>
+                        </div>
+                        <div class="deadline-item">
+                            <h4 class="font-bold text-gray-800 mb-1">Test & Interview</h4>
+                            <p class="text-gray-600">Jan 10 – Jan 16, 2026</p>
+                        </div>
+                        <div class="deadline-item">
+                            <h4 class="font-bold text-gray-800 mb-1">Election</h4>
+                            <p class="text-gray-600">Jan 25, 2026</p>
+                        </div>
+                        <div class="deadline-item">
+                            <h4 class="font-bold text-gray-800 mb-1">Announcement</h4>
+                            <p class="text-gray-600">Jan 27, 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            if (distance < 0) {
-                countdownElement.innerHTML = "Deadline Passed";
-                clearInterval(interval);
-                return;
-            }
+    <!-- Countdown Section -->
+    <section id="countdown" class="py-16 sm:py-24 ">
+        <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
+              Deadlines Countdown
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                <!-- Letter of Intent -->
+                <div class="countdown-card p-8 text-center">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold mb-3 text-accent">Letter of Intent</h3>
+                        <p class="text-gray-600">Deadline: Dec 27, 2025, 11:59 PM</p>
+                    </div>
+                    <div id="countdown-loi" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
+                    <p class="text-gray-500 text-sm">Submit your letter of intent before this deadline</p>
+                </div>
+                
+                <!-- Application Submission -->
+                <div class="countdown-card p-8 text-center">
+                    <div class="mb-6">
+                        <h3 class="text-2xl font-bold mb-3 text-accent">Application Submission</h3>
+                        <p class="text-gray-600">Deadline: Jan 04, 2026, 11:59 PM</p>
+                    </div>
+                    <div id="countdown-app" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
+                    <p class="text-gray-500 text-sm">Complete application package submission deadline</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="intentlette.html" class="inline-flex items-center px-8 py-4 bg-accent text-white rounded-full hover:bg-blue-700 transition-all duration-300 font-bold text-lg shadow hover:shadow-lg">
+                    <i class="fas fa-file-alt mr-3"></i>
+                    <span>Submit Your Intent Letter</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
+                <p class="mb-3 sm:mb-0 opacity-80"><i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.</p>
+                <div class="flex h-10 w-auto">
+                    <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
+                </div>
+            </div>
+        </div>
+    </footer>
 
-            countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    <script>
+        // Mobile menu functionality
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.getElementById('menuOverlay').classList.add('active');
         }
-
-        updateCountdown(); // Initial call
-        const interval = setInterval(updateCountdown, 1000);
-    }
-
-    // Initialize countdowns
-    const loiDeadline = new Date("December 27, 2025 23:59:00 GMT+0100");
-    const appDeadline = new Date("January 04, 2026 23:59:00 GMT+0100");
-
-    initializeCountdown("countdown-loi", loiDeadline);
-    initializeCountdown("countdown-app", appDeadline);
-</script>
-
-
-   
-    
-    
-<footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent/50">
-    <div class="container mx-auto px-4 sm:px-6">
-        <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
-            <p class="mb-3 sm:mb-0 opacity-80"><i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.</p>
-            <div class="flex h-10 w-auto">
-                <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
-            </div>
-        </div>
-    </div>
-</footer>
-
+        
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
+        }
+        
+        document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
+        document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
+        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
+                const offset = document.querySelector('nav').offsetHeight;
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                    closeMobileMenu();
+                }
+            });
+        });
+        
+        // Countdown Script
+        function initializeCountdown(elementId, targetDate) {
+            const countdownElement = document.getElementById(elementId);
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+        
+                if (distance < 0) {
+                    countdownElement.innerHTML = "Deadline Passed";
+                    clearInterval(interval);
+                    return;
+                }
+        
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            }
+        
+            updateCountdown();
+            const interval = setInterval(updateCountdown, 1000);
+        }
+        
+        // Initialize countdowns
+        const loiDeadline = new Date("December 27, 2025 23:59:00 GMT+0100");
+        const appDeadline = new Date("January 04, 2026 23:59:00 GMT+0100");
+        
+        initializeCountdown("countdown-loi", loiDeadline);
+        initializeCountdown("countdown-app", appDeadline);
+    </script>
 </body>
 </html>

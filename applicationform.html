@@ -7,7 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
             theme: {
@@ -24,14 +23,114 @@
         }
     </script>
     <style>
-        body {
+        * {
             font-family: 'Lato', sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 900;
+        }
+
+        body, p, li, span, div, a:not(.no-normal) {
+            font-weight: 400;
+        }
+
+        .text-accent { color: #037EF3; }
+        .bg-accent { background-color: #037EF3; }
+        .border-accent { border-color: #037EF3; }
+
+        .link-discrete {
+            position: relative;
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        .link-discrete::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+            transition: transform 0.4s ease-out;
+        }
+
+        .link-discrete:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80') center/cover no-repeat;
+        }
+
+        .doc-list-item {
+            border-left: 4px solid #037EF3;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .doc-list-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* Menu mobile */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .menu-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
+    <!-- Menu mobile overlay -->
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" id="menuOverlay"></div>
 
-    <!-- Navigation (identique) -->
+    <!-- Menu mobile -->
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 md:hidden shadow-2xl" id="mobileMenu">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-12">
+                <div class="text-xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
+                <button class="text-gray-600 text-2xl" id="closeMenuBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-6">
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">General</a>
+                <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
+                <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold" onclick="closeMobileMenu()">Application Form</a>
+                <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">About AIESEC in Benin</a>
+                <a href="contact.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Contact</a>
+            </nav>
+            <div class="mt-16 pt-8 border-t border-gray-200">
+                <p class="text-gray-500 text-sm">Member Committee President Application</p>
+                <p class="text-accent font-bold text-lg mt-2">MCP 26.27</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
     <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
@@ -43,16 +142,9 @@
                     <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
                     <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
                 </div>
-                <button id="menu-toggle" class="md:hidden text-accent text-2xl focus:outline-none">
+                <button class="md:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
-            </div>
-            <div id="mobile-menu" class="hidden md:hidden mt-4 space-y-3 py-3 bg-white/90 backdrop-blur-sm rounded-lg shadow-lg">
-                <a href="index.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Home</a>
-                <a href="intentlette.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Intent Letter</a>
-                <a href="applicationform.html" class="block px-4 py-2 text-accent font-bold hover:bg-accent/10 rounded-lg">Application Form</a>
-                <a href="about.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">About AIESEC in Benin</a>
-                <a href="contact.html" class="block px-4 py-2 text-gray-700 hover:text-accent hover:bg-accent/10 rounded-lg">Contact</a>
             </div>
         </div>
     </nav>
@@ -60,251 +152,225 @@
     <!-- Hero Section -->
     <section class="relative py-24">
         <div class="absolute inset-0">
-            <img src="https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+            <img src="hero.jpeg"
                  alt="Application Form Background"
                  class="w-full h-full object-cover">
-            <div class="absolute inset-0 bg-black/50"></div> <!-- overlay sombre -->
+            <div class="absolute inset-0 bg-black/50"></div>
         </div>
 
         <div class="relative container mx-auto px-4 sm:px-6 flex items-center justify-center min-h-[200px]">
             <div class="text-center max-w-4xl">
-                <p class="text-lg sm:text-2xl text-white leading-relaxed font-semibold">
-                    Submit your application to become Member Committee President of AIESEC in Benin 2026–2027
-                </p>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wide mb-4">
+                    MCP 26.27 APPLICATION
+                </h1>
             </div>
         </div>
     </section>
 
-
     <!-- Application Package Section -->
-<section id="application-package" class="py-16 sm:py-24 bg-gray-50">
-    <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-10 text-center">
-            Application Package
-        </h2>
+    <section id="application-package" class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <h2 class="text-3xl sm:text-4xl font-bold text-accent mb-10 text-center">
+                Application Package
+            </h2>
 
-        <p class="text-gray-700 mb-12 text-center leading-relaxed">
-            Please submit the following documents and materials as part of your MCP application. 
-            Ensure all files are in PDF format unless stated otherwise.
-        </p>
+            <p class="text-gray-700 mb-12 text-center leading-relaxed">
+                Please submit the following documents and materials as part of your MCP application.
+                Ensure all files are in PDF format unless stated otherwise.
+            </p>
 
-        <div class="space-y-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-0">
+                    <!-- Biography -->
+                    <div class="doc-list-item">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Biography (1 PDF Page)</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Introduce yourself answering these questions: What is for me the purpose of my life,
+                            including your top personal values, greatest strengths and weaknesses that drive your behaviors.
+                        </p>
+                    </div>
 
-            <!-- Biography -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Biography (1 PDF Page)</h3>
-                <p class="text-gray-700 leading-relaxed">
-                    Introduce yourself answering these questions: What is for me the purpose of my life, 
-                    including your top personal values, greatest strengths and weaknesses that drive your behaviors. 
-                    (Max 1 Page)
-                </p>
-            </div>
+                    <!-- CV -->
+                    <div class="doc-list-item">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">CV (Max 2 Pages)</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Include your most important information (Name & Surname, Nationality, Place & Date of Birth, Email,
+                            Educational Background, Current Position in AIESEC, AIESEC Experiences, Professional Experiences, Skills,
+                            Proficiency in languages...).
+                        </p>
+                    </div>
 
-            <!-- CV -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">CV (Max 2 Pages)</h3>
-                <p class="text-gray-700 leading-relaxed">
-                    Include your most important information (Name & Surname, Nationality, Place & Date of Birth, Email, 
-                    Educational Background, Current Position in AIESEC, AIESEC Experiences, Professional Experiences, Skills, 
-                    Proficiency in languages...). Max 2 Pages.
-                </p>
-            </div>
+                    <!-- Motivation Letter -->
+                    <div class="doc-list-item">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Motivation Letter (1 PDF Page)</h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Addressed to the current MCP. Answer: What is driving you to continue in AIESEC and why are you applying for MCP?
+                            What do you want to get out of this experience?
+                        </p>
+                    </div>
 
-            <!-- Motivation Letter -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Motivation Letter (1 PDF Page)</h3>
-                <p class="text-gray-700 leading-relaxed">
-                    Addressed to the current MCP. Answer: What is driving you to continue in AIESEC and why are you applying for MCP? 
-                    What do you want to get out of this experience? (Max 1 Page)
-                </p>
-            </div>
+                    <!-- Questionnaire & Executive Summary -->
+                    <div class="doc-list-item">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Application Questionnaire & Executive Summary</h3>
+                        <p class="text-gray-700 leading-relaxed mb-2">
+                            <a href="#application-questions" class="text-accent underline hover:text-blue-600">
+                                Application Questionnaire (Max 15 Pages, including front & back covers)
+                            </a>
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Executive Summary (1 PDF Page)
+                        </p>
+                    </div>
 
-            <!-- Questionnaire & Executive Summary -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Application Questionnaire & Executive Summary</h3>
-                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                    <li>
-                        <a href="#application-questions" class="text-accent underline hover:text-blue-600">
-                            Application Questionnaire (Max 15 Pages, including front & back covers)
-                        </a>
-                    </li>
-                    <li>Executive Summary (1 PDF Page)</li>
-                </ul>
-            </div>
-            
+                    <!-- Video & Blank Paper -->
+                    <div class="doc-list-item">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Video & Blank Paper Challenge</h3>
+                        <p class="text-gray-700 leading-relaxed mb-2">
+                            Video: Introduce yourself, your vision, strategies, and why you should be selected as MCP (Max 5 minutes, landscape, professional format)
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Blank Paper Challenge: Max 1 Page PDF, be creative.
+                        </p>
+                    </div>
 
-            <!-- Video & Blank Paper -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Video & Blank Paper Challenge</h3>
-                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                    <li>Video: Introduce yourself, your vision, strategies, and why you should be selected as MCP (Max 5 minutes, landscape, professional format)</li>
-                    <li>Blank Paper Challenge: Max 1 Page PDF, be creative.</li>
-                </ul>
-            </div>
+                    <!-- Endorsements -->
+                    <div class="doc-list-item">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Endorsement Letters (4)</h3>
+                        <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-1 ml-4">
+                            <li>From someone you have led</li>
+                            <li>From someone that led you (except current MCP)</li>
+                            <li>From a past MCP</li>
+                            <li>From an external person</li>
+                        </ul>
+                    </div>
 
-            <!-- Endorsements -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Endorsement Letters (4)</h3>
-                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                    <li>From someone you have led</li>
-                    <li>From someone that led you (except current MCP)</li>
-                    <li>From a past MCP</li>
-                    <li>From an external person</li>
-                </ul>
-            </div>
-
-            <!-- Personal Tests & Action Plan -->
-            <div class="bg-white p-6 sm:p-8 rounded-lg shadow-md border-l-4 border-accent hover:shadow-lg transition">
-                <h3 class="text-xl font-semibold text-gray-900 mb-3">Personal Tests & Action Plan</h3>
-                <ul class="list-disc list-inside text-gray-700 leading-relaxed space-y-2">
-                    <li>Merged PDF of results: Enneagram, Prism (Leadership), MBTI, Emotional Intelligence, Team Roles</li>
-                    <li>Recap of the action plan of the current government (1 PDF page)</li>
-                </ul>
-            </div>
-
-            <!-- Submission Instructions -->
-            
-<!-- Submission Instructions Section -->
-<section id="submission" class="py-16 sm:py-24 bg-gray-50">
-    <div class="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
-            Submission Instructions
-        </h2>
-
-        <p class="text-gray-700 text-lg mb-8 leading-relaxed">
-            Submit all documents in one ZIP file named: 
-            <strong>[FirstName_LastName]_MCP25.26_AIESECinBenin.zip</strong>. <br>
-            Click the button below to open the application form and submit your package. 
-            You will receive a confirmation email within 12 hours after submission.
-        </p>
-
-        <!-- Call to Action Button -->
-        <a href="submission.html" 
-           class="inline-flex items-center px-8 py-4 text-lg text-white bg-accent rounded-full hover:bg-blue-600 transition-all duration-300 shadow-lg">
-            <i class="fas fa-file-upload mr-3"></i>
-            Submit Your Application
-        </a>
-    </div>
-</section>
-
-
-
-        </div>
-    </div>
-</section>
-
-<!-- Application Questions Section -->
-<section id="application-questions" class="py-16 sm:py-24 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
-        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
-            Application Questions
-        </h2>
-
-        <div class="space-y-4">
-
-            <!-- GET TO KNOW -->
-            <div class="border rounded-lg shadow-sm">
-                <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
-                    GET TO KNOW
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
-                    <p>Who are you? Introduce yourself and your AIESEC experience in a creative way!</p>
-                    <p>What are your 3 key values? How do these shape you as a leader and how are they manifested in your everyday leadership?</p>
-                    <p>Discuss one of your strengths, one of your weaknesses, one of your biggest achievements and a biggest failure and explain how these have shaped you as a person and will they influence your role as MCP?</p>
-                    <p>What is driving you to stay in AIESEC? How is it supporting you to reach your personal goals and where you want to see yourself in 3 years?</p>
-                    <p>List two most important AIESEC experiences and one experience outside of AIESEC with key achievements, key learnings and failures (both quantitatively and qualitatively). How will each contribute to your role as MCP?</p>
+                    <!-- Personal Tests & Action Plan -->
+                    <div class="doc-list-item">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Personal Tests & Action Plan</h3>
+                        <p class="text-gray-700 leading-relaxed mb-2">
+                            Merged PDF of results: Enneagram, Prism (Leadership), MBTI, Emotional Intelligence, Team Roles
+                        </p>
+                        <p class="text-gray-700 leading-relaxed">
+                            Recap of the action plan of the current government (1 PDF page)
+                        </p>
+                    </div>
                 </div>
-            </div>
-
-            <!-- AIESEC IN BENIN CONTEXT -->
-            <div class="border rounded-lg shadow-sm">
-                <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
-                    AIESEC IN BENIN CONTEXT
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
-                    <p>Provide an analysis of the external environment of the country. What trends can AIESEC in Benin capitalize on to grow and develop in 25.26? Which program or service can benefit the most and how?</p>
-                    <p>How is AIESEC 2030 shaping the direction of the organization? What are the implications that you foresee for the upcoming term and how do you plan on working with these?</p>
-                    <p>Considering the past 5 years of AIESEC in Benin, make an analysis and highlight the key successes and learnings! What are the trends and evolutions that shaped the organization that we know today, and how will you utilize them in your term as MCP?</p>
-                    <p>Assess the current culture & behaviors membership of AIESEC in Benin. What are the positive and negative points and explain the behaviours/culture you want to shape in the next term in order for us to achieve sustainable growth?</p>
-                </div>
-            </div>
-
-            <!-- LEADERSHIP -->
-            <div class="border rounded-lg shadow-sm">
-                <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
-                    LEADERSHIP
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
-                    <p>What does leadership mean to you? What is the needed leadership style for the next year and how will this be reflected by you?</p>
-                    <p>What bothers you most about the organization today? As MCP 25.26 how would you start changing these things and how would you engage your MC team and your plenary with it?</p>
-                    <p>What is the identity and culture AIESEC in Benin needs for the term 25.26? How will your profile and leadership shape this?</p>
-                </div>
-            </div>
-
-            <!-- VISION -->
-            <div class="border rounded-lg shadow-sm">
-                <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
-                    VISION
-                    <i class="fas fa-chevron-down"></i>
-                </button>
-                <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
-                    <p>What is your vision for AIESEC in Benin for the term 25.26?</p>
-                    <p>Based on the current state of the Entity and on your vision and strategic direction, how would your MC structure and supporting bodies look like? How would it be reflected at local level?</p>
-                    <p>Based on your analysis of our LCs and on your understanding of our Plenary, what are the key pillars you would follow in order to ensure proper support for our LCs?</p>
-                    <p>Create a detailed plan for the first three months of the mandate (Actions, objectives, timeline, stakeholders).</p>
-                    <p>What should be the role of the different layers of the organization (MC, EB, MM, Member)? What needs to happen next year for that role to become a reality?</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<!-- Warning Section -->
-<section id="warning" class="py-12 sm:py-16 ">
-    <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
-        <div class="flex items-start space-x-4 border-l-4 border-red-600 bg-red-100 p-6 rounded-lg shadow">
-            <div class="flex-shrink-0 mt-1">
-                <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
-            </div>
-            <div class="text-red-800 space-y-2">
-                <p class="font-semibold text-lg">Important Notice</p>
-                <ul class="list-disc pl-5 space-y-1 text-base">
-                    <li>Any late or incomplete application for any reason will not be accepted.</li>
-                    <li>Application deadline: <strong>Dec 27, 2025 at 11:59 p.m</strong></li>
-                    <li>The full answer of the question is required and should be done inside the application package.</li>
-                    <li>The application must be answered in English.</li>
-                    <li>You can use external resources or references to help you in your answers.</li>
-                    <li>Prepare your application fees (<strong>10.000 FCFA</strong>) in case you’re accepted.</li>
-                    <li>Don't run any campaign or talk about your vision to our membership before the Election day!</li>
-                </ul>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <!-- Application Questions Section -->
+    <section id="application-questions" class="py-16 sm:py-24 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
+                Application Questions
+            </h2>
 
-<!-- JS pour l'accordéon -->
-<script>
-    const buttons = document.querySelectorAll('.accordion-btn');
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const content = btn.nextElementSibling;
-            content.classList.toggle('hidden');
-            btn.querySelector('i').classList.toggle('fa-chevron-down');
-            btn.querySelector('i').classList.toggle('fa-chevron-up');
-        });
-    });
-</script>
+            <div class="space-y-4">
+                <!-- GET TO KNOW -->
+                <div class="border rounded-lg shadow-sm">
+                    <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
+                        GET TO KNOW
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
+                        <p>Who are you? Introduce yourself and your AIESEC experience in a creative way!</p>
+                        <p>What are your 3 key values? How do these shape you as a leader and how are they manifested in your everyday leadership?</p>
+                        <p>Discuss one of your strengths, one of your weaknesses, one of your biggest achievements and a biggest failure and explain how these have shaped you as a person and will they influence your role as MCP?</p>
+                        <p>What is driving you to stay in AIESEC? How is it supporting you to reach your personal goals and where you want to see yourself in 3 years?</p>
+                        <p>List two most important AIESEC experiences and one experience outside of AIESEC with key achievements, key learnings and failures (both quantitatively and qualitatively). How will each contribute to your role as MCP?</p>
+                    </div>
+                </div>
 
+                <!-- AIESEC IN BENIN CONTEXT -->
+                <div class="border rounded-lg shadow-sm">
+                    <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
+                        AIESEC IN BENIN CONTEXT
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
+                        <p>Provide an analysis of the external environment of the country. What trends can AIESEC in Benin capitalize on to grow and develop in 25.26? Which program or service can benefit the most and how?</p>
+                        <p>How is AIESEC 2030 shaping the direction of the organization? What are the implications that you foresee for the upcoming term and how do you plan on working with these?</p>
+                        <p>Considering the past 5 years of AIESEC in Benin, make an analysis and highlight the key successes and learnings! What are the trends and evolutions that shaped the organization that we know today, and how will you utilize them in your term as MCP?</p>
+                        <p>Assess the current culture & behaviors membership of AIESEC in Benin. What are the positive and negative points and explain the behaviours/culture you want to shape in the next term in order for us to achieve sustainable growth?</p>
+                    </div>
+                </div>
 
+                <!-- LEADERSHIP -->
+                <div class="border rounded-lg shadow-sm">
+                    <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
+                        LEADERSHIP
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
+                        <p>What does leadership mean to you? What is the needed leadership style for the next year and how will this be reflected by you?</p>
+                        <p>What bothers you most about the organization today? As MCP 25.26 how would you start changing these things and how would you engage your MC team and your plenary with it?</p>
+                        <p>What is the identity and culture AIESEC in Benin needs for the term 25.26? How will your profile and leadership shape this?</p>
+                    </div>
+                </div>
 
+                <!-- VISION -->
+                <div class="border rounded-lg shadow-sm">
+                    <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
+                        VISION
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="px-6 py-4 hidden accordion-content text-gray-700 space-y-2">
+                        <p>What is your vision for AIESEC in Benin for the term 25.26?</p>
+                        <p>Based on the current state of the Entity and on your vision and strategic direction, how would your MC structure and supporting bodies look like? How would it be reflected at local level?</p>
+                        <p>Based on your analysis of our LCs and on your understanding of our Plenary, what are the key pillars you would follow in order to ensure proper support for our LCs?</p>
+                        <p>Create a detailed plan for the first three months of the mandate (Actions, objectives, timeline, stakeholders).</p>
+                        <p>What should be the role of the different layers of the organization (MC, EB, MM, Member)? What needs to happen next year for that role to become a reality?</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Submission Instructions Section -->
+    <section id="submission" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+                Submission Instructions
+            </h2>
 
-    <!-- Footer (identique) -->
+            <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+                Click here to access the application form and submit your package.
+            </p>
+
+            <!-- Call to Action Button -->
+            <a href="submission.html"
+               class="inline-flex items-center px-8 py-4 text-lg text-white bg-accent rounded-full hover:bg-blue-600 transition-all duration-300 shadow-lg">
+                <i class="fas fa-file-upload mr-3"></i>
+                Submit Your Application
+            </a>
+        </div>
+    </section>
+
+    <!-- Warning Section -->
+    <section id="warning" class="py-12 sm:py-16">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+            <div class="flex items-start space-x-4 border-l-4 border-red-900 bg-red-50 p-6 rounded-lg shadow">
+                <div class="flex-shrink-0 mt-1">
+                    <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+                </div>
+                <div class="text-black space-y-2">
+                    <p class="font-semibold text-lg">Important Notice</p>
+                    <ul class="list-disc pl-5 space-y-1 text-base">
+                        <li>Any late or incomplete application for any reason will not be accepted.</li>
+                        <li>Application deadline: <strong>Dec 27, 2025 at 11:59 p.m</strong></li>
+                        <li>The full answer of the question is required and should be done inside the application package.</li>
+                        <li>The application must be answered in English.</li>
+                        <li>You can use external resources or references to help you in your answers.</li>
+                        <li>Prepare your application fees (<strong>10.000 FCFA</strong>) in case you're accepted.</li>
+                        <li>Don't run any campaign or talk about your vision to our membership before the Election day!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent/50">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
@@ -316,5 +382,33 @@
         </div>
     </footer>
 
+    <!-- JS pour l'accordéon et le menu mobile -->
+    <script>
+        // Mobile menu functionality
+        function openMobileMenu() {
+            document.getElementById('mobileMenu').classList.add('active');
+            document.getElementById('menuOverlay').classList.add('active');
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('mobileMenu').classList.remove('active');
+            document.getElementById('menuOverlay').classList.remove('active');
+        }
+
+        document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
+        document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
+        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
+
+        // Accordion functionality
+        const buttons = document.querySelectorAll('.accordion-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                content.classList.toggle('hidden');
+                btn.querySelector('i').classList.toggle('fa-chevron-down');
+                btn.querySelector('i').classList.toggle('fa-chevron-up');
+            });
+        });
+    </script>
 </body>
 </html>
