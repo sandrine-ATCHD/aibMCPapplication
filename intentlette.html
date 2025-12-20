@@ -8,6 +8,8 @@
     <!-- Police Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.jpg">
     <script>
         tailwind.config = {
             theme: {
@@ -79,7 +81,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes slideInLeft {
             from {
                 opacity: 0;
@@ -90,15 +92,15 @@
                 transform: translateX(0);
             }
         }
-        
+
         .hero-animate-text {
             animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
         }
-        
+
         .hero-animate-text:nth-child(1) { animation-delay: 0.3s; }
         .hero-animate-text:nth-child(2) { animation-delay: 0.6s; }
-        
+
         .hero-bg-animated {
             background: linear-gradient(rgba(18, 67, 173, 0.7), rgba(18, 67, 173, 0.7));
             animation: slideInLeft 1.5s ease-out forwards;
@@ -110,7 +112,7 @@
             padding-bottom: 1rem;
             margin-bottom: 2rem;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -124,43 +126,61 @@
         }
 
         /* Menu mobile */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
         .menu-overlay {
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease-in-out;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
         }
 
         .menu-overlay.active {
             opacity: 1;
             visibility: visible;
         }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 16rem;
+            background-color: white;
+            z-index: 50;
+            box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu,
+            .menu-overlay {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
     <!-- Menu mobile overlay -->
-    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" id="menuOverlay"></div>
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" id="menuOverlay"></div>
 
     <!-- Menu mobile -->
-    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 md:hidden shadow-2xl" id="mobileMenu">
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 lg:hidden shadow-2xl" id="mobileMenu">
         <div class="p-8">
             <div class="flex justify-between items-center mb-12">
-                
                 <button class="text-gray-600 text-2xl" id="closeMenuBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <nav class="flex flex-col space-y-6">
-                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">General</a>
-                <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold text-accent" onclick="closeMobileMenu()">Intent Letter Submission</a>
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold " onclick="closeMobileMenu()">General</a>
+                <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
                 <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Application Form</a>
                 <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">About AIESEC in Benin</a>
                 <a href="contact.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Contact</a>
@@ -173,19 +193,26 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
+    <nav class="bg-white fixed w-full z-50 py-3 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
-                <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
-                <div class="hidden md:flex space-x-4 lg:space-x-6 text-gray-700 text-base lg:text-lg">
-
-                    <a href="index.html" class="link-discrete hover:text-accent">General</a>
-                    <a href="intentlette.html" class="link-discrete hover:text-accent text-accent font-bold">Intent Letter Submission</a>
-                    <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
-                    <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
-                    <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
+                <!-- Logo + Texte -->
+                <div class="flex items-center">
+                    <img src="logo.png" alt="Logo AIESEC Benin" class="h-10 sm:h-12 mr-2">
+                    <span class="text-lg sm:text-xl md:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</span>
                 </div>
-                <button class="md:hidden text-accent text-2xl" id="menuToggle">
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex lg:space-x-2 text-gray-700 text-sm md:text-base">
+                    <a href="index.html" class="link-discrete hover:text-accent  font-bold px-2 py-1">General</a>
+                    <a href="intentlette.html" class="link-discrete hover:text-accent text-accent px-2 py-1">Intent Letter</a>
+                    <a href="applicationform.html" class="link-discrete hover:text-accent px-2 py-1">Application Form</a>
+                    <a href="about.html" class="link-discrete hover:text-accent px-2 py-1">About</a>
+                    <a href="contact.html" class="link-discrete hover:text-accent px-2 py-1">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -195,11 +222,14 @@
     <!-- Hero Section -->
     <section id="home" class="relative py-20 bg-accent">
         <div class="absolute inset-0 hero-bg-animated"></div>
-        <div class="relative container mx-auto px-4 sm:px-6 flex items-center justify-center min-h-[200px]">
+        <div class="relative container mx-auto px-4 sm:px-6 xl:px-12 flex items-center justify-center min-h-[200px]">
             <div class="text-center max-w-4xl">
                 <p class="text-lg sm:text-xl text-white leading-relaxed hero-animate-text">
                     Begin your application journey by submitting your official intent letter
                     for the Member Committee President role of AIESEC in Benin.
+                </p>
+                <p class="text-lg sm:text-xl text-white leading-relaxed hero-animate-text">
+                    This is the first stage of the application process.
                 </p>
             </div>
         </div>
@@ -207,16 +237,15 @@
 
     <!-- Template Section -->
     <section id="template" class="py-16 sm:py-24 bg-gradient-to-b from-white to-gray-50">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+        <div class="container mx-auto px-4 sm:px-6 xl:px-12 max-w-4xl">
             <!-- Header -->
             <div class="text-center mb-12">
-                
                 <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                     Intent Letter Template
                 </h2>
                 <p class="text-gray-600 text-lg leading-relaxed max-w-2xl mx-auto">
                     This document allows you to formally express your motivation and vision
-                    for the MCP 2026–2027 term of AIESEC in Benin.
+                    for the MCP 2026–2027 position of AIESEC in Benin.
                 </p>
             </div>
 
@@ -256,7 +285,7 @@
                             </div>
                             <div>
                                 <p class="font-medium text-gray-800">Save as PDF</p>
-                                <p class="text-gray-600 text-sm">Save with proper filename format</p>
+                                <p class="text-gray-600 text-sm">Save with proper file name format</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -271,7 +300,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- Main Content -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
@@ -313,22 +341,19 @@
                             Loading...
                         </div>
                         <p class="text-gray-600">Time remaining to submit</p>
-                    </div>                 
-                          
+                    </div>
+
                     <div class="flex justify-center">
-                        <a href="submission.html" 
-                           class="inline-flex items-center px-8 py-3 bg-accent text-white rounded-xl 
+                        <a href="submission.html"
+                           class="inline-flex items-center px-8 py-3 bg-accent text-white rounded-xl
                                   hover:bg-blue-600 transition text-lg font-semibold shadow-md">
                             <i class="fas fa-paper-plane mr-3 text-lg"></i>
                             Submit Your Letter here
                         </a>
                     </div>
-                                        
-                    
                 </div>
             </div>
 
-            
             <!-- Submit Button Section -->
             <div class="text-center">
                 <a href="applicationform.html"
@@ -336,17 +361,14 @@
                     <i class="fas fa-paper-plane mr-3"></i>
                     Go to applications guideline
                 </a>
-                
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent/50">
+    <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
-                <p class="mb-3 sm:mb-0 opacity-80">
-                    <i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.
-                </p>
+                <p class="mb-3 sm:mb-0 opacity-80"><i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.</p>
                 <div class="flex h-10 w-auto">
                     <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
                 </div>
@@ -356,39 +378,52 @@
 
     <script>
         // Mobile menu functionality
-        function openMobileMenu() {
-            document.getElementById('mobileMenu').classList.add('active');
-            document.getElementById('menuOverlay').classList.add('active');
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
 
-        function closeMobileMenu() {
-            document.getElementById('mobileMenu').classList.remove('active');
-            document.getElementById('menuOverlay').classList.remove('active');
-        }
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                menuOverlay.classList.add('active');
+            }
 
-        document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
-        document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
-        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            }
+
+            if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+            if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
+
+            // Fermer le menu si un lien est cliqué
+            const menuLinks = document.querySelectorAll('.mobile-menu nav a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
+        });
 
         // Countdown Script for Intent Letter
         function initializeIntentCountdown() {
             const countdownElement = document.getElementById('countdown-intent');
             const targetDate = new Date("December 27, 2025 23:59:00 GMT+0100");
-            
+
             function updateCountdown() {
                 const now = new Date().getTime();
                 const distance = targetDate - now;
-        
+
                 if (distance < 0) {
                     countdownElement.innerHTML = '<span class="text-red-500">Deadline Passed</span>';
                     return;
                 }
-        
+
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
+
                 countdownElement.innerHTML = `
                     <div class="flex justify-center space-x-1">
                         <div class="bg-manage/10 px-3 py-2 rounded-lg">
@@ -410,11 +445,11 @@
                     </div>
                 `;
             }
-        
+
             updateCountdown();
             setInterval(updateCountdown, 1000);
         }
-        
+
         // Initialize countdown when page loads
         document.addEventListener('DOMContentLoaded', initializeIntentCountdown);
     </script>

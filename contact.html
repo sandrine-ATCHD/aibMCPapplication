@@ -8,6 +8,8 @@
     <!-- Police Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.jpg">
     <script>
         tailwind.config = {
             theme: {
@@ -30,94 +32,55 @@
         * {
             font-family: 'Poppins', sans-serif;
         }
-        
+
         h1, h2, h3, h4, h5, h6 {
             font-weight: 800;
             letter-spacing: -0.025em;
         }
-        
+
         body, p, li, span, div, a:not(.no-normal) {
             font-weight: 400;
         }
-        
+
         .text-accent { color: #037EF3; }
         .bg-accent { background-color: #037EF3; }
         .border-accent { border-color: #037EF3; }
-        
+
         .text-lead { color: #00c16e; }
         .bg-lead { background-color: rgba(0, 193, 110, 0.1); }
         .border-lead { border-color: #00c16e; }
-        
+
         .text-manage { color: #F48924; }
         .bg-manage { background-color: rgba(244, 137, 36, 0.1); }
         .border-manage { border-color: #F48924; }
-        
+
         .text-represent { color: #7552CC; }
         .bg-represent { background-color: rgba(117, 82, 204, 0.1); }
         .border-represent { border-color: #7552CC; }
-        
+
         .text-eligibility { color: #0CB9C1; }
         .bg-eligibility { background-color: rgba(12, 185, 193, 0.1); }
         .border-eligibility { border-color: #0CB9C1; }
-        
-        .link-discrete {
-            position: relative;
-            display: inline-block;
-            padding-bottom: 2px;
-        }
-        
-        .link-discrete::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 100%;
-            height: 1px;
-            background-color: currentColor;
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.4s ease-out;
-        }
-        
-        .link-discrete:hover::after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-        
-        /* Hero animation simplifiée */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .hero-animate {
-            animation: fadeInUp 1s ease-out forwards;
-            opacity: 0;
-        }
-        
+
+        /* Cards & Sections */
         .simple-card {
             background: white;
-            border: 1px solid #e5e7eb;
             border-radius: 12px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
-        
+
         .simple-card:hover {
             box-shadow: 0 10px 25px rgba(3, 126, 243, 0.1);
+            transform: translateY(-2px);
         }
-        
+
         .section-title {
             position: relative;
             padding-bottom: 1rem;
             margin-bottom: 2rem;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -129,50 +92,57 @@
             background: #037EF3;
             border-radius: 2px;
         }
-        
-        .border-blue-left {
-            border-left: 4px solid #037EF3;
+
+        /* Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, #037EF3 0%, #0268d6 100%);
         }
-        
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
+
+        /* Contact Cards */
+        .contact-card {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
         }
-        
-        .mobile-menu.active {
-            transform: translateX(0);
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(3, 126, 243, 0.1);
         }
-        
-        .menu-overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
+
+        .photo-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            border: 4px solid #037EF3;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
+
+        .contact-card:hover .photo-circle {
+            transform: scale(1.05);
         }
-        
+
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .contact-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #037EF3;
-            color: white;
-            font-size: 1.8rem;
             margin: 0 auto 1.5rem;
             transition: all 0.3s ease;
         }
-        
-        .simple-card:hover .contact-icon {
-            transform: scale(1.1);
-            background: #0268d6;
-        }
-        
+
         .social-icon {
             width: 50px;
             height: 50px;
@@ -185,35 +155,82 @@
             border: 2px solid #037EF3;
             transition: all 0.3s ease;
         }
-        
+
         .social-icon:hover {
             transform: translateY(-5px);
             background: #037EF3;
             color: white;
             box-shadow: 0 10px 20px rgba(3, 126, 243, 0.2);
         }
-        
-        /* Hero gradient */
-        .hero-gradient {
-            background: linear-gradient(135deg, #037EF3 0%, #0268d6 100%);
+
+        /* Menu Mobile */
+        .menu-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 16rem;
+            background-color: white;
+            z-index: 50;
+            box-shadow: -10px 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        @media (min-width: 1024px) {
+            .mobile-menu,
+            .menu-overlay {
+                display: none;
+            }
+        }
+
+        /* Hero Animation - Plus subtile */
+        .hero-title {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .hero-subtitle {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.5s ease-out 0.1s, transform 0.5s ease-out 0.1s;
         }
     </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
     <!-- Menu mobile overlay -->
-    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" id="menuOverlay"></div>
-    
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" id="menuOverlay"></div>
+
     <!-- Menu mobile -->
-    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 md:hidden shadow-2xl" id="mobileMenu">
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 lg:hidden shadow-2xl" id="mobileMenu">
         <div class="p-8">
             <div class="flex justify-between items-center mb-12">
-                
                 <button class="text-gray-600 text-2xl" id="closeMenuBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <nav class="flex flex-col space-y-6">
-                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">General</a>
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold " onclick="closeMobileMenu()">General</a>
                 <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
                 <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Application Form</a>
                 <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">About AIESEC in Benin</a>
@@ -225,25 +242,28 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Navigation -->
-    <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
+    <nav class="bg-white fixed w-full z-50 py-3 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
-                <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-4 lg:space-x-6 text-gray-700 text-base lg:text-lg">
-
-                    <a href="index.html" class="link-discrete hover:text-accent">General</a>
-                    <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
-                    <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
-                    <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
-                    <a href="contact.html" class="link-discrete hover:text-accent font-bold text-accent">Contact</a>
+                <!-- Logo + Texte -->
+                <div class="flex items-center">
+                    <img src="logo.png" alt="Logo AIESEC Benin" class="h-10 sm:h-12 mr-2">
+                    <span class="text-lg sm:text-xl md:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</span>
                 </div>
-                
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex lg:space-x-2 text-gray-700 text-sm md:text-base">
+                    <a href="index.html" class="link-discrete hover:text-accent px-2 py-1">General</a>
+                    <a href="intentlette.html" class="link-discrete hover:text-accent px-2 py-1">Intent Letter</a>
+                    <a href="applicationform.html" class="link-discrete hover:text-accent px-2 py-1">Application Form</a>
+                    <a href="about.html" class="link-discrete hover:text-accent px-2 py-1">About</a>
+                    <a href="contact.html" class="link-discrete hover:text-accent text-accent font-bold px-2 py-1">Contact</a>
+                </div>
+
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden text-accent text-2xl" id="menuToggle">
+                <button class="lg:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -251,59 +271,224 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative py-20 sm:py-28 pt-24 hero-gradient">
+    <section class="relative py-24 sm:py-32 pt-24 hero-gradient">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="text-center text-white">
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-6 tracking-tighter font-black hero-animate" style="animation-delay: 0.2s">
-                    CONTACT
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-6 tracking-tighter font-black hero-title">
+                    CONTACT US
                 </h1>
-                <p class="text-xl sm:text-2xl text-blue-100 font-light hero-animate" style="animation-delay: 0.4s">
-                    Get in touch with AIESEC in Benin
+                <p class="text-xl sm:text-2xl text-blue-100 font-light hero-subtitle">
+                    Get in touch with the AIESEC in Benin team
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Contact Cards Section -->
+    <!-- Main Contact Section -->
     <section class="py-16 sm:py-24 bg-white">
-        <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
-        
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Current MCP -->
-                <div class="simple-card p-8 text-center lead-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-user-tie"></i>
+        <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl text-gray-900 font-bold section-title">
+                    Meet Our <span class="text-accent">Team</span>
+                </h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+                    Connect with the current leadership of AIESEC in Benin
+                </p>
+            </div>
+
+            <!-- Team Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Armel AHOUADI - MCP -->
+                <div class="contact-card simple-card bg-white/80">
+                    <div class="photo-circle bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Armel AHOUADI"
+                             loading="lazy">
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Current MCP</h3>
-                    <p class="text-accent text-xl font-bold mb-6">Armel AHOUADI</p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-center space-x-3">
-                            <div class="bg-lead w-10 h-10 rounded-full flex items-center justify-center">
-                                <i class="fa-solid fa-message"></i>
-                            </div>
-                            <span class="text-gray-700 font-medium">armel.ahouadi@aiesec.net</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">AHOUADI Armel</h3>
+                    <p class="text-accent font-medium mb-3">Member Committee President</p>
+                    <div class="flex justify-center space-x-4 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-accent"></i>
+                            <span class="text-gray-700 font-medium">+229 01 69 01 63 83</span>
                         </div>
+                    </div>
+                    <div class="flex justify-center space-x-2">
+                        <a href="mailto:armel.ahouadi@aiesec.net"
+                           class="social-icon bg-accent text-white hover:bg-accent hover:text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/2290169016383"
+                           class="social-icon bg-green-500 text-white hover:bg-green-600">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                 </div>
-                
-                <!-- National Office -->
-                <div class="simple-card p-8 text-center manage-card">
-                    <div class="contact-icon">
-                        <i class="fas fa-building"></i>
+
+                <!-- Fulbert KPAVODE - MCVP OD & EwA -->
+                <div class="contact-card simple-card bg-white/80">
+                    <div class="photo-circle bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Fulbert KPAVODE"
+                             loading="lazy">
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-800 mb-4">National Office</h3>
-                    <p class="text-accent text-xl font-bold mb-6">AIESEC in Benin</p>
-                    
-                    <div class="space-y-4">
-                        <div class="flex items-center justify-center space-x-3">
-                            <div class="bg-manage w-10 h-10 rounded-full flex items-center justify-center">
-                                <i class="fa-solid fa-message"></i>
-                            </div>
-                            <span class="text-gray-700 font-medium">benin@aiesec.net</span>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">KPAVODE Fulbert</h3>
+                    <p class="text-accent font-medium mb-3">MCVP OD & EwA</p>
+                    <div class="flex justify-center space-x-4 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-accent"></i>
+                            <span class="text-gray-700 font-medium">+229 01 96 25 81 22</span>
                         </div>
                     </div>
+                    <div class="flex justify-center space-x-2">
+                        <a href="mailto:fulbert.kpavode@aiesec.net"
+                           class="social-icon bg-accent text-white hover:bg-accent hover:text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/2290196258122"
+                           class="social-icon bg-green-500 text-white hover:bg-green-600">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Rock-Pierre TOGNI - MCVP MX & Brand -->
+                <div class="contact-card simple-card bg-white/80">
+                    <div class="photo-circle bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c172265dab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Rock-Pierre TOGNI"
+                             loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">TOGNI Rock-Pierre</h3>
+                    <p class="text-accent font-medium mb-3">MCVP MX & Brand</p>
+                    <div class="flex justify-center space-x-4 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-accent"></i>
+                            <span class="text-gray-700 font-medium">+229 01 53 27 41 30</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-2">
+                        <a href="mailto:rockpierre.togni@aiesec.net"
+                           class="social-icon bg-accent text-white hover:bg-accent hover:text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/2290153274130"
+                           class="social-icon bg-green-500 text-white hover:bg-green-600">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quirin GBAGUIDI - MCVP OGX -->
+                <div class="contact-card simple-card bg-white/80">
+                    <div class="photo-circle bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1531427186611-ec96d21d9fc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Quirin GBAGUIDI"
+                             loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">GBAGUIDI Quirin</h3>
+                    <p class="text-accent font-medium mb-3">MCVP OGX</p>
+                    <div class="flex justify-center space-x-4 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-accent"></i>
+                            <span class="text-gray-700 font-medium">+229 01 61 47 88 50</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-2">
+                        <a href="mailto:quirin.gbaguidi@aiesec.net"
+                           class="social-icon bg-accent text-white hover:bg-accent hover:text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/2290161478850"
+                           class="social-icon bg-green-500 text-white hover:bg-green-600">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stéphanie LANI-YONOU - MC ICX Manager -->
+                <div class="contact-card simple-card bg-white/80">
+                    <div class="photo-circle bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Stéphanie LANI-YONOU"
+                             loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">LANI-YONOU Stéphanie</h3>
+                    <p class="text-accent font-medium mb-3">MC ICX Manager</p>
+                    <div class="flex justify-center space-x-4 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-accent"></i>
+                            <span class="text-gray-700 font-medium">+229 01 61 54 60 20</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-2">
+                        <a href="mailto:stephanie.lani@aiesec.net"
+                           class="social-icon bg-accent text-white hover:bg-accent hover:text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/2290161546020"
+                           class="social-icon bg-green-500 text-white hover:bg-green-600">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gracia DEGLA - MC F&L Manager -->
+                <div class="contact-card simple-card bg-white/80">
+                    <div class="photo-circle bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+                             alt="Gracia DEGLA"
+                             loading="lazy">
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-1">DEGLA Gracia</h3>
+                    <p class="text-accent font-medium mb-3">MC F&L Manager</p>
+                    <div class="flex justify-center space-x-4 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-phone-alt text-accent"></i>
+                            <span class="text-gray-700 font-medium">+229 01 95 17 21 01</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-center space-x-2">
+                        <a href="mailto:gracia.degla@aiesec.net"
+                           class="social-icon bg-accent text-white hover:bg-accent hover:text-white">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://wa.me/2290195172101"
+                           class="social-icon bg-green-500 text-white hover:bg-green-600">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- National Office Contact -->
+            <div class="simple-card p-8 mt-12 text-center bg-accent/5 border-t-4 border-accent">
+                <div class="contact-icon bg-accent text-white">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">National Office</h3>
+                <p class="text-accent font-medium text-lg mb-4">AIESEC in Benin</p>
+
+                <div class="flex justify-center space-x-4 mb-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-envelope text-accent"></i>
+                        <a href="mailto:benin@aiesec.net" class="text-gray-700 font-medium hover:text-accent">benin@aiesec.net</a>
+                    </div>
+                </div>
+
+                <div class="flex justify-center space-x-2">
+                    <a href="https://www.facebook.com/p/AIESEC-Benin-61573443876746/"
+                       class="social-icon bg-blue-600 text-white hover:bg-blue-700">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.instagram.com/aiesecinbenin"
+                       class="social-icon bg-pink-500 text-white hover:bg-pink-600">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/aiesecinbenin"
+                       class="social-icon bg-blue-700 text-white hover:bg-blue-800">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -323,35 +508,61 @@
 
     <script>
         // Mobile menu functionality
-        function openMobileMenu() {
-            document.getElementById('mobileMenu').classList.add('active');
-            document.getElementById('menuOverlay').classList.add('active');
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenu').classList.remove('active');
-            document.getElementById('menuOverlay').classList.remove('active');
-        }
-        
-        document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
-        document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
-        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
-        
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
-                const offset = document.querySelector('nav').offsetHeight;
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - offset,
-                        behavior: 'smooth'
-                    });
-                    closeMobileMenu();
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuToggle = document.getElementById('menuToggle');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+            function openMobileMenu() {
+                mobileMenu.classList.add('active');
+                menuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMobileMenu() {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+            if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
+
+            // Fermer le menu si un lien est cliqué
+            const menuLinks = document.querySelectorAll('.mobile-menu nav a');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
             });
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    const offset = document.querySelector('nav').offsetHeight;
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop - offset,
+                            behavior: 'smooth'
+                        });
+                        closeMobileMenu();
+                    }
+                });
+            });
+
+            // Animation légère au chargement
+            setTimeout(() => {
+                document.querySelector('.hero-title').style.opacity = '1';
+                document.querySelector('.hero-title').style.transform = 'translateY(0)';
+
+                setTimeout(() => {
+                    document.querySelector('.hero-subtitle').style.opacity = '1';
+                    document.querySelector('.hero-subtitle').style.transform = 'translateY(0)';
+                }, 100);
+            }, 50);
         });
     </script>
 </body>

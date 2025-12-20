@@ -1,39 +1,27 @@
- // Smooth scrolling for internal links
- document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
-});
-
-// Mobile menu toggle
+// mobile-menu.js
 document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuToggle = document.getElementById('menuToggle');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
 
-    // Fonction pour fermer le menu
-    function closeMobileMenu() {
-        mobileMenu.classList.add('hidden');
+    function openMobileMenu() {
+        mobileMenu.classList.add('active');
+        menuOverlay.classList.add('active');
     }
 
-    // Ouvrir/fermer le menu au clic sur le bouton
-    menuToggle.addEventListener('click', function() {
-        mobileMenu.classList.toggle('hidden');
-    });
+    function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+    }
 
-    // Fermer le menu si on clique sur un lien
-    document.querySelectorAll('#mobile-menu a').forEach(link => {
-        link.addEventListener('click', function() {
-            closeMobileMenu();
-        });
-    });
+    if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
+    if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+    if (menuOverlay) menuOverlay.addEventListener('click', closeMobileMenu);
 
-    // Fermer le menu si on clique ailleurs sur l'écran
-    document.addEventListener('click', function(event) {
-        if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
-            closeMobileMenu();
-        }
+    // Fermer le menu si un lien est cliqué
+    const menuLinks = document.querySelectorAll('.mobile-menu nav a');
+    menuLinks.forEach(link => {
+        link.addEventListener('click', closeMobileMenu);
     });
 });

@@ -8,6 +8,11 @@
     <!-- Police Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.jpg">
+    <!-- Fichier CSS pour le menu mobile -->
+    <link rel="stylesheet" href="style.css">
+
     <script>
         tailwind.config = {
             theme: {
@@ -30,42 +35,42 @@
         * {
             font-family: 'Poppins', sans-serif;
         }
-        
+
         h1, h2, h3, h4, h5, h6 {
             font-weight: 800;
             letter-spacing: -0.025em;
         }
-        
+
         body, p, li, span, div, a:not(.no-normal) {
             font-weight: 400;
         }
-        
+
         .text-accent { color: #037EF3; }
         .bg-accent { background-color: #037EF3; }
         .border-accent { border-color: #037EF3; }
-        
+
         .text-lead { color: #00c16e; }
         .bg-lead { background-color: rgba(0, 193, 110, 0.1); }
         .border-lead { border-color: #00c16e; }
-        
+
         .text-manage { color: #F48924; }
         .bg-manage { background-color: rgba(244, 137, 36, 0.1); }
         .border-manage { border-color: #F48924; }
-        
+
         .text-represent { color: #7552CC; }
         .bg-represent { background-color: rgba(117, 82, 204, 0.1); }
         .border-represent { border-color: #7552CC; }
-        
+
         .text-eligibility { color: #0CB9C1; }
         .bg-eligibility { background-color: rgba(12, 185, 193, 0.1); }
         .border-eligibility { border-color: #0CB9C1; }
-        
+
         .link-discrete {
             position: relative;
             display: inline-block;
             padding-bottom: 2px;
         }
-        
+
         .link-discrete::after {
             content: '';
             position: absolute;
@@ -78,12 +83,12 @@
             transform-origin: bottom right;
             transition: transform 0.4s ease-out;
         }
-        
+
         .link-discrete:hover::after {
             transform: scaleX(1);
             transform-origin: bottom left;
         }
-        
+
         /* Hero animation */
         @keyframes fadeInUp {
             from {
@@ -95,7 +100,7 @@
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes slideInLeft {
             from {
                 opacity: 0;
@@ -106,7 +111,7 @@
                 transform: translateX(0);
             }
         }
-        
+
         @keyframes slideInRight {
             from {
                 opacity: 0;
@@ -117,23 +122,23 @@
                 transform: translateX(0);
             }
         }
-        
+
         .hero-animate-text {
             animation: fadeInUp 1s ease-out forwards;
             opacity: 0;
         }
-        
+
         .hero-animate-text:nth-child(1) { animation-delay: 0.3s; }
         .hero-animate-text:nth-child(2) { animation-delay: 0.6s; }
         .hero-animate-text:nth-child(3) { animation-delay: 0.9s; }
-        
+
         .hero-bg-animated {
             background: linear-gradient(rgba(18, 67, 173, 0.7), rgba(18, 67, 173, 0.7)),
                         url('hero.jpeg') center/cover no-repeat;
             animation: slideInLeft 1.5s ease-out forwards;
             opacity: 0;
         }
-        
+
         .foreword-image {
             width: 280px;
             height: 280px;
@@ -145,24 +150,24 @@
             opacity: 0;
             animation: slideInRight 1s ease-out 0.5s forwards;
         }
-        
+
         .simple-card {
             background: white;
             border: 1px solid #e5e7eb;
             border-radius: 12px;
             transition: all 0.3s ease;
         }
-        
+
         .simple-card:hover {
             box-shadow: 0 10px 25px rgba(3, 126, 243, 0.1);
         }
-        
+
         .section-title {
             position: relative;
             padding-bottom: 1rem;
             margin-bottom: 2rem;
         }
-        
+
         .section-title::after {
             content: '';
             position: absolute;
@@ -174,72 +179,52 @@
             background: #037EF3;
             border-radius: 2px;
         }
-        
+
         .countdown-card {
             background: white;
             border: 2px solid #037EF3;
             border-radius: 12px;
             transition: all 0.3s ease;
         }
-        
+
         .countdown-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(3, 126, 243, 0.15);
         }
-        
+
         .border-blue-left {
             border-left: 4px solid #037EF3;
         }
-        
+
         @media (max-width: 768px) {
             .foreword-image {
                 width: 200px;
                 height: 200px;
             }
-            
+
             .hero-bg-animated h1 {
                 font-size: 2.5rem;
             }
         }
-        
+
         @media (max-width: 640px) {
             .foreword-image {
                 width: 180px;
                 height: 180px;
             }
         }
-        
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-        
-        .menu-overlay {
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-        
-        .menu-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        
+
         .list-check {
             list-style-type: none;
             padding-left: 0;
         }
-        
+
         .list-check li {
             padding-left: 1.5rem;
             position: relative;
             margin-bottom: 0.5rem;
         }
-        
+
         .list-check li:before {
             content: '✓';
             position: absolute;
@@ -247,26 +232,26 @@
             color: #037EF3;
             font-weight: bold;
         }
-        
+
         .deadline-item {
             border-left: 3px solid #037EF3;
             padding-left: 1rem;
             margin-bottom: 1.5rem;
         }
-        
+
         /* Couleurs simples pour les sections Lead, Manage, Represent */
         .lead-card {
             border-top: 4px solid #00c16e;
         }
-        
+
         .manage-card {
             border-top: 4px solid #F48924;
         }
-        
+
         .represent-card {
             border-top: 4px solid #7552CC;
         }
-        
+
         .eligibility-card {
             border-top: 4px solid #0CB9C1;
         }
@@ -274,17 +259,17 @@
 </head>
 <body class="bg-white antialiased text-gray-800">
     <!-- Menu mobile overlay -->
-    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden" id="menuOverlay"></div>
-    
+    <div class="menu-overlay fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden" id="menuOverlay"></div>
+
     <!-- Menu mobile -->
-    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 md:hidden shadow-2xl" id="mobileMenu">
+    <div class="mobile-menu fixed top-0 right-0 h-full w-64 bg-white z-50 lg:hidden shadow-2xl" id="mobileMenu">
         <div class="p-8">
             <div class="flex justify-between items-center mb-12">
-               
                 <button class="text-gray-600 text-2xl" id="closeMenuBtn">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
+           
             <nav class="flex flex-col space-y-6">
                 <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold text-accent" onclick="closeMobileMenu()">General</a>
                 <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
@@ -298,24 +283,28 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Navigation -->
-    <nav class="bg-white fixed w-full z-50 py-4 border-b border-gray-100">
+    <nav class="bg-white fixed w-full z-50 py-3 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
-                <div class="text-xl sm:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-4 lg:space-x-6 text-gray-700 text-base lg:text-lg">
-                    <a href="index.html" class="link-discrete hover:text-accent text-accent font-bold">General</a>
-                    <a href="intentlette.html" class="link-discrete hover:text-accent">Intent Letter Submission</a>
-                    <a href="applicationform.html" class="link-discrete hover:text-accent">Application Form</a>
-                    <a href="about.html" class="link-discrete hover:text-accent">About AIESEC in Benin</a>
-                    <a href="contact.html" class="link-discrete hover:text-accent">Contact</a>
+                <!-- Logo + Texte -->
+                <div class="flex items-center">
+                    <img src="logo.png" alt="Logo AIESEC Benin" class="h-10 sm:h-12 mr-2">
+                    <span class="text-lg sm:text-xl md:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</span>
                 </div>
-                
+
+                <!-- Desktop Menu -->
+                <div class="hidden lg:flex lg:space-x-2 text-gray-700 text-sm md:text-base">
+                    <a href="index.html" class="link-discrete hover:text-accent text-accent font-bold px-2 py-1">General</a>
+                    <a href="intentlette.html" class="link-discrete hover:text-accent px-2 py-1">Intent Letter</a>
+                    <a href="applicationform.html" class="link-discrete hover:text-accent px-2 py-1">Application Form</a>
+                    <a href="about.html" class="link-discrete hover:text-accent px-2 py-1">About</a>
+                    <a href="contact.html" class="link-discrete hover:text-accent px-2 py-1">Contact</a>
+                </div>
+
                 <!-- Mobile Menu Button -->
-                <button class="md:hidden text-accent text-2xl" id="menuToggle">
+                <button class="lg:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -341,61 +330,56 @@
     </section>
 
     <!-- Foreword Section -->
+    <section id="foreword" class="py-16 sm:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
+                Foreword: <span class="text-accent">To the One Who Dares to Lead</span>
+            </h2>
 
-<section id="foreword" class="py-16 sm:py-24 bg-white">
-    <div class="container mx-auto px-4 sm:px-6 max-w-4xl lg:max-w-6xl">
-        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
-            Foreword: <span class="text-accent">To the One Who Dares to Lead</span>
-        </h2>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+                <!-- Quote à gauche -->
+                <div class="space-y-6 order-1 lg:order-1">
+                    <div class="simple-card p-6 sm:p-8 lg:p-10 border-blue-left">
+                        <p class="text-lg sm:text-xl italic leading-relaxed text-gray-700 mb-4 sm:mb-6">
+                            "As you open this application, I hope you take a moment to breathe in the weight and beauty of the role you're stepping toward... AIESEC in Benin is still growing, still evolving, still finding its voice—and you will be part of shaping that story."
+                        </p>
+                        <div class="text-right">
+                            <p class="text-base sm:text-lg text-accent font-bold">Armel AHOUADI</p>
+                            <p class="text-gray-600 text-sm sm:text-base">Member Committee President, AIESEC in Benin</p>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Quote à gauche -->
-            <div class="space-y-6 order-1 lg:order-1">
-                <div class="simple-card p-6 sm:p-8 lg:p-10 border-blue-left">
-                    <p class="text-lg sm:text-xl italic leading-relaxed text-gray-700 mb-4 sm:mb-6">
-                        "As you open this application, I hope you take a moment to breathe in the weight and beauty of the role you're stepping toward... AIESEC in Benin is still growing, still evolving, still finding its voice—and you will be part of shaping that story."
-                    </p>
-                    <div class="text-right">
-                        <p class="text-base sm:text-lg text-accent font-bold">Armel AHOUADI</p>
-                        <p class="text-gray-600 text-sm sm:text-base">Member Committee President, AIESEC in Benin</p>
+                <!-- Image à droite -->
+                <div class="flex flex-col items-center justify-center order-2 lg:order-2">
+                    <div class="relative mb-6">
+                        <img src="mcp.jpeg" alt="Armel - Current MCP AIESEC in Benin" class="foreword-image">
+                    </div>
+                    <div class="text-center">
+                        <h4 class="text-xl sm:text-2xl text-gray-800 mb-2 font-bold">Armel AHOUADI</h4>
+                        <p class="text-accent text-base sm:text-lg mb-2 font-medium">MCP 25.26 | AIESEC in Benin</p>
                     </div>
                 </div>
             </div>
-            
-            <!-- Image à droite -->
-            <div class="flex flex-col items-center justify-center order-2 lg:order-2">
-                <div class="relative mb-6">
-                    <img src="mcp.jpeg" alt="Armel - Current MCP AIESEC in Benin" class="foreword-image">
-                </div>
-                <div class="text-center">
-                    <h4 class="text-xl sm:text-2xl text-gray-800 mb-2 font-bold">Armel AHOUADI</h4>
-                    <p class="text-accent text-base sm:text-lg mb-2 font-medium">MCP 25.26 | AIESEC in Benin</p>
-                </div>
-            </div>
-            
-        </div>
-        
-        <div class="mt-12 sm:mt-20 pt-6 sm:pt-10 border-t border-gray-200 text-center">
-            <a href="#job-description" class="inline-flex items-center px-5 sm:px-6 py-3 sm:py-4 text-base sm:text-lg text-accent border border-accent rounded-full hover:bg-accent hover:text-white transition-all duration-300 font-medium">
-                <span>Continue to Job Description</span>
-                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-                </svg>
-            </a>
-        </div>
-    </div>
-</section>
 
+            <div class="mt-12 sm:mt-20 pt-6 sm:pt-10 border-t border-gray-200 text-center">
+                <a href="#job-description" class="inline-flex items-center px-5 sm:px-6 py-3 sm:py-4 text-base sm:text-lg text-accent border border-accent rounded-full hover:bg-accent hover:text-white transition-all duration-300 font-medium">
+                    <span>Continue to Job Description</span>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Job Description Section -->
     <section id="job-description" class="py-16 sm:py-24 ">
         <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title whitespace-nowrap">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
                 Job Description: <span class="text-accent">Overall MCP Responsibilities</span>
             </h2>
-      
-            
+
             <div class="space-y-8">
                 <!-- Overview -->
                 <div class="simple-card p-6 sm:p-8">
@@ -404,7 +388,7 @@
                         The MCP leads and represents AIESEC in Benin, ensuring strategic direction, organizational growth, and alignment across the entity. The role includes overseeing planning, performance tracking, financial decisions, team management, and partnerships, while safeguarding AIESEC's purpose, values, and overall organizational welfare.
                     </p>
                 </div>
-                
+
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
                     <!-- Lead -->
                     <div class="simple-card p-6 sm:p-8 lead-card">
@@ -431,12 +415,11 @@
                                 <span class="text-lead mr-2 mt-1">•</span>
                                 <span><strong>Success:</strong> Drive 100% entity performance growth</span>
                             </li>
-                        </ul>                                             
+                        </ul>
                     </div>
-                    
+
                     <!-- Manage -->
                     <div class="simple-card p-6 sm:p-8 manage-card">
-                        
                         <div class="flex items-center mb-4">
                             <div class="bg-manage/20 rounded-full w-10 h-10 flex items-center justify-center mr-3">
                                 <i class="fas fa-cogs text-manage"></i>
@@ -462,7 +445,7 @@
                             </li>
                         </ul>
                     </div>
-                    
+
                     <!-- Represent -->
                     <div class="simple-card p-6 sm:p-8 represent-card">
                         <div class="flex items-center mb-4">
@@ -497,7 +480,7 @@
             <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
                 Profile: <span class="text-accent">Applicant Criteria</span>
             </h2>
-            
+
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
                 <!-- Eligibility -->
                 <div class="simple-card p-6 sm:p-8 eligibility-card">
@@ -506,14 +489,13 @@
                         <li>Strong knowledge about AIESEC</li>
                         <li>Had MCEB, or LCP experience</li>
                         <li>Active member of the organization for at least two years</li>
-                        <li>Agree to commit to completing your mandate</li>
                         <li>Have at least participated in an international conference of AIESEC, such as MEAS, XPROs, MEAXLDS, or any other conference outside Benin</li>
                         <li>Commitment to end the term once elected</li>
-                        <li>Pay Application Fees (10.000 FCFA), related to the Recruitment Firms and Electoral committee before Interview only if your application meet all criteria and has been accepted.</li>
+                        <li>Pay the application fee (10,000 FCFA) related to the Recruitment Firm and the Electoral Committee before the interview, only if your application meets all criteria and is accepted.</li>
                         <li>Has already completed an international exchange with AIESEC or has the ‘Approved’ status on EXPA and has paid ‘Project Fees’ to be ‘Realised’.</li>
                     </ul>
                 </div>
-                
+
                 <!-- Deadlines -->
                 <div class="simple-card p-6 sm:p-8">
                     <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 border-accent">Important Deadlines</h3>
@@ -550,7 +532,7 @@
             <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
               Deadlines Countdown
             </h2>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                 <!-- Letter of Intent -->
                 <div class="countdown-card p-8 text-center">
@@ -561,7 +543,7 @@
                     <div id="countdown-loi" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
                     <p class="text-gray-500 text-sm">Submit your letter of intent before this deadline</p>
                 </div>
-                
+
                 <!-- Application Submission -->
                 <div class="countdown-card p-8 text-center">
                     <div class="mb-6">
@@ -572,7 +554,7 @@
                     <p class="text-gray-500 text-sm">Complete application package submission deadline</p>
                 </div>
             </div>
-            
+
             <div class="mt-12 text-center">
                 <a href="intentlette.html" class="inline-flex items-center px-8 py-4 bg-accent text-white rounded-full hover:bg-blue-700 transition-all duration-300 font-bold text-lg shadow hover:shadow-lg">
                     <i class="fas fa-arrow-right mr-3"></i>
@@ -594,22 +576,10 @@
         </div>
     </footer>
 
+    <!-- Fichier JS pour le menu mobile -->
+    <script src="script.js" defer></script>
+
     <script>
-        // Mobile menu functionality
-        function openMobileMenu() {
-            document.getElementById('mobileMenu').classList.add('active');
-            document.getElementById('menuOverlay').classList.add('active');
-        }
-        
-        function closeMobileMenu() {
-            document.getElementById('mobileMenu').classList.remove('active');
-            document.getElementById('menuOverlay').classList.remove('active');
-        }
-        
-        document.getElementById('menuToggle').addEventListener('click', openMobileMenu);
-        document.getElementById('closeMenuBtn').addEventListener('click', closeMobileMenu);
-        document.getElementById('menuOverlay').addEventListener('click', closeMobileMenu);
-        
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -626,36 +596,36 @@
                 }
             });
         });
-        
+
         // Countdown Script
         function initializeCountdown(elementId, targetDate) {
             const countdownElement = document.getElementById(elementId);
             function updateCountdown() {
                 const now = new Date().getTime();
                 const distance = targetDate - now;
-        
+
                 if (distance < 0) {
                     countdownElement.innerHTML = "Deadline Passed";
                     clearInterval(interval);
                     return;
                 }
-        
+
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        
+
                 countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
             }
-        
+
             updateCountdown();
             const interval = setInterval(updateCountdown, 1000);
         }
-        
+
         // Initialize countdowns
         const loiDeadline = new Date("December 27, 2025 23:59:00 GMT+0100");
         const appDeadline = new Date("January 04, 2026 23:59:00 GMT+0100");
-        
+
         initializeCountdown("countdown-loi", loiDeadline);
         initializeCountdown("countdown-app", appDeadline);
     </script>
