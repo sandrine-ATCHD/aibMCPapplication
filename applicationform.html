@@ -85,25 +85,13 @@
         }
 
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-40px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .hero-animate-text {
@@ -171,70 +159,158 @@
 
         /* Mobile-specific adjustments */
         @media (max-width: 767px) {
+            :root {
+                font-size: 14px;
+            }
+
             body, p, li, span, div, a:not(.no-normal) {
                 font-size: 0.9rem;
                 line-height: 1.4;
             }
-            h1 {
-                font-size: 1.8rem !important;
+
+            h1, h2, h3, h4, h5, h6 {
                 line-height: 1.2;
             }
+
+            h1 {
+                font-size: 1.8rem !important;
+            }
+
             h2 {
                 font-size: 1.5rem !important;
             }
+
             h3 {
                 font-size: 1.2rem !important;
             }
+
             .hero-section h1 {
                 font-size: 1.5rem !important;
             }
+
             .hero-section p {
                 font-size: 0.9rem !important;
             }
+
             .app-card h3 {
                 font-size: 1.1rem !important;
             }
+
             .app-card p {
                 font-size: 0.85rem !important;
             }
+
             .accordion-btn {
                 font-size: 1rem !important;
                 padding: 0.8rem 1rem !important;
             }
+
             .accordion-content {
                 font-size: 0.9rem !important;
             }
+
             .accordion-content p {
                 font-size: 0.85rem !important;
                 line-height: 1.4;
             }
+
             #submission .bg-gray-50 p {
                 font-size: 0.85rem !important;
             }
+
             #warning ul {
                 font-size: 0.85rem !important;
             }
+
             footer p {
                 font-size: 0.8rem !important;
             }
+
             .container {
                 width: 100%;
                 padding-left: 1rem;
                 padding-right: 1rem;
             }
+
             .app-card {
                 width: 100%;
                 margin-bottom: 1rem;
                 padding: 1rem !important;
             }
+
             .accordion-btn, .accordion-content {
                 width: 100%;
             }
+
             #warning .container {
                 padding: 0;
             }
+
             .hero-section {
                 min-height: 120px !important;
+            }
+
+            /* Section How to Submit - Mobile */
+            #submission {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            #submission .bg-gray-50 {
+                padding: 1rem !important;
+                margin: 0 !important;
+                border-radius: 0.5rem !important;
+                border-left: none !important;
+                border-right: none !important;
+            }
+
+            #submission .bg-gray-50 p,
+            #submission .bg-gray-50 li {
+                font-size: 0.85rem !important;
+                line-height: 1.4 !important;
+            }
+
+            #submission .bg-gray-50 code {
+                font-size: 0.75rem !important;
+                word-break: break-all;
+            }
+
+            #submission .flex.items-start {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            #submission .flex.items-start span.bg-accent {
+                margin-right: 0.5rem !important;
+                margin-top: 0.25rem !important;
+            }
+
+            /* Section Important Notice - Mobile */
+            #warning {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            #warning .flex {
+                flex-direction: column;
+            }
+
+            #warning .flex-shrink-0 {
+                margin-bottom: 0.5rem;
+            }
+
+            /* Optimisation des listes */
+            ul {
+                padding-left: 1.25rem;
+            }
+
+            li {
+                margin-bottom: 0.5rem;
+            }
+
+            /* Optimisation des boutons */
+            .accordion-btn {
+                padding: 1rem;
             }
         }
     </style>
@@ -252,7 +328,7 @@
                 </button>
             </div>
             <nav class="flex flex-col space-y-6">
-                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold " onclick="closeMobileMenu()">General</a>
+                <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold" onclick="closeMobileMenu()">General</a>
                 <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
                 <a href="applicationform.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold" onclick="closeMobileMenu()">Application Form</a>
                 <a href="about.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">About AIESEC in Benin</a>
@@ -270,11 +346,11 @@
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                    <img src="logo.png" alt="Logo AIESEC Benin" class="h-10 sm:h-12 mr-2">
+                    <img src="logo.png" alt="Logo AIESEC Benin" class="h-10 sm:h-12 mr-2" loading="lazy">
                     <span class="text-lg sm:text-xl md:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</span>
                 </div>
                 <div class="hidden lg:flex lg:space-x-2 text-gray-700 text-sm md:text-base">
-                    <a href="index.html" class="link-discrete hover:text-accent  font-bold px-2 py-1">General</a>
+                    <a href="index.html" class="link-discrete hover:text-accent font-bold px-2 py-1">General</a>
                     <a href="intentlette.html" class="link-discrete hover:text-accent px-2 py-1">Intent Letter</a>
                     <a href="applicationform.html" class="link-discrete hover:text-accent text-accent font-bold px-2 py-1">Application Form</a>
                     <a href="about.html" class="link-discrete hover:text-accent px-2 py-1">About</a>
@@ -431,9 +507,7 @@
                             <span class="text-accent mr-2">•</span>
                             <span>
                                 Enneagram:
-                                <a href="https://www.truity.com/test/enneagram-personality-test"
-                                   target="_blank"
-                                   class="text-accent hover:underline">
+                                <a href="https://www.truity.com/test/enneagram-personality-test" target="_blank" class="text-accent hover:underline">
                                     Take test
                                 </a>
                             </span>
@@ -442,9 +516,7 @@
                             <span class="text-accent mr-2">•</span>
                             <span>
                                 Prism (Leadership):
-                                <a href="https://prismocean.com/free-test/"
-                                   target="_blank"
-                                   class="text-accent hover:underline">
+                                <a href="https://prismocean.com/free-test/" target="_blank" class="text-accent hover:underline">
                                     Take test
                                 </a>
                             </span>
@@ -453,9 +525,7 @@
                             <span class="text-accent mr-2">•</span>
                             <span>
                                 MBTI:
-                                <a href="https://www.16personalities.com/"
-                                   target="_blank"
-                                   class="text-accent hover:underline">
+                                <a href="https://www.16personalities.com/" target="_blank" class="text-accent hover:underline">
                                     Take test
                                 </a>
                             </span>
@@ -464,9 +534,7 @@
                             <span class="text-accent mr-2">•</span>
                             <span>
                                 Emotional Intelligence:
-                                <a href="https://tests.globalleadershipfoundation.com/geit/eitest.html"
-                                   target="_blank"
-                                   class="text-accent hover:underline">
+                                <a href="https://tests.globalleadershipfoundation.com/geit/eitest.html" target="_blank" class="text-accent hover:underline">
                                     Take test
                                 </a>
                             </span>
@@ -475,9 +543,7 @@
                             <span class="text-accent mr-2">•</span>
                             <span>
                                 Team Roles:
-                                <a href="https://www.123test.com/team-roles-test/#its123-testAnchor"
-                                   target="_blank"
-                                   class="text-accent hover:underline">
+                                <a href="https://www.123test.com/team-roles-test/#its123-testAnchor" target="_blank" class="text-accent hover:underline">
                                     Take test
                                 </a>
                             </span>
@@ -619,35 +685,35 @@
     </section>
 
     <!-- Submission Instructions Section -->
-    <section id="submission" class="py-16 sm:py-24 bg-white">
+    <section id="submission" class="py-12 sm:py-24 bg-white">
         <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
-            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mb-6 text-center">
                 How to Submit
             </h2>
-            <div class="bg-gray-50 p-6 rounded-xl mb-10 border border-gray-200">
-                <h3 class="text-xl font-bold text-gray-900 mb-4">Submission Process</h3>
-                <div class="space-y-4">
-                    <div class="flex items-start">
-                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</span>
-                        <p><strong>Prepare ZIP file:</strong> All PDF documents in one ZIP file named: <code class="bg-gray-100 px-2 py-1 rounded text-sm">FirstName_LastName_MCP26.27_AIESECinBenin.zip</code></p>
+            <div class="bg-gray-50 p-4 sm:p-6 rounded-lg sm:rounded-xl mb-8 sm:mb-10 border border-gray-200">
+                <h3 class="text-lg sm:text-xl font-bold text-gray-900 mb-3 sm:mb-4">Submission Process</h3>
+                <div class="space-y-3 sm:space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-start">
+                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-0 sm:mr-3 mt-1 flex-shrink-0">1</span>
+                        <p class="mt-1 sm:mt-0"><strong>Prepare ZIP file:</strong> All PDF documents in one ZIP file named: <code class="bg-gray-100 px-1 py-0.5 rounded text-xs sm:text-sm break-words">FirstName_LastName_MCP26.27_AIESECinBenin.zip</code></p>
                     </div>
-                    <div class="flex items-start">
-                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</span>
-                        <p>
-                            <strong>Send to:</strong>
-                            <br>• ahouadi.armel@aiesec.net
-                            <br><strong>Copy the following:</strong>
-                            <br>• benin@aiesec.net
-                            <br>• aiesec.alumnibenin@gmail.com
-                        </p>
+                    <div class="flex flex-col sm:flex-row sm:items-start">
+                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-0 sm:mr-3 mt-1 flex-shrink-0">2</span>
+                        <div class="mt-1 sm:mt-0">
+                            <p><strong>Send to:</strong></p>
+                            <p>• ahouadi.armel@aiesec.net</p>
+                            <p><strong>Copy the following:</strong></p>
+                            <p>• benin@aiesec.net</p>
+                            <p>• aiesec.alumnibenin@gmail.com</p>
+                        </div>
                     </div>
-                    <div class="flex items-start">
-                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</span>
-                        <p><strong>Deadline:</strong> 04 January, 2026 at 11:59 p.m (GMT+1)</p>
+                    <div class="flex flex-col sm:flex-row sm:items-start">
+                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-0 sm:mr-3 mt-1 flex-shrink-0">3</span>
+                        <p class="mt-1 sm:mt-0"><strong>Deadline:</strong> 04 January, 2026 at 11:59 p.m (GMT+1)</p>
                     </div>
-                    <div class="flex items-start">
-                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</span>
-                        <p><strong>Confirmation:</strong> You'll receive a confirmation email within 48 hours.</p>
+                    <div class="flex flex-col sm:flex-row sm:items-start">
+                        <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-0 sm:mr-3 mt-1 flex-shrink-0">4</span>
+                        <p class="mt-1 sm:mt-0"><strong>Confirmation:</strong> You'll receive a confirmation email within 48 hours.</p>
                     </div>
                 </div>
             </div>
@@ -657,20 +723,20 @@
     <!-- Warning Section -->
     <section id="warning" class="py-1 sm:py-2">
         <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
-            <div class="flex items-start space-x-4 border-l-4 border-red-900 bg-red-50 p-6 rounded-lg shadow">
+            <div class="flex flex-col sm:flex-row items-start space-x-0 sm:space-x-4 border-l-4 border-red-900 bg-red-50 p-4 sm:p-6 rounded-lg shadow">
                 <div class="flex-shrink-0 mt-1">
                     <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
                 </div>
-                <div class="text-black space-y-2">
+                <div class="text-black space-y-2 mt-2 sm:mt-0">
                     <p class="font-semibold text-lg">Important Notice</p>
                     <ul class="list-disc pl-5 space-y-1 text-base">
-                        <li>No application will be accepted without the Letter Of Intent submitted</li>
+                        <li>No application will be accepted without the Letter Of Intent submitted.</li>
                         <li>Any late or incomplete application for any reason will not be accepted.</li>
                         <li>Application deadline: <strong>04 January, 2026 at 11:59 p.m (GMT+1)</strong></li>
                         <li>The full answer of the question is required and should be done inside the application package.</li>
                         <li>The application must be answered in English.</li>
                         <li>You can use external resources or references to help you in your answers.</li>
-                        <li>Prepare your application fees (<strong>10.000 FCFA</strong>) in case your application is accepted..</li>
+                        <li>Prepare your application fees (<strong>10.000 FCFA</strong>) in case your application is accepted.</li>
                         <li>Don't run any campaign or talk about your vision to our membership before the Election day!</li>
                     </ul>
                 </div>
@@ -685,7 +751,7 @@
             <div class="flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
                 <p class="mb-3 sm:mb-0 opacity-80"><i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.</p>
                 <div class="flex h-10 w-auto">
-                    <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
+                    <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10" loading="lazy">
                 </div>
             </div>
         </div>
@@ -703,11 +769,13 @@
             function openMobileMenu() {
                 mobileMenu.classList.add('active');
                 menuOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
             }
 
             function closeMobileMenu() {
                 mobileMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
+                document.body.style.overflow = '';
             }
 
             if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
@@ -727,10 +795,21 @@
             buttons.forEach(btn => {
                 btn.addEventListener('click', () => {
                     const content = btn.nextElementSibling;
-                    content.classList.toggle('hidden');
-                    const icon = btn.querySelector('i');
-                    icon.classList.toggle('fa-chevron-down');
-                    icon.classList.toggle('fa-chevron-up');
+                    const isHidden = content.classList.contains('hidden');
+                    // Fermer tous les accordéons ouverts
+                    document.querySelectorAll('.accordion-content').forEach(item => {
+                        item.classList.add('hidden');
+                    });
+                    document.querySelectorAll('.accordion-btn i').forEach(icon => {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    });
+                    // Ouvrir l'accordéon cliqué
+                    if (isHidden) {
+                        content.classList.remove('hidden');
+                        btn.querySelector('i').classList.remove('fa-chevron-down');
+                        btn.querySelector('i').classList.add('fa-chevron-up');
+                    }
                 });
             });
         });
