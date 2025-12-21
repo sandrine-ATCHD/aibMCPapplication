@@ -121,6 +121,10 @@
             margin-bottom: 2rem;
         }
 
+        .square-carousel-slide {
+            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .square-image {
             width: 250px;
             height: 250px;
@@ -893,29 +897,55 @@
                 });
             });
 
-            // Square Carousel functionality
-            let currentSquareSlide = 0;
+            // Square Carousel functionality avec défilement automatique toutes les 2 secondes
             const carouselSlide = document.getElementById('squareCarouselSlide');
             const images = carouselSlide.querySelectorAll('.square-image');
-            const imagesPerView = window.innerWidth < 768 ? 1 : (window.innerWidth < 1024 ? 2 : 4);
-            const totalSlides = Math.ceil(images.length / imagesPerView);
+            
+            // Dupliquer les images pour créer un effet infini sans coupure
+            images.forEach(img => {
+                const clone = img.cloneNode(true);
+                carouselSlide.appendChild(clone);
+            });
 
-            function updateSquareCarousel() {
-                carouselSlide.style.transform = `translateX(-${currentSquareSlide * (100 / totalSlides)}%)`;
+            let currentIndex = 0;
+            const slideInterval = 2000; // 2 secondes entre chaque transition
+            const imageWidth = 266; // 250px + 16px de margin
+            let isTransitioning = false;
+
+            function slideCarousel() {
+                if (isTransitioning) return;
+                
+                isTransitioning = true;
+                currentIndex++;
+                
+                // Appliquer la transition
+                carouselSlide.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+                carouselSlide.style.transform = `translateX(-${currentIndex * imageWidth}px)`;
+                
+                // Après la transition, vérifier si on doit reset
+                setTimeout(() => {
+                    // Si on a atteint la fin des images originales
+                    if (currentIndex >= images.length) {
+                        // Retour instantané au début (sans transition)
+                        carouselSlide.style.transition = 'none';
+                        currentIndex = 0;
+                        carouselSlide.style.transform = `translateX(0px)`;
+                    }
+                    isTransitioning = false;
+                }, 800); // Durée de la transition
             }
 
-            function nextSquareSlide() {
-                currentSquareSlide = (currentSquareSlide + 1) % totalSlides;
-                updateSquareCarousel();
-            }
+            // Démarrer l'animation automatique
+            let autoSlide = setInterval(slideCarousel, slideInterval);
 
-            function prevSquareSlide() {
-                currentSquareSlide = (currentSquareSlide - 1 + totalSlides) % totalSlides;
-                updateSquareCarousel();
-            }
+            // Pause au hover
+            carouselSlide.addEventListener('mouseenter', () => {
+                clearInterval(autoSlide);
+            });
 
-            // Auto slide every 5 seconds
-            setInterval(nextSquareSlide, 1000);
+            carouselSlide.addEventListener('mouseleave', () => {
+                autoSlide = setInterval(slideCarousel, slideInterval);
+            });
 
             // Initialize animations on scroll
             const observer = new IntersectionObserver((entries) => {
