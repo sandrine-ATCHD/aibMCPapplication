@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Application Form - AIESEC in Benin MCP 26.27</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Police Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.jpg">
     <script>
         tailwind.config = {
@@ -86,7 +84,6 @@
             transform-origin: bottom left;
         }
 
-        /* Hero animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -123,7 +120,6 @@
             opacity: 0;
         }
 
-        /* Menu mobile */
         .menu-overlay {
             opacity: 0;
             visibility: hidden;
@@ -163,7 +159,6 @@
             }
         }
 
-        /* Cards styling */
         .app-card {
             transition: all 0.3s ease;
             border-left: 4px solid #037EF3;
@@ -172,6 +167,75 @@
         .app-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 767px) {
+            body, p, li, span, div, a:not(.no-normal) {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+            h1 {
+                font-size: 1.8rem !important;
+                line-height: 1.2;
+            }
+            h2 {
+                font-size: 1.5rem !important;
+            }
+            h3 {
+                font-size: 1.2rem !important;
+            }
+            .hero-section h1 {
+                font-size: 1.5rem !important;
+            }
+            .hero-section p {
+                font-size: 0.9rem !important;
+            }
+            .app-card h3 {
+                font-size: 1.1rem !important;
+            }
+            .app-card p {
+                font-size: 0.85rem !important;
+            }
+            .accordion-btn {
+                font-size: 1rem !important;
+                padding: 0.8rem 1rem !important;
+            }
+            .accordion-content {
+                font-size: 0.9rem !important;
+            }
+            .accordion-content p {
+                font-size: 0.85rem !important;
+                line-height: 1.4;
+            }
+            #submission .bg-gray-50 p {
+                font-size: 0.85rem !important;
+            }
+            #warning ul {
+                font-size: 0.85rem !important;
+            }
+            footer p {
+                font-size: 0.8rem !important;
+            }
+            .container {
+                width: 100%;
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            .app-card {
+                width: 100%;
+                margin-bottom: 1rem;
+                padding: 1rem !important;
+            }
+            .accordion-btn, .accordion-content {
+                width: 100%;
+            }
+            #warning .container {
+                padding: 0;
+            }
+            .hero-section {
+                min-height: 120px !important;
+            }
         }
     </style>
 </head>
@@ -205,13 +269,10 @@
     <nav class="bg-white fixed w-full z-50 py-3 border-b border-gray-100">
         <div class="container mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between">
-                <!-- Logo + Texte -->
                 <div class="flex items-center">
                     <img src="logo.png" alt="Logo AIESEC Benin" class="h-10 sm:h-12 mr-2">
                     <span class="text-lg sm:text-xl md:text-2xl tracking-widest text-accent font-bold">AIESEC in Benin</span>
                 </div>
-
-                <!-- Desktop Menu -->
                 <div class="hidden lg:flex lg:space-x-2 text-gray-700 text-sm md:text-base">
                     <a href="index.html" class="link-discrete hover:text-accent  font-bold px-2 py-1">General</a>
                     <a href="intentlette.html" class="link-discrete hover:text-accent px-2 py-1">Intent Letter</a>
@@ -219,8 +280,6 @@
                     <a href="about.html" class="link-discrete hover:text-accent px-2 py-1">About</a>
                     <a href="contact.html" class="link-discrete hover:text-accent px-2 py-1">Contact</a>
                 </div>
-
-                <!-- Mobile Menu Button -->
                 <button class="lg:hidden text-accent text-2xl" id="menuToggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -229,18 +288,16 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative py-24">
-        <div class="absolute inset-0 bg-accent">
-            <!-- Overlay léger pour améliorer la lisibilité -->
-            <div class="absolute inset-0 bg-black/20"></div>
+    <section class="relative pt-20 pb-12 sm:py-24 hero-section">
+        <div class="absolute inset-0 bg-cover bg-[top_center]" style="background-image: url('groupe3.jpeg');">
+            <div class="absolute inset-0 bg-accent opacity-70"></div>
         </div>
-
-        <div class="relative container mx-auto px-4 sm:px-6 flex items-center justify-center min-h-[200px]">
-            <div class="text-center max-w-4xl">
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-wide mb-4">
+        <div class="relative container mx-auto px-4 sm:px-6 flex items-center justify-center min-h-[150px] sm:min-h-[200px]">
+            <div class="text-center max-w-4xl px-4">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-wide mb-4">
                     MCP 26.27 APPLICATION
                 </h1>
-                <p class="text-xl text-white/90 mt-4">
+                <p class="text-base sm:text-lg md:text-xl text-white/90 mt-4">
                     Complete Your Application Package
                 </p>
             </div>
@@ -253,12 +310,10 @@
             <h2 class="text-3xl sm:text-4xl font-bold text-accent mb-10 text-center">
                 Application Package
             </h2>
-
             <p class="text-gray-700 mb-12 text-center leading-relaxed text-lg">
                 Please submit the following documents and materials as part of your MCP application.
                 Ensure all files are in PDF format unless stated otherwise.
             </p>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto">
                 <!-- Biography -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
@@ -272,7 +327,6 @@
                         Introduce yourself by sharing your life purpose, core values, strengths, and weaknesses that shape your behaviors.
                     </p>
                 </div>
-
                 <!-- CV -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -285,7 +339,6 @@
                         Include personal information, AIESEC and professional experiences, skills, and language proficiency.
                     </p>
                 </div>
-
                 <!-- Motivation Letter -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -298,7 +351,6 @@
                         Addressed to the current MCP. Explain your motivation to continue in AIESEC, apply for the MCP role, and what you seek to gain from this experience.
                     </p>
                 </div>
-
                 <!-- Application Questionnaire -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -313,7 +365,6 @@
                         </a>
                     </p>
                 </div>
-
                 <!-- Executive Summary -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -326,7 +377,6 @@
                         One-page PDF summarizing your vision, leadership priorities, and strategic focus.
                     </p>
                 </div>
-
                 <!-- Video -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -340,7 +390,6 @@
                         <br><strong>Max 5 minutes</strong> · Landscape · Professional format
                     </p>
                 </div>
-
                 <!-- Blank Paper Challenge -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -353,7 +402,6 @@
                         One-page PDF. Showcase your creativity, leadership mindset, and originality.
                     </p>
                 </div>
-
                 <!-- Action Plan -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -367,7 +415,6 @@
                         <br><strong>1 PDF page</strong>
                     </p>
                 </div>
-
                 <!-- Personal Tests -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -391,7 +438,6 @@
                                 </a>
                             </span>
                         </li>
-
                         <li class="flex items-start">
                             <span class="text-accent mr-2">•</span>
                             <span>
@@ -403,7 +449,6 @@
                                 </a>
                             </span>
                         </li>
-
                         <li class="flex items-start">
                             <span class="text-accent mr-2">•</span>
                             <span>
@@ -415,7 +460,6 @@
                                 </a>
                             </span>
                         </li>
-
                         <li class="flex items-start">
                             <span class="text-accent mr-2">•</span>
                             <span>
@@ -427,7 +471,6 @@
                                 </a>
                             </span>
                         </li>
-
                         <li class="flex items-start">
                             <span class="text-accent mr-2">•</span>
                             <span>
@@ -441,7 +484,6 @@
                         </li>
                     </ul>
                 </div>
-
                 <!-- Endorsement Letters -->
                 <div class="app-card bg-white p-6 rounded-lg shadow-md">
                     <div class="flex items-center mb-4">
@@ -467,7 +509,6 @@
             <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-12 text-center">
                 Application Questions
             </h2>
-
             <div class="space-y-4">
                 <!-- GET TO KNOW -->
                 <div class="border rounded-lg shadow-sm">
@@ -498,7 +539,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- AIESEC IN BENIN CONTEXT -->
                 <div class="border rounded-lg shadow-sm">
                     <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
@@ -524,7 +564,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- LEADERSHIP -->
                 <div class="border rounded-lg shadow-sm">
                     <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
@@ -546,7 +585,6 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- VISION -->
                 <div class="border rounded-lg shadow-sm">
                     <button class="w-full text-left px-6 py-4 font-semibold text-gray-900 bg-accent/10 hover:bg-accent/20 transition flex justify-between items-center accordion-btn">
@@ -586,16 +624,13 @@
             <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center">
                 How to Submit
             </h2>
-
             <div class="bg-gray-50 p-6 rounded-xl mb-10 border border-gray-200">
                 <h3 class="text-xl font-bold text-gray-900 mb-4">Submission Process</h3>
-
                 <div class="space-y-4">
                     <div class="flex items-start">
                         <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</span>
                         <p><strong>Prepare ZIP file:</strong> All PDF documents in one ZIP file named: <code class="bg-gray-100 px-2 py-1 rounded text-sm">FirstName_LastName_MCP26.27_AIESECinBenin.zip</code></p>
                     </div>
-
                     <div class="flex items-start">
                         <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">2</span>
                         <p>
@@ -606,12 +641,10 @@
                             <br>• aiesec.alumnibenin@gmail.com
                         </p>
                     </div>
-
                     <div class="flex items-start">
                         <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">3</span>
                         <p><strong>Deadline:</strong> 04 January, 2026 at 11:59 p.m (GMT+1)</p>
                     </div>
-
                     <div class="flex items-start">
                         <span class="bg-accent text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">4</span>
                         <p><strong>Confirmation:</strong> You'll receive a confirmation email within 48 hours.</p>
@@ -622,7 +655,7 @@
     </section>
 
     <!-- Warning Section -->
-    <section id="warning" class="py-12 sm:py-16">
+    <section id="warning" class="py-1 sm:py-2">
         <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
             <div class="flex items-start space-x-4 border-l-4 border-red-900 bg-red-50 p-6 rounded-lg shadow">
                 <div class="flex-shrink-0 mt-1">
@@ -637,13 +670,14 @@
                         <li>The full answer of the question is required and should be done inside the application package.</li>
                         <li>The application must be answered in English.</li>
                         <li>You can use external resources or references to help you in your answers.</li>
-                        <li>Prepare your application fees (<strong>10.000 FCFA</strong>) in case you're accepted.</li>
+                        <li>Prepare your application fees (<strong>10.000 FCFA</strong>) in case your application is accepted..</li>
                         <li>Don't run any campaign or talk about your vision to our membership before the Election day!</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
+    <div class="mb-16"></div>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent">
