@@ -89,7 +89,7 @@
             transform-origin: bottom left;
         }
 
-                .social-icon {
+        .social-icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -270,6 +270,21 @@
         .eligibility-card {
             border-top: 4px solid #0CB9C1;
         }
+
+        /* Style pour le bouton "Lire plus" */
+        .hidden-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .read-more-btn {
+            color: #037EF3;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
     </style>
 </head>
 <body class="bg-white antialiased text-gray-800">
@@ -284,7 +299,7 @@
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-           
+
             <nav class="flex flex-col space-y-6">
                 <a href="index.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete font-bold text-accent" onclick="closeMobileMenu()">General</a>
                 <a href="intentlette.html" class="text-gray-700 text-lg hover:text-accent transition-colors link-discrete" onclick="closeMobileMenu()">Intent Letter Submission</a>
@@ -355,12 +370,58 @@
                 <!-- Quote à gauche -->
                 <div class="space-y-6 order-1 lg:order-1">
                     <div class="simple-card p-6 sm:p-8 lg:p-10 border-blue-left">
-                        <p class="text-lg sm:text-xl italic leading-relaxed text-gray-700 mb-4 sm:mb-6">
-                            "As you open this application, I hope you take a moment to breathe in the weight and beauty of the role you're stepping toward... AIESEC in Benin is still growing, still evolving, still finding its voice—and you will be part of shaping that story."
+                        <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                            Dear Applicant,
                         </p>
+                        <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                            With a heart full of enthusiasm and conviction, I leave you these words. Congratulations for taking the step to click on this link. That single action already says something about you: courage, curiosity, and a desire to make a difference.
+                        </p>
+                        <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                            Before you go further, I want to share a few words out of respect for this entity that shaped my leadership and gave me far more than I could ever give back.
+                        </p>
+
+                        <!-- Contenu masqué par défaut -->
+                        <div class="hidden-content">
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                After six years here, I’ve witnessed many forms of leadership each shaping the AIESEC we know today.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                Being MCP means accepting the unknown, being misunderstood, and persisting even when reality seems to move against you. It means living through moments where nothing seems to work, yet time keeps moving forward.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                Never forget what brought you here.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                This role is exactly what you need not just for the entity, but for yourself. It will challenge, reshape, and transform you in ways you cannot yet imagine.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                The legacy I received didn’t start with me. It’s the result of sacrifices from over twenty generations before us. Today, that flame is ready to be passed on to the generation that will define the future of this entity.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                In moments of exhaustion or doubt, remember: you stand on years of sacrifice, commitment, and belief. Give your best, and trust that this organization will give you its best in return.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                My advice: don’t apply for the title or to prove anything. Apply to restore the pride, strength, and credibility of this entity.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                It is waiting for you.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                I came, I lived the experience, and I grew beyond measure. May this also be your closing line.
+                            </p>
+                            <p class="text-sm sm:text-base italic leading-relaxed text-gray-700 mb-2 sm:mb-3">
+                                Good luck, and see you on the other side.
+                            </p>
+                        </div>
+
+                        <!-- Bouton "Lire plus" -->
+                        <button onclick="toggleReadMore()" class="read-more-btn">
+                            Read more
+                        </button>
+
                         <div class="text-right">
-                            <p class="text-base sm:text-lg text-accent font-bold">Armel AHOUADI</p>
-                            <p class="text-gray-600 text-sm sm:text-base">Member Committee President, AIESEC in Benin</p>
+                            <p class="text-sm sm:text-base text-accent font-bold">Armel AHOUADI</p>
+                            <p class="text-gray-600 text-xs sm:text-sm">Member Committee President, AIESEC in Benin</p>
                         </div>
                     </div>
                 </div>
@@ -389,7 +450,7 @@
     </section>
 
     <!-- Job Description Section -->
-    <section id="job-description" class="py-16 sm:py-24 ">
+    <section id="job-description" class="py-16 sm:py-24">
         <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
                 Job Description: <br> <span class="text-accent">Overall MCP Responsibilities</span>
@@ -517,11 +578,11 @@
                     <div class="space-y-6">
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Letter of Intent</h4>
-                            <p class="text-gray-600">Dec 27, 2025 at 11:59 p.m</p>
+                            <p class="text-gray-600">Dec 29, 2025 at 11:59 p.m</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Application Submission</h4>
-                            <p class="text-gray-600">Jan 04, 2026 at 11:59 p.m</p>
+                            <p class="text-gray-600">Jan 06, 2026 at 11:59 p.m</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Test & Interview</h4>
@@ -542,7 +603,7 @@
     </section>
 
     <!-- Countdown Section -->
-    <section id="countdown" class="py-16 sm:py-24 ">
+    <section id="countdown" class="py-16 sm:py-24">
         <div class="container mx-auto px-4 sm:px-6 max-w-5xl">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl text-center mb-12 sm:mb-16 text-gray-900 font-bold section-title">
               Deadlines Countdown
@@ -553,7 +614,7 @@
                 <div class="countdown-card p-8 text-center">
                     <div class="mb-6">
                         <h3 class="text-2xl font-bold mb-3 text-accent">Letter of Intent</h3>
-                        <p class="text-gray-600">Deadline: Dec 27, 2025, 11:59 PM</p>
+                        <p class="text-gray-600">Deadline: Dec 29, 2025, 11:59 PM</p>
                     </div>
                     <div id="countdown-loi" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
                     <p class="text-gray-500 text-sm">Submit your letter of intent before this deadline</p>
@@ -563,7 +624,7 @@
                 <div class="countdown-card p-8 text-center">
                     <div class="mb-6">
                         <h3 class="text-2xl font-bold mb-3 text-accent">Application Submission</h3>
-                        <p class="text-gray-600">Deadline: Jan 04, 2026, 11:59 PM</p>
+                        <p class="text-gray-600">Deadline: Jan 06, 2026, 11:59 PM</p>
                     </div>
                     <div id="countdown-app" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
                     <p class="text-gray-500 text-sm">Complete application package submission deadline</p>
@@ -580,55 +641,54 @@
     </section>
 
     <!-- Footer -->
-  <!-- Footer -->
-<footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent">
-    <div class="container mx-auto px-4 sm:px-6">
-        <!-- Footer Content - Mobile: Stacked, Desktop: Single Line -->
-        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 lg:gap-8">
-            <!-- Copyright Text -->
-            <div class="text-center lg:text-left order-2 lg:order-1">
-                <p class="text-sm sm:text-base opacity-80">
-                    <i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.
-                </p>
-            </div>
+    <footer class="bg-gray-800 text-white py-8 sm:py-12 border-t border-accent">
+        <div class="container mx-auto px-4 sm:px-6">
+            <!-- Footer Content - Mobile: Stacked, Desktop: Single Line -->
+            <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6 lg:gap-8">
+                <!-- Copyright Text -->
+                <div class="text-center lg:text-left order-2 lg:order-1">
+                    <p class="text-sm sm:text-base opacity-80">
+                        <i class="fas fa-heart text-red-400 mr-2"></i>Made with love in Benin, Powered by AIESEC © 2025.
+                    </p>
+                </div>
 
-            <!-- Social Media Section -->
-            <div class="text-center order-1 lg:order-2">
-                <div class="flex flex-col lg:flex-row items-center gap-3 lg:gap-4">
-                    <h3 class="text-lg sm:text-xl font-bold lg:mb-0">Follow Us</h3>
-                    <div class="flex justify-center space-x-4">
-                        <a href="https://www.facebook.com/p/AIESEC-Benin-61573443876746/"
-                           class="social-icon bg-blue-600 text-white hover:bg-blue-700"
-                           aria-label="Facebook"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            <i class="fab fa-facebook-f text-lg"></i>
-                        </a>
-                        <a href="https://www.instagram.com/aiesecinbenin"
-                           class="social-icon bg-pink-500 text-white hover:bg-pink-600"
-                           aria-label="Instagram"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            <i class="fab fa-instagram text-lg"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/aiesecinbenin"
-                           class="social-icon bg-blue-700 text-white hover:bg-blue-800"
-                           aria-label="LinkedIn"
-                           target="_blank"
-                           rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in text-lg"></i>
-                        </a>
+                <!-- Social Media Section -->
+                <div class="text-center order-1 lg:order-2">
+                    <div class="flex flex-col lg:flex-row items-center gap-3 lg:gap-4">
+                        <h3 class="text-lg sm:text-xl font-bold lg:mb-0">Follow Us</h3>
+                        <div class="flex justify-center space-x-4">
+                            <a href="https://www.facebook.com/p/AIESEC-Benin-61573443876746/"
+                               class="social-icon bg-blue-600 text-white hover:bg-blue-700"
+                               aria-label="Facebook"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-facebook-f text-lg"></i>
+                            </a>
+                            <a href="https://www.instagram.com/aiesecinbenin"
+                               class="social-icon bg-pink-500 text-white hover:bg-pink-600"
+                               aria-label="Instagram"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-instagram text-lg"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/aiesecinbenin"
+                               class="social-icon bg-blue-700 text-white hover:bg-blue-800"
+                               aria-label="LinkedIn"
+                               target="_blank"
+                               rel="noopener noreferrer">
+                                <i class="fab fa-linkedin-in text-lg"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- AIESEC Logo -->
-            <div class="flex justify-center lg:justify-end order-3">
-                <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
+                <!-- AIESEC Logo -->
+                <div class="flex justify-center lg:justify-end order-3">
+                    <img src="White-Black-Logo.png" alt="AIESEC Logo" class="h-8 sm:h-10">
+                </div>
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
     <!-- Fichier JS pour le menu mobile -->
     <script src="script.js" defer></script>
@@ -677,11 +737,25 @@
         }
 
         // Initialize countdowns
-        const loiDeadline = new Date("December 27, 2025 23:59:00 GMT+0100");
-        const appDeadline = new Date("January 04, 2026 23:59:00 GMT+0100");
+        const loiDeadline = new Date("December 29, 2025 23:59:00 GMT+0100");
+        const appDeadline = new Date("January 06, 2026 23:59:00 GMT+0100");
 
         initializeCountdown("countdown-loi", loiDeadline);
         initializeCountdown("countdown-app", appDeadline);
+
+        // Fonction pour le bouton "Lire plus"
+        function toggleReadMore() {
+            const hiddenContent = document.querySelector('.hidden-content');
+            const readMoreBtn = document.querySelector('.read-more-btn');
+
+            if (hiddenContent.style.maxHeight === '0px' || hiddenContent.style.maxHeight === '') {
+                hiddenContent.style.maxHeight = '1000px';
+                readMoreBtn.textContent = 'Read less';
+            } else {
+                hiddenContent.style.maxHeight = '0px';
+                readMoreBtn.textContent = 'Read more';
+            }
+        }
     </script>
 </body>
 </html>
