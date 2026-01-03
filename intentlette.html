@@ -358,17 +358,18 @@
                         <div id="countdown-intent" class="text-4xl sm:text-5xl font-bold tracking-tight mb-2 text-manage">
                             Loading...
                         </div>
-                        <p class="text-gray-600">Time remaining to submit</p>
+                        <!-- <p class="text-gray-600">Time remaining to submit</p> -->
                     </div>
 
                     <div class="flex justify-center">
-                        <a href="submission.html"
+                        <a id="submit-intent-btn" href="submission.html"
                            class="inline-flex items-center px-8 py-3 bg-accent text-white rounded-xl
                                   hover:bg-blue-600 transition text-lg font-semibold shadow-md">
                             <i class="fas fa-paper-plane mr-3 text-lg"></i>
                             Submit Your Letter here
                         </a>
                     </div>
+                    
                 </div>
             </div>
 
@@ -462,9 +463,9 @@
             });
         });
 
-        // Countdown Script for Intent Letter
         function initializeIntentCountdown() {
             const countdownElement = document.getElementById('countdown-intent');
+            const submitButton = document.getElementById('submit-intent-btn');
             const targetDate = new Date("December 29, 2025 23:59:00 GMT+0100");
 
             function updateCountdown() {
@@ -473,6 +474,16 @@
 
                 if (distance < 0) {
                     countdownElement.innerHTML = '<span class="text-red-500">Deadline Passed</span>';
+                    if (submitButton) {
+                        submitButton.href = "#";
+                        submitButton.style.pointerEvents = "none";
+                        submitButton.style.opacity = "0.6";
+                        submitButton.style.cursor = "not-allowed";
+                        submitButton.innerHTML = `
+                            <i class="fas fa-times-circle mr-3 text-lg"></i>
+                            Submission Closed
+                        `;
+                    }
                     return;
                 }
 
@@ -509,6 +520,7 @@
 
         // Initialize countdown when page loads
         document.addEventListener('DOMContentLoaded', initializeIntentCountdown);
+
     </script>
 </body>
 </html>

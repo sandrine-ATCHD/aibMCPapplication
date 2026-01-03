@@ -617,8 +617,10 @@
                         <p class="text-gray-600">Deadline: Dec 29, 2025, 11:59 PM</p>
                     </div>
                     <div id="countdown-loi" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
-                    <p class="text-gray-500 text-sm">Submit your letter of intent before this deadline</p>
+                    <p id="message-loi" class="text-gray-500 text-sm">Submit your letter of intent before this deadline</p>
                 </div>
+                
+             
 
                 <!-- Application Submission -->
                 <div class="countdown-card p-8 text-center">
@@ -632,11 +634,12 @@
             </div>
 
             <div class="mt-12 text-center">
-                <a href="intentlette.html" class="inline-flex items-center px-8 py-4 bg-accent text-white rounded-full hover:bg-blue-700 transition-all duration-300 font-bold text-lg shadow hover:shadow-lg">
+                <a id="submit-loi-btn" href="intentlette.html" class="inline-flex items-center px-8 py-4 bg-accent text-white rounded-full hover:bg-blue-700 transition-all duration-300 font-bold text-lg shadow hover:shadow-lg">
                     <i class="fas fa-arrow-right mr-3"></i>
                     <span>Submit your Letter Of Intent here</span>
                 </a>
             </div>
+            
         </div>
     </section>
 
@@ -711,37 +714,50 @@
             });
         });
 
-        // Countdown Script
-        function initializeCountdown(elementId, targetDate) {
-            const countdownElement = document.getElementById(elementId);
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
+        function initializeCountdown(elementId, targetDate, messageElementId, buttonId) {
+    const countdownElement = document.getElementById(elementId);
+    const messageElement = document.getElementById(messageElementId);
+    const button = document.getElementById(buttonId);
 
-                if (distance < 0) {
-                    countdownElement.innerHTML = "Deadline Passed";
-                    clearInterval(interval);
-                    return;
-                }
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        if (distance < 0) {
+            countdownElement.innerHTML = "Deadline Passed";
+            if (messageElement) {
+                messageElement.textContent = "You can no longer submit your letter of intent";
             }
-
-            updateCountdown();
-            const interval = setInterval(updateCountdown, 1000);
+            if (button) {
+                button.href = "#";
+                button.style.pointerEvents = "none";
+                button.style.opacity = "0.6";
+                button.style.cursor = "not-allowed";
+                button.innerHTML = '<i class="fas fa-times-circle mr-3"></i><span>Intent letter submission is Closed</span>';
+            }
+            return;
         }
 
-        // Initialize countdowns
-        const loiDeadline = new Date("December 29, 2025 23:59:00 GMT+0100");
-        const appDeadline = new Date("January 06, 2026 23:59:00 GMT+0100");
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        initializeCountdown("countdown-loi", loiDeadline);
-        initializeCountdown("countdown-app", appDeadline);
+        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
+}
+
+// Initialize countdowns
+const loiDeadline = new Date("December 29, 2025 23:59:00 GMT+0100");
+const appDeadline = new Date("January 06, 2026 23:59:00 GMT+0100");
+
+initializeCountdown("countdown-loi", loiDeadline, "message-loi", "submit-loi-btn");
+initializeCountdown("countdown-app", appDeadline, "message-app");
+
+
 
         // Fonction pour le bouton "Lire plus"
         function toggleReadMore() {
