@@ -341,23 +341,41 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative h-screen overflow-hidden pt-16">
-        <div class="absolute inset-0 hero-bg-animated"></div>
-        <div class="relative h-full flex items-center justify-center text-white px-4 sm:px-6">
-            <div class="text-center max-w-3xl sm:max-w-5xl">
-                <p class="text-xl sm:text-2xl md:text-3xl mb-4 tracking-widest uppercase font-light hero-animate-text">
-                    Member Committee President Application
-                </p>
-                <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-8 tracking-tighter font-black hero-animate-text">
-                    MCP 26.27
-                </h1>
-                <a href="#foreword" class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal font-medium hero-animate-text">
-                    Start Your Journey &rarr;
-                </a>
+   <!-- Hero Section -->
+<section id="home" class="relative h-screen overflow-hidden pt-16">
+    <div class="absolute inset-0 hero-bg-animated"></div>
+
+    <div class="relative h-full flex items-center justify-center text-white px-4 sm:px-6">
+        <div class="text-center max-w-3xl sm:max-w-5xl">
+
+            <p class="text-xl sm:text-2xl md:text-3xl mb-6 tracking-widest uppercase font-light hero-animate-text">
+                Member Committee President Application
+            </p>
+
+            <!-- Second Round Badge -->
+            <div class="flex justify-center mb-6 hero-animate-text">
+                <span class="px-6 py-2 text-sm sm:text-base font-semibold tracking-widest uppercase 
+                bg-white/10 backdrop-blur-md border border-white/40 rounded-full shadow-lg">
+                Second Round Selection
+                </span>
             </div>
+
+            <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl mb-8 tracking-tighter font-black hero-animate-text">
+                MCP 26.27
+            </h1>
+
+            <p class="text-lg sm:text-xl mb-8 opacity-90 hero-animate-text">
+                The journey continues for the next leader of AIESEC.
+            </p>
+
+            <a href="#foreword"
+               class="inline-block px-4 py-3 text-lg sm:text-2xl text-white border-b border-white link-discrete hover:text-white no-normal font-medium hero-animate-text">
+                Continue the Journey →
+            </a>
+
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Foreword Section -->
     <section id="foreword" class="py-16 sm:py-24 bg-white">
@@ -578,11 +596,11 @@
                     <div class="space-y-6">
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Letter of Intent</h4>
-                            <p class="text-gray-600">Dec 29, 2025 at 11:59 p.m</p>
+                            <p class="text-gray-600">March 14, 2026 at 11:59 p.m</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Application Submission</h4>
-                            <p class="text-gray-600">Jan 06, 2026 at 11:59 p.m</p>
+                            <p class="text-gray-600">March 18, 2026 at 11:59 p.m</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Test & Interview</h4>
@@ -614,7 +632,7 @@
                 <div class="countdown-card p-8 text-center">
                     <div class="mb-6">
                         <h3 class="text-2xl font-bold mb-3 text-accent">Letter of Intent</h3>
-                        <p class="text-gray-600">Deadline: Dec 29, 2025, 11:59 PM</p>
+                        <p class="text-gray-600">Deadline: March 13, 2026, 11:59 PM</p>
                     </div>
                     <div id="countdown-loi" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
                     <p id="message-loi" class="text-gray-500 text-sm">Submit your letter of intent before this deadline</p>
@@ -626,7 +644,7 @@
                 <div class="countdown-card p-8 text-center">
                     <div class="mb-6">
                         <h3 class="text-2xl font-bold mb-3 text-accent">Application Submission</h3>
-                        <p class="text-gray-600">Deadline: Jan 06, 2026, 11:59 PM</p>
+                        <p class="text-gray-600">Deadline: March 18, 2026, 11:59 PM</p>
                     </div>
                     <div id="countdown-app" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
                     <p class="text-gray-500 text-sm">Complete application package submission deadline</p>
@@ -751,8 +769,8 @@
 }
 
 // Initialize countdowns
-const loiDeadline = new Date("December 29, 2025 23:59:00 GMT+0100");
-const appDeadline = new Date("January 06, 2026 23:59:00 GMT+0100");
+const loiDeadline = new Date("March 13, 2026 23:59:00 GMT+0100");
+const appDeadline = new Date("March 18, 2026 23:59:00 GMT+0100");
 
 initializeCountdown("countdown-loi", loiDeadline, "message-loi", "submit-loi-btn");
 initializeCountdown("countdown-app", appDeadline, "message-app");
