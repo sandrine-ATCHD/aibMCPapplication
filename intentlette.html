@@ -464,62 +464,73 @@
         });
 
         function initializeIntentCountdown() {
-            const countdownElement = document.getElementById('countdown-intent');
-            const submitButton = document.getElementById('submit-intent-btn');
-            const targetDate = new Date("March 16, 2026 23:59:00 GMT+0100");
+    const countdownElement = document.getElementById('countdown-intent');
+    const submitButton = document.getElementById('submit-intent-btn');
+    
+    // --- CORRECTION DE LA DATE & DU FUSEAU HORAIRE (GMT+1) ---
+    // Utilisation du format ISO 8601 pour un calcul universel basé sur le fuseau GMT+1
+    const targetDate = new Date("2026-05-30T23:59:00+01:00").getTime();
 
-            function updateCountdown() {
-                const now = new Date().getTime();
-                const distance = targetDate - now;
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
 
-                if (distance < 0) {
-                    countdownElement.innerHTML = '<span class="text-red-500">Deadline Passed</span>';
-                    if (submitButton) {
-                        submitButton.href = "#";
-                        submitButton.style.pointerEvents = "none";
-                        submitButton.style.opacity = "0.6";
-                        submitButton.style.cursor = "not-allowed";
-                        submitButton.innerHTML = `
-                            <i class="fas fa-times-circle mr-3 text-lg"></i>
-                            Submission Closed
-                        `;
-                    }
-                    return;
-                }
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                countdownElement.innerHTML = `
-                    <div class="flex justify-center space-x-1">
-                        <div class="bg-manage/10 px-3 py-2 rounded-lg">
-                            <div class="text-2xl font-bold text-manage">${days}</div>
-                            <div class="text-xs text-gray-500">Days</div>
-                        </div>
-                        <div class="bg-manage/10 px-3 py-2 rounded-lg">
-                            <div class="text-2xl font-bold text-manage">${hours}</div>
-                            <div class="text-xs text-gray-500">Hours</div>
-                        </div>
-                        <div class="bg-manage/10 px-3 py-2 rounded-lg">
-                            <div class="text-2xl font-bold text-manage">${minutes}</div>
-                            <div class="text-xs text-gray-500">Minutes</div>
-                        </div>
-                        <div class="bg-manage/10 px-3 py-2 rounded-lg">
-                            <div class="text-2xl font-bold text-manage">${seconds}</div>
-                            <div class="text-xs text-gray-500">Seconds</div>
-                        </div>
-                    </div>
+        // Si la deadline est dépassée
+        if (distance < 0) {
+            if (countdownElement) {
+                countdownElement.innerHTML = '<span class="text-red-500 text-3xl font-bold">Deadline Passed</span>';
+            }
+            if (submitButton) {
+                submitButton.href = "#";
+                submitButton.style.pointerEvents = "none";
+                submitButton.style.opacity = "0.6";
+                submitButton.style.cursor = "not-allowed";
+                submitButton.innerHTML = `
+                    <i class="fas fa-times-circle mr-3 text-lg"></i>
+                    Submission Closed
                 `;
             }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
+            return;
         }
 
-        // Initialize countdown when page loads
-        document.addEventListener('DOMContentLoaded', initializeIntentCountdown);
+        // Calcul du temps restant
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Affichage stylisé dans le DOM
+        if (countdownElement) {
+            countdownElement.innerHTML = `
+                <div class="flex justify-center space-x-1 sm:space-x-2">
+                    <div class="bg-manage/10 px-3 py-2 rounded-lg min-w-[60px]">
+                        <div class="text-2xl sm:text-3xl font-bold text-manage">${days}</div>
+                        <div class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">Days</div>
+                    </div>
+                    <div class="bg-manage/10 px-3 py-2 rounded-lg min-w-[60px]">
+                        <div class="text-2xl sm:text-3xl font-bold text-manage">${hours}</div>
+                        <div class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">Hours</div>
+                    </div>
+                    <div class="bg-manage/10 px-3 py-2 rounded-lg min-w-[60px]">
+                        <div class="text-2xl sm:text-3xl font-bold text-manage">${minutes}</div>
+                        <div class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">Min</div>
+                    </div>
+                    <div class="bg-manage/10 px-3 py-2 rounded-lg min-w-[60px]">
+                        <div class="text-2xl sm:text-3xl font-bold text-manage">${seconds}</div>
+                        <div class="text-[10px] sm:text-xs text-gray-500 uppercase tracking-wider">Sec</div>
+                    </div>
+                </div>
+            `;
+        }
+    }
+
+    // Exécution immédiate pour éviter le flash du texte "Loading..."
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+
+// Initialisation au chargement du DOM
+document.addEventListener('DOMContentLoaded', initializeIntentCountdown);
 
     </script>
 </body>

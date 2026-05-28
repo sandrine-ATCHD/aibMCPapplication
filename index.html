@@ -356,7 +356,7 @@
             <div class="flex justify-center mb-6 hero-animate-text">
                 <span class="px-6 py-2 text-sm sm:text-base font-semibold tracking-widest uppercase 
                 bg-white/10 backdrop-blur-md border border-white/40 rounded-full shadow-lg">
-                Second Round Selection
+                Third Round Selection
                 </span>
             </div>
 
@@ -596,23 +596,23 @@
                     <div class="space-y-6">
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Letter of Intent</h4>
-                            <p class="text-gray-600">March 16, 2026 at 11:59 p.m</p>
+                            <p class="text-gray-600">May 30, 2026 at 11:59 p.m (GMT+1)</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Application Submission</h4>
-                            <p class="text-gray-600">March 22, 2026 at 11:59 p.m</p>
+                            <p class="text-gray-600">June 2, 2026 at 11:59 p.m (GMT+1)</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Test & Interview</h4>
-                            <p class="text-gray-600">March 23 – March 26, 2026</p>
+                            <p class="text-gray-600">June 3 - June 4, 2026</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Election</h4>
-                            <p class="text-gray-600">March 28, 2026</p>
+                            <p class="text-gray-600">June 13, 2026</p>
                         </div>
                         <div class="deadline-item">
                             <h4 class="font-bold text-gray-800 mb-1">Announcement</h4>
-                            <p class="text-gray-600">March 29, 2026</p>
+                            <p class="text-gray-600">June 14, 2026</p>
                         </div>
                     </div>
                 </div>
@@ -632,7 +632,7 @@
                 <div class="countdown-card p-8 text-center">
                     <div class="mb-6">
                         <h3 class="text-2xl font-bold mb-3 text-accent">Letter of Intent</h3>
-                        <p class="text-gray-600">Deadline: March 16, 2026, 11:59 PM</p>
+                        <p class="text-gray-600">Deadline: May 30, 2026, 11:59 PM (GMT+1)</p>
                     </div>
                     <div id="countdown-loi" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
                     <p id="message-loi" class="text-gray-500 text-sm">Submit your letter of intent before this deadline</p>
@@ -644,7 +644,7 @@
                 <div class="countdown-card p-8 text-center">
                     <div class="mb-6">
                         <h3 class="text-2xl font-bold mb-3 text-accent">Application Submission</h3>
-                        <p class="text-gray-600">Deadline: March 22, 2026, 11:59 PM</p>
+                        <p class="text-gray-600">Deadline: June 2, 2026, 11:59 PM (GMT+1)</p>
                     </div>
                     <div id="countdown-app" class="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-gray-800"></div>
                     <p class="text-gray-500 text-sm">Complete application package submission deadline</p>
@@ -733,52 +733,58 @@
         });
 
         function initializeCountdown(elementId, targetDate, messageElementId, buttonId) {
-    const countdownElement = document.getElementById(elementId);
-    const messageElement = document.getElementById(messageElementId);
-    const button = document.getElementById(buttonId);
+        const countdownElement = document.getElementById(elementId);
+        const messageElement = document.getElementById(messageElementId);
+        const button = document.getElementById(buttonId);
 
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
 
-        if (distance < 0) {
-            countdownElement.innerHTML = "Deadline Passed";
-            if (messageElement) {
-                messageElement.textContent = "You can no longer submit your letter of intent";
+            if (distance < 0) {
+                if (countdownElement) countdownElement.innerHTML = "Deadline Passed";
+                if (messageElement) {
+                    if (elementId === "countdown-loi") {
+                        messageElement.textContent = "You can no longer submit your letter of intent";
+                    } else {
+                        messageElement.textContent = "Submissions are now closed";
+                    }
+                }
+                if (button) {
+                    button.href = "#";
+                    button.style.pointerEvents = "none";
+                    button.style.opacity = "0.6";
+                    button.style.cursor = "not-allowed";
+                    button.innerHTML = '<i class="fas fa-times-circle mr-3"></i><span>Submission is Closed</span>';
+                }
+                return;
             }
-            if (button) {
-                button.href = "#";
-                button.style.pointerEvents = "none";
-                button.style.opacity = "0.6";
-                button.style.cursor = "not-allowed";
-                button.innerHTML = '<i class="fas fa-times-circle mr-3"></i><span>Intent letter submission is Closed</span>';
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            if (countdownElement) {
+                countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
             }
-            return;
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        updateCountdown();
+        const interval = setInterval(updateCountdown, 1000);
     }
 
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-}
+    // --- CORRECTION DES DATES & DU FUSEAU HORAIRE (GMT+1) ---
+    // Utilisation du format ISO 8601 (AAAA-MM-JJTHH:MM:SS+01:00) pour garantir le verrouillage sur le GMT+1
+    const loiDeadline = new Date("2026-05-30T23:59:00+01:00").getTime();
+    const appDeadline = new Date("2026-06-02T23:59:00+01:00").getTime();
 
-// Initialize countdowns
-const loiDeadline = new Date("March 16, 2026 23:59:00 GMT+0100");
-const appDeadline = new Date("March 22, 2026 23:59:00 GMT+0100");
+    // Initialisation
+    initializeCountdown("countdown-loi", loiDeadline, "message-loi", "submit-loi-btn");
+    initializeCountdown("countdown-app", appDeadline, "message-app");
 
-initializeCountdown("countdown-loi", loiDeadline, "message-loi", "submit-loi-btn");
-initializeCountdown("countdown-app", appDeadline, "message-app");
-
-
-
-        // Fonction pour le bouton "Lire plus"
-        function toggleReadMore() {
+    // Fonction pour le bouton "Lire plus"
+    function toggleReadMore() {
             const hiddenContent = document.querySelector('.hidden-content');
             const readMoreBtn = document.querySelector('.read-more-btn');
 
